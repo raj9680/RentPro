@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Rent.Contracts/1.0.0": {
+        "runtime": {
+          "Rent.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Rent.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

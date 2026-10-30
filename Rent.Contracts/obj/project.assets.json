@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Contracts\\Rent.Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Contracts\\Rent.Contracts.csproj",
       "projectName": "Rent.Contracts",
-      "projectPath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Contracts\\Rent.Contracts.csproj",
+      "projectPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Contracts\\Rent.Contracts.csproj",
       "packagesPath": "C:\\Users\\raj.kumar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Contracts\\obj\\",
+      "outputPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\raj.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",

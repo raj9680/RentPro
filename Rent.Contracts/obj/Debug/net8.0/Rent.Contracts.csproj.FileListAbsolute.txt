@@ -1,0 +1,12 @@
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\bin\Debug\net8.0\Rent.Contracts.deps.json
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\bin\Debug\net8.0\Rent.Contracts.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\bin\Debug\net8.0\Rent.Contracts.pdb
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.AssemblyInfoInputs.cache
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.AssemblyInfo.cs
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.sourcelink.json
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\refint\Rent.Contracts.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\Rent.Contracts.pdb
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Contracts\obj\Debug\net8.0\ref\Rent.Contracts.dll

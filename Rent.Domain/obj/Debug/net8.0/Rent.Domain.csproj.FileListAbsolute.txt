@@ -1,0 +1,12 @@
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\bin\Debug\net8.0\Rent.Domain.deps.json
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\bin\Debug\net8.0\Rent.Domain.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\bin\Debug\net8.0\Rent.Domain.pdb
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.AssemblyInfoInputs.cache
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.AssemblyInfo.cs
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.csproj.CoreCompileInputs.cache
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.sourcelink.json
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\refint\Rent.Domain.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.pdb
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\ref\Rent.Domain.dll

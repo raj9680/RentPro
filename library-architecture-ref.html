@@ -1,0 +1,766 @@
+<title>Library Layer Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  /* Layout: a tabbed reference sheet — dependency graph on top, folder cards below, one hue per project carried through both */
+  :root {
+    --bg: #F6F7F9;
+    --surface: #FFFFFF;
+    --surface-2: #EDEFF3;
+    --fg: #14171C;
+    --fg-muted: #5B6472;
+    --fg-faint: #8A93A1;
+    --border: #DCE0E7;
+    --border-strong: #C3C9D4;
+    --accent: #2F5FA8;
+
+    --c-domain: #0E7A5F;
+    --c-application: #2563A8;
+    --c-contracts: #A1620D;
+    --c-infrastructure: #6B49A6;
+    --c-api: #0D7489;
+    --c-ui: #B04E1D;
+
+    --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101216;
+      --surface: #191C22;
+      --surface-2: #21252D;
+      --fg: #E7EAEF;
+      --fg-muted: #99A2B0;
+      --fg-faint: #6E7786;
+      --border: #2C313A;
+      --border-strong: #3B414C;
+      --accent: #7FA8E8;
+
+      --c-domain: #44C8A3;
+      --c-application: #6EA8E9;
+      --c-contracts: #DFA252;
+      --c-infrastructure: #A98DE8;
+      --c-api: #4FBCD6;
+      --c-ui: #E78B5B;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101216;
+    --surface: #191C22;
+    --surface-2: #21252D;
+    --fg: #E7EAEF;
+    --fg-muted: #99A2B0;
+    --fg-faint: #6E7786;
+    --border: #2C313A;
+    --border-strong: #3B414C;
+    --accent: #7FA8E8;
+
+    --c-domain: #44C8A3;
+    --c-application: #6EA8E9;
+    --c-contracts: #DFA252;
+    --c-infrastructure: #A98DE8;
+    --c-api: #4FBCD6;
+    --c-ui: #E78B5B;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 36px 64px;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .lede { color: var(--fg-muted); margin: 0; max-width: 62ch; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    margin: 0 0 10px;
+  }
+
+  /* tabs */
+  .tabs { display: flex; gap: 6px; margin: 28px 0 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .tab {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    color: var(--fg-muted);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 14px;
+    cursor: pointer;
+    margin-bottom: -1px;
+  }
+  .tab:hover { color: var(--fg); }
+  .tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); font-weight: 600; }
+  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .panel { padding-top: 28px; }
+  .panel > h2 {
+    font-size: 1.18rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 4px;
+  }
+  .panel > h2 + p { color: var(--fg-muted); margin: 0 0 24px; max-width: 64ch; }
+
+  /* graph */
+  .graph {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px 14px;
+    margin-bottom: 14px;
+  }
+  .graph svg { display: block; width: 100%; height: auto; }
+  .node rect { transition: opacity .15s ease; }
+  .node text { font-family: var(--font-sans); font-size: 13px; font-weight: 600; }
+  .edge { transition: opacity .15s ease; }
+  .edge-label { font-family: var(--font-mono); font-size: 10.5px; fill: var(--fg-faint); }
+  svg[data-sel] .node, svg[data-sel] .edge { opacity: 0.22; }
+  svg[data-sel] .node.on, svg[data-sel] .edge.on { opacity: 1; }
+  .node { cursor: pointer; }
+  .node:focus-visible rect { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .readout {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 0 0 10px;
+    min-height: 1.2em;
+  }
+  .readout b { color: var(--fg); font-weight: 600; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 6px 20px;
+    font-size: 0.78rem; color: var(--fg-faint);
+    margin: 0 0 32px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend i { display: block; width: 24px; height: 0; border-top: 1.5px solid var(--border-strong); }
+  .legend i.dash { border-top-style: dashed; }
+  .legend i.dot { border-top-style: dotted; }
+
+  /* table */
+  .tablewrap { overflow-x: auto; margin: 0 0 34px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 420px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  thead th { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-faint); font-weight: 600; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td code, th code { font-family: var(--font-mono); font-size: 0.85em; }
+  .dash-cell { color: var(--fg-faint); }
+
+  /* cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--hue);
+    border-radius: var(--radius);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .15s ease;
+  }
+  .card.span { grid-column: 1 / -1; }
+  .card-head { padding: 13px 16px 11px; border-bottom: 1px solid var(--border); }
+  .card-title { font-family: var(--font-mono); font-size: 0.93rem; font-weight: 600; color: var(--hue); margin: 0 0 6px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.74rem; color: var(--fg-muted); }
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--fg-muted);
+    white-space: nowrap;
+  }
+  .pill.same { color: var(--c-domain); }
+  .refs { font-family: var(--font-mono); font-size: 0.74rem; color: var(--fg-muted); }
+  .refs b { color: var(--fg); font-weight: 500; }
+  .card pre {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    line-height: 1.62;
+    margin: 0;
+    padding: 14px 16px;
+    overflow-x: auto;
+    color: var(--fg-muted);
+    flex: 1;
+  }
+  .card pre b { color: var(--fg); font-weight: 500; }
+  .card pre em { font-style: normal; color: var(--hue); }
+  .note { font-size: 0.82rem; color: var(--fg-muted); margin: 18px 0 0; max-width: 66ch; }
+  .note code { font-family: var(--font-mono); font-size: 0.88em; color: var(--fg); }
+
+  .rule { border: 0; border-top: 1px solid var(--border); margin: 44px 0 0; }
+  h3.sub { font-size: 1rem; font-weight: 600; margin: 34px 0 12px; }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">LibrarySolution &middot; .NET 8</p>
+  <h1>Clean Architecture layer map</h1>
+  <p class="lede">The same four core projects, shown first as a single MVC application and then with a Web API in front of them. Select any project in a diagram to trace what it references.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="true">A &middot; MVC only</button>
+    <button class="tab" role="tab" id="tab-b" aria-controls="panel-b" aria-selected="false">B &middot; MVC + Web API</button>
+  </div>
+
+  <!-- ================= PANEL A ================= -->
+  <section class="panel" id="panel-a" role="tabpanel" aria-labelledby="tab-a">
+    <h2>Four projects, one process</h2>
+    <p>MVC calls Application directly. Infrastructure is referenced only so <code>Program.cs</code> can register it; no Infrastructure type appears anywhere else in the UI.</p>
+
+    <div class="graph">
+      <svg viewBox="0 0 760 176" role="img" aria-label="Library.UI references Application and Infrastructure; Infrastructure references Application; Application references Domain" data-graph="a">
+        <defs>
+          <marker id="a-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="var(--border-strong)"></path>
+          </marker>
+        </defs>
+
+        <g class="edge" data-dep="ui-infrastructure" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M170 124H211" marker-end="url(#a-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="infrastructure-application" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M365 124H406" marker-end="url(#a-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="application-domain" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M560 124H601" marker-end="url(#a-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="ui-application" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M95 96C95 50 485 50 485 92" marker-end="url(#a-arrow)"></path>
+          <text class="edge-label" x="290" y="54" text-anchor="middle" fill="var(--fg-faint)">ProjectReference</text>
+        </g>
+
+        <g class="node" data-proj="ui" tabindex="0" role="button" aria-label="Library.UI">
+          <rect x="20" y="96" width="150" height="56" rx="8" fill="var(--c-ui)" fill-opacity="0.1" stroke="var(--c-ui)" stroke-width="1.5"></rect>
+          <text x="95" y="120" text-anchor="middle" fill="var(--fg)">Library.UI</text>
+          <text x="95" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">MVC</text>
+        </g>
+        <g class="node" data-proj="infrastructure" tabindex="0" role="button" aria-label="Library.Infrastructure">
+          <rect x="215" y="96" width="150" height="56" rx="8" fill="var(--c-infrastructure)" fill-opacity="0.1" stroke="var(--c-infrastructure)" stroke-width="1.5"></rect>
+          <text x="290" y="120" text-anchor="middle" fill="var(--fg)">Library.Infrastructure</text>
+          <text x="290" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">EF Core &middot; SQL Server</text>
+        </g>
+        <g class="node" data-proj="application" tabindex="0" role="button" aria-label="Library.Application">
+          <rect x="410" y="96" width="150" height="56" rx="8" fill="var(--c-application)" fill-opacity="0.1" stroke="var(--c-application)" stroke-width="1.5"></rect>
+          <text x="485" y="120" text-anchor="middle" fill="var(--fg)">Library.Application</text>
+          <text x="485" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">use cases &middot; DTOs</text>
+        </g>
+        <g class="node" data-proj="domain" tabindex="0" role="button" aria-label="Library.Domain">
+          <rect x="605" y="96" width="135" height="56" rx="8" fill="var(--c-domain)" fill-opacity="0.1" stroke="var(--c-domain)" stroke-width="1.5"></rect>
+          <text x="672" y="120" text-anchor="middle" fill="var(--fg)">Library.Domain</text>
+          <text x="672" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">no references</text>
+        </g>
+      </svg>
+    </div>
+    <p class="readout" id="readout-a">Select a project to trace its references.</p>
+    <div class="legend">
+      <span><i></i> ProjectReference</span>
+      <span>Arrow points at what is referenced</span>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Project</th><th>Type</th><th>References</th></tr></thead>
+        <tbody>
+          <tr><td><code>Library.Domain</code></td><td>class library</td><td class="dash-cell">&mdash;</td></tr>
+          <tr><td><code>Library.Application</code></td><td>class library</td><td><code>Domain</code></td></tr>
+          <tr><td><code>Library.Infrastructure</code></td><td>class library</td><td><code>Application</code></td></tr>
+          <tr><td><code>Library.UI</code></td><td>ASP.NET MVC</td><td><code>Application</code>, <code>Infrastructure</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cards">
+      <div class="card" style="--hue: var(--c-domain)">
+        <div class="card-head">
+          <p class="card-title">Library.Domain</p>
+          <div class="meta"><span class="pill">class library</span><span class="refs">refs <b>none</b></span></div>
+        </div>
+<pre>Library.Domain/
+├─ <b>Common/</b>
+│  ├─ BaseEntity.cs
+│  └─ BaseAuditableEntity.cs
+├─ <b>Entities/</b>
+│  ├─ Book.cs
+│  ├─ Author.cs
+│  ├─ Category.cs
+│  ├─ Country.cs
+│  ├─ Member.cs
+│  ├─ Role.cs
+│  ├─ Image.cs
+│  └─ BookTransaction.cs
+├─ <b>ValueObjects/</b>
+│  └─ Isbn.cs
+├─ <b>Enums/</b>
+│  └─ TransactionStatus.cs
+└─ <b>Exceptions/</b>
+   └─ BookNotAvailableException.cs</pre>
+      </div>
+
+      <div class="card" style="--hue: var(--c-application)">
+        <div class="card-head">
+          <p class="card-title">Library.Application</p>
+          <div class="meta"><span class="pill">class library</span><span class="refs">refs <b>Domain</b></span></div>
+        </div>
+<pre>Library.Application/
+├─ <b>Common/</b>
+│  ├─ <b>Interfaces/</b>
+│  │  ├─ <b>Repositories/</b>
+│  │  │  ├─ IBookRepository.cs
+│  │  │  ├─ IMemberRepository.cs
+│  │  │  └─ ICategoryRepository.cs
+│  │  └─ <b>Services/</b>
+│  │     ├─ IFileStorage.cs
+│  │     ├─ IEmailService.cs
+│  │     └─ ICurrentUser.cs
+│  ├─ <b>Mappings/</b>
+│  │  └─ BookMappings.cs
+│  └─ <b>Models/</b>
+│     └─ PaginatedList.cs
+├─ <b>Features/</b>
+│  ├─ <b>Books/</b>
+│  │  ├─ <b>Commands/</b>
+│  │  │  ├─ AddBookCommand.cs
+│  │  │  └─ IssueBookCommand.cs
+│  │  ├─ <b>Queries/</b>
+│  │  │  └─ GetAllBooksQuery.cs
+│  │  └─ <b>Dtos/</b>
+│  │     ├─ <em>BookDto.cs</em>
+│  │     └─ <em>BookListDto.cs</em>
+│  ├─ <b>Members/</b>
+│  └─ <b>Dashboard/</b>
+└─ DependencyInjection.cs</pre>
+      </div>
+
+      <div class="card" style="--hue: var(--c-infrastructure)">
+        <div class="card-head">
+          <p class="card-title">Library.Infrastructure</p>
+          <div class="meta"><span class="pill">class library</span><span class="refs">refs <b>Application</b></span></div>
+        </div>
+<pre>Library.Infrastructure/
+├─ <b>Persistence/</b>
+│  ├─ LibraryDbContext.cs
+│  ├─ <b>Configurations/</b>
+│  │  ├─ BookConfiguration.cs
+│  │  └─ MemberConfiguration.cs
+│  ├─ <b>Repositories/</b>
+│  │  ├─ BookRepository.cs
+│  │  ├─ MemberRepository.cs
+│  │  └─ CategoryRepository.cs
+│  ├─ <b>Migrations/</b>
+│  │  └─ 20260929_Init.cs
+│  └─ <b>Seed/</b>
+│     ├─ Books.json
+│     ├─ Members.json
+│     └─ SeedData.cs
+├─ <b>Identity/</b>
+│  └─ PasswordHasher.cs
+├─ <b>Services/</b>
+│  ├─ EmailService.cs
+│  └─ FileStorageService.cs
+└─ DependencyInjection.cs</pre>
+      </div>
+
+      <div class="card" style="--hue: var(--c-ui)">
+        <div class="card-head">
+          <p class="card-title">Library.UI</p>
+          <div class="meta"><span class="pill">ASP.NET MVC</span><span class="refs">refs <b>Application, Infrastructure</b></span></div>
+        </div>
+<pre>Library.UI/
+├─ <b>Controllers/</b>
+│  ├─ BooksController.cs
+│  ├─ MembersController.cs
+│  └─ AuthController.cs
+├─ <b>Models/</b>
+│  ├─ <b>Books/</b>
+│  │  ├─ <em>BookFormViewModel.cs</em>
+│  │  └─ <em>BookListViewModel.cs</em>
+│  └─ <b>Shared/</b>
+│     └─ PagerViewModel.cs
+├─ <b>Mappings/</b>
+│  └─ BookViewModelMappings.cs
+├─ <b>ViewComponents/</b>
+│  └─ CategoryDropdownViewComponent.cs
+├─ <b>Middlewares/</b>
+│  └─ ExceptionHandlingMiddleware.cs
+├─ <b>Views/</b>
+│  ├─ Books/Index.cshtml
+│  ├─ Books/AddBook.cshtml
+│  └─ Shared/_Layout.cshtml
+├─ <b>wwwroot/</b>
+└─ Program.cs</pre>
+      </div>
+    </div>
+
+    <p class="note">The two rules that keep this clean: <code>IFormFile</code> and <code>[Required]</code> live in <code>UI/Models/</code>, never in <code>Application/Features/*/Dtos/</code>; and <code>Microsoft.EntityFrameworkCore</code> appears in no file outside <code>Library.Infrastructure</code>.</p>
+  </section>
+
+  <!-- ================= PANEL B ================= -->
+  <section class="panel" id="panel-b" role="tabpanel" aria-labelledby="tab-b" hidden>
+    <h2>Six projects, two processes</h2>
+    <p>Domain, Application and Infrastructure are unchanged. MVC loses its backend references and talks to the API over HTTP; <code>Library.Contracts</code> holds every DTO and is referenced by both sides.</p>
+
+    <div class="graph">
+      <svg viewBox="0 0 760 372" role="img" aria-label="Library.UI calls Library.Api over HTTP; both reference Library.Contracts; Api references Application and Infrastructure; Application references Domain and Contracts" data-graph="b">
+        <defs>
+          <marker id="b-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="var(--border-strong)"></path>
+          </marker>
+          <marker id="b-arrow-api" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="var(--c-api)"></path>
+          </marker>
+        </defs>
+
+        <g class="edge" data-dep="ui-api" fill="none" stroke="var(--c-api)" stroke-width="2" stroke-dasharray="7 4">
+          <path d="M170 124H211" marker-end="url(#b-arrow-api)"></path>
+          <text class="edge-label" x="192" y="84" text-anchor="middle" fill="var(--c-api)">HTTPS + JWT</text>
+        </g>
+        <g class="edge" data-dep="api-application" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M365 124H406" marker-end="url(#b-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="application-domain" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M560 124H601" marker-end="url(#b-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="api-infrastructure" fill="none" stroke="var(--border-strong)" stroke-width="1.25" stroke-dasharray="2 3">
+          <path d="M345 152L424 196" marker-end="url(#b-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="infrastructure-application" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M510 200V156" marker-end="url(#b-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="ui-contracts" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M95 152V286" marker-end="url(#b-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="api-contracts" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M250 152V286" marker-end="url(#b-arrow)"></path>
+        </g>
+        <g class="edge" data-dep="application-contracts" fill="none" stroke="var(--border-strong)" stroke-width="1.25">
+          <path d="M545 152V176H585V286" marker-end="url(#b-arrow)"></path>
+        </g>
+
+        <g class="node" data-proj="ui" tabindex="0" role="button" aria-label="Library.UI">
+          <rect x="20" y="96" width="150" height="56" rx="8" fill="var(--c-ui)" fill-opacity="0.1" stroke="var(--c-ui)" stroke-width="1.5"></rect>
+          <text x="95" y="120" text-anchor="middle" fill="var(--fg)">Library.UI</text>
+          <text x="95" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">MVC &middot; cookie auth</text>
+        </g>
+        <g class="node" data-proj="api" tabindex="0" role="button" aria-label="Library.Api">
+          <rect x="215" y="96" width="150" height="56" rx="8" fill="var(--c-api)" fill-opacity="0.1" stroke="var(--c-api)" stroke-width="1.5"></rect>
+          <text x="290" y="120" text-anchor="middle" fill="var(--fg)">Library.Api</text>
+          <text x="290" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">issues the JWT</text>
+        </g>
+        <g class="node" data-proj="application" tabindex="0" role="button" aria-label="Library.Application">
+          <rect x="410" y="96" width="150" height="56" rx="8" fill="var(--c-application)" fill-opacity="0.1" stroke="var(--c-application)" stroke-width="1.5"></rect>
+          <text x="485" y="120" text-anchor="middle" fill="var(--fg)">Library.Application</text>
+          <text x="485" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">use cases</text>
+        </g>
+        <g class="node" data-proj="domain" tabindex="0" role="button" aria-label="Library.Domain">
+          <rect x="605" y="96" width="135" height="56" rx="8" fill="var(--c-domain)" fill-opacity="0.1" stroke="var(--c-domain)" stroke-width="1.5"></rect>
+          <text x="672" y="120" text-anchor="middle" fill="var(--fg)">Library.Domain</text>
+          <text x="672" y="138" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">no references</text>
+        </g>
+        <g class="node" data-proj="infrastructure" tabindex="0" role="button" aria-label="Library.Infrastructure">
+          <rect x="410" y="200" width="150" height="56" rx="8" fill="var(--c-infrastructure)" fill-opacity="0.1" stroke="var(--c-infrastructure)" stroke-width="1.5"></rect>
+          <text x="485" y="224" text-anchor="middle" fill="var(--fg)">Library.Infrastructure</text>
+          <text x="485" y="242" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">EF Core &middot; SQL Server</text>
+        </g>
+        <g class="node" data-proj="contracts" tabindex="0" role="button" aria-label="Library.Contracts">
+          <rect x="20" y="290" width="720" height="56" rx="8" fill="var(--c-contracts)" fill-opacity="0.1" stroke="var(--c-contracts)" stroke-width="1.5"></rect>
+          <text x="380" y="314" text-anchor="middle" fill="var(--fg)">Library.Contracts</text>
+          <text x="380" y="332" text-anchor="middle" font-size="11" font-weight="400" fill="var(--fg-muted)">every DTO &middot; zero references &middot; zero NuGet</text>
+        </g>
+      </svg>
+    </div>
+    <p class="readout" id="readout-b">Select a project to trace its references.</p>
+    <div class="legend">
+      <span><i></i> ProjectReference</span>
+      <span><i class="dash"></i> HTTP call, not a reference</span>
+      <span><i class="dot"></i> Reference used only for DI registration</span>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Project</th><th>Type</th><th>References</th></tr></thead>
+        <tbody>
+          <tr><td><code>Library.Domain</code></td><td>class library</td><td class="dash-cell">&mdash;</td></tr>
+          <tr><td><code>Library.Contracts</code></td><td>class library</td><td class="dash-cell">&mdash;</td></tr>
+          <tr><td><code>Library.Application</code></td><td>class library</td><td><code>Domain</code>, <code>Contracts</code></td></tr>
+          <tr><td><code>Library.Infrastructure</code></td><td>class library</td><td><code>Application</code></td></tr>
+          <tr><td><code>Library.Api</code></td><td>ASP.NET Web API</td><td><code>Application</code>, <code>Infrastructure</code>, <code>Contracts</code></td></tr>
+          <tr><td><code>Library.UI</code></td><td>ASP.NET MVC</td><td><code>Contracts</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">The three projects that change</h3>
+    <div class="cards">
+      <div class="card span" style="--hue: var(--c-contracts)">
+        <div class="card-head">
+          <p class="card-title">Library.Contracts</p>
+          <div class="meta"><span class="pill">new</span><span class="pill">class library</span><span class="refs">refs <b>none</b></span></div>
+        </div>
+<pre>Library.Contracts/
+├─ <b>Common/</b>
+│  ├─ <em>PagedResponse.cs</em>          <b>replaces the three Paginated*Dto</b>
+│  ├─ <em>DropdownItemResponse.cs</em>   <b>replaces both *DropdownDto</b>
+│  ├─ ApiErrorResponse.cs
+│  └─ ApiRoutes.cs
+├─ <b>Books/</b>
+│  ├─ CreateBookRequest.cs
+│  ├─ UpdateBookRequest.cs
+│  ├─ BookResponse.cs
+│  └─ BookTransactionResponse.cs
+├─ <b>Members/</b>
+│  ├─ CreateMemberRequest.cs
+│  └─ MemberResponse.cs
+├─ <b>Categories/</b>
+│  ├─ CreateCategoryRequest.cs
+│  └─ CategoryResponse.cs
+├─ <b>Authors/</b>  <b>Countries/</b>  <b>Dashboard/</b>
+└─ <b>Authentication/</b>
+   ├─ LoginRequest.cs
+   └─ LoginResponse.cs</pre>
+      </div>
+
+      <div class="card" style="--hue: var(--c-api)">
+        <div class="card-head">
+          <p class="card-title">Library.Api</p>
+          <div class="meta"><span class="pill">new</span><span class="pill">Web API</span><span class="refs">refs <b>Application, Infrastructure, Contracts</b></span></div>
+        </div>
+<pre>Library.Api/
+├─ <b>Controllers/</b>
+│  ├─ BooksController.cs
+│  ├─ MembersController.cs
+│  ├─ CategoriesController.cs
+│  └─ AuthController.cs
+├─ <b>Middlewares/</b>
+│  └─ <em>ExceptionHandlingMiddleware.cs</em>
+├─ <b>Filters/</b>
+│  └─ ApiExceptionFilter.cs
+├─ <b>Mappings/</b>
+│  └─ BookContractMappings.cs
+├─ <b>Extensions/</b>
+│  ├─ SwaggerExtensions.cs
+│  └─ JwtExtensions.cs
+├─ appsettings.json
+└─ Program.cs</pre>
+      </div>
+
+      <div class="card" style="--hue: var(--c-ui)">
+        <div class="card-head">
+          <p class="card-title">Library.UI</p>
+          <div class="meta"><span class="pill">ASP.NET MVC</span><span class="refs">refs <b>Contracts</b></span></div>
+        </div>
+<pre>Library.UI/
+├─ <b>Controllers/</b>
+│  ├─ BooksController.cs
+│  └─ MembersController.cs
+├─ <b>Models/</b>
+│  └─ <b>Books/</b>
+│     └─ <em>BookFormViewModel.cs</em>
+├─ <b>Services/</b>
+│  ├─ <b>ApiClients/</b>
+│  │  ├─ IBookApiClient.cs
+│  │  ├─ BookApiClient.cs
+│  │  └─ AuthApiClient.cs
+│  └─ <em>TokenHandler.cs</em>
+├─ <b>Mappings/</b>
+│  └─ BookViewModelMappings.cs
+├─ <b>ViewComponents/</b>
+├─ <b>Views/</b>
+├─ <b>wwwroot/</b>
+└─ Program.cs</pre>
+      </div>
+    </div>
+
+    <h3 class="sub">The three projects that stay as they are</h3>
+    <div class="cards">
+      <div class="card" style="--hue: var(--c-domain)">
+        <div class="card-head">
+          <p class="card-title">Library.Domain</p>
+          <div class="meta"><span class="pill same">same as A</span><span class="refs">refs <b>none</b></span></div>
+        </div>
+<pre>Library.Domain/
+├─ <b>Common/</b>        BaseEntity.cs
+├─ <b>Entities/</b>      Book.cs, Member.cs, …
+├─ <b>ValueObjects/</b>  Isbn.cs
+├─ <b>Enums/</b>         TransactionStatus.cs
+└─ <b>Exceptions/</b>    BookNotAvailableException.cs</pre>
+      </div>
+      <div class="card" style="--hue: var(--c-application)">
+        <div class="card-head">
+          <p class="card-title">Library.Application</p>
+          <div class="meta"><span class="pill same">same as A</span><span class="refs">refs <b>Domain, Contracts</b></span></div>
+        </div>
+<pre>Library.Application/
+├─ <b>Common/Interfaces/</b>  IBookRepository.cs,
+│                      IFileStorage.cs
+├─ <b>Common/Mappings/</b>    BookMappings.cs
+├─ <b>Features/Books/</b>     AddBookCommand.cs,
+│                      GetAllBooksQuery.cs
+└─ DependencyInjection.cs
+
+<em>Dtos/ folders are gone — the DTOs now
+live in Library.Contracts.</em></pre>
+      </div>
+      <div class="card" style="--hue: var(--c-infrastructure)">
+        <div class="card-head">
+          <p class="card-title">Library.Infrastructure</p>
+          <div class="meta"><span class="pill same">same as A</span><span class="refs">refs <b>Application</b></span></div>
+        </div>
+<pre>Library.Infrastructure/
+├─ <b>Persistence/</b>  LibraryDbContext.cs,
+│                Configurations/,
+│                Repositories/,
+│                Migrations/, Seed/
+├─ <b>Identity/</b>     JwtTokenGenerator.cs,
+│                PasswordHasher.cs
+├─ <b>Services/</b>     EmailService.cs
+└─ DependencyInjection.cs</pre>
+      </div>
+    </div>
+
+    <hr class="rule">
+    <h3 class="sub">What actually differs</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>&nbsp;</th><th>A &middot; MVC only</th><th>B &middot; MVC + Web API</th></tr></thead>
+        <tbody>
+          <tr><td>Where DTOs live</td><td><code>Application/Features/*/Dtos/</code></td><td><code>Library.Contracts/</code></td></tr>
+          <tr><td>Who the UI calls</td><td><code>IBookService</code> directly</td><td><code>IBookApiClient</code> over HTTP</td></tr>
+          <tr><td>Exception middleware</td><td><code>Library.UI/Middlewares/</code></td><td><code>Library.Api/Middlewares/</code></td></tr>
+          <tr><td>DbContext startup wiring</td><td><code>Library.UI/Program.cs</code></td><td><code>Library.Api/Program.cs</code></td></tr>
+          <tr><td>Auth</td><td>cookie, validated in-process</td><td>Api issues the JWT, UI holds it in a cookie</td></tr>
+          <tr><td>ViewModels</td><td>one per screen</td><td>only where the shape differs from the contract</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Domain, Application and Infrastructure are identical in both. That is the payoff of the layering: going from A to B touches only the two outer projects.</p>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var REFS = {
+      a: {
+        ui: ["application", "infrastructure"],
+        infrastructure: ["application"],
+        application: ["domain"],
+        domain: []
+      },
+      b: {
+        ui: ["contracts"],
+        api: ["application", "infrastructure", "contracts"],
+        application: ["domain", "contracts"],
+        infrastructure: ["application"],
+        contracts: [],
+        domain: []
+      }
+    };
+    var NAMES = {
+      ui: "Library.UI", api: "Library.Api", application: "Library.Application",
+      infrastructure: "Library.Infrastructure", contracts: "Library.Contracts", domain: "Library.Domain"
+    };
+
+    function wire(svg, readout) {
+      var key = svg.getAttribute("data-graph");
+      var nodes = svg.querySelectorAll(".node");
+      var edges = svg.querySelectorAll(".edge");
+      var idle = "Select a project to trace its references.";
+
+      function clear() {
+        svg.removeAttribute("data-sel");
+        nodes.forEach(function (n) { n.classList.remove("on"); });
+        edges.forEach(function (e) { e.classList.remove("on"); });
+        readout.textContent = idle;
+      }
+
+      function select(proj) {
+        var refs = REFS[key][proj] || [];
+        svg.setAttribute("data-sel", proj);
+        nodes.forEach(function (n) {
+          var p = n.getAttribute("data-proj");
+          n.classList.toggle("on", p === proj || refs.indexOf(p) > -1);
+        });
+        edges.forEach(function (e) {
+          e.classList.toggle("on", e.getAttribute("data-dep").indexOf(proj + "-") === 0);
+        });
+
+        var msg;
+        if (!refs.length) {
+          msg = NAMES[proj] + " references nothing. Nothing in the solution can change what it compiles against.";
+        } else {
+          msg = NAMES[proj] + " references " + refs.map(function (r) { return NAMES[r]; }).join(", ") + ".";
+          if (key === "b" && proj === "ui") msg += " It reaches the database only by calling Library.Api over HTTP.";
+          if (key === "b" && proj === "api") msg += " Infrastructure is referenced only to register it in Program.cs.";
+          if (key === "a" && proj === "ui") msg += " Infrastructure is referenced only to register it in Program.cs.";
+        }
+        readout.innerHTML = "";
+        readout.appendChild(document.createTextNode(msg));
+      }
+
+      nodes.forEach(function (n) {
+        var proj = n.getAttribute("data-proj");
+        n.addEventListener("click", function () {
+          if (svg.getAttribute("data-sel") === proj) { clear(); } else { select(proj); }
+        });
+        n.addEventListener("keydown", function (ev) {
+          if (ev.key === "Enter" || ev.key === " ") {
+            ev.preventDefault();
+            if (svg.getAttribute("data-sel") === proj) { clear(); } else { select(proj); }
+          }
+        });
+      });
+    }
+
+    var svgA = document.querySelector('svg[data-graph="a"]');
+    var svgB = document.querySelector('svg[data-graph="b"]');
+    if (svgA) wire(svgA, document.getElementById("readout-a"));
+    if (svgB) wire(svgB, document.getElementById("readout-b"));
+
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    function show(id) {
+      tabs.forEach(function (t) {
+        var on = t.id === id;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      try { location.hash = id === "tab-b" ? "api" : "mvc"; } catch (e) {}
+    }
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () { show(t.id); });
+    });
+    if (location.hash === "#api") show("tab-b");
+  })();
+</script>

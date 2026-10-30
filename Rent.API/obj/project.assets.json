@@ -13,6 +13,57 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
+      "Microsoft.Extensions.Configuration.Abstractions/10.0.13": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "10.0.13"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.13": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/10.0.13": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
@@ -88,6 +139,55 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Rent.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.13",
+          "Rent.Contracts": "1.0.0",
+          "Rent.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Rent.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rent.Application.dll": {}
+        }
+      },
+      "Rent.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Rent.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rent.Contracts.dll": {}
+        }
+      },
+      "Rent.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Rent.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rent.Domain.dll": {}
+        }
+      },
+      "Rent.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.13",
+          "Rent.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Rent.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rent.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -323,6 +423,95 @@
         "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
       ]
     },
+    "Microsoft.Extensions.Configuration.Abstractions/10.0.13": {
+      "sha512": "DY4C2qzTt2lOIY3VoscBH/TCwTolI5DKOfgJLuI+k1QUvRNT5vTMS58AOerNiihdVRStO0wEpLeRWA8jytzHBQ==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.abstractions/10.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "microsoft.extensions.configuration.abstractions.10.0.13.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.13": {
+      "sha512": "G2GrGWNAPZBsii2F6AU8n+JT2tC1/I0Ml/e9ZyNCgPjf3hZqronP7o0X91aAynCmVeae8KkSIUNXXeXCNRmdVQ==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.10.0.13.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/10.0.13": {
+      "sha512": "ZjTwxzhiw2TMEzIbUDkMF0dfDB2I4NQgIfKD0ELu9/5Mk+SRGdKZcD0/lvBrRCAPo6KN2r0BW86MRancoyJkoA==",
+      "type": "package",
+      "path": "microsoft.extensions.primitives/10.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Primitives.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Primitives.targets",
+        "lib/net10.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net10.0/Microsoft.Extensions.Primitives.xml",
+        "lib/net462/Microsoft.Extensions.Primitives.dll",
+        "lib/net462/Microsoft.Extensions.Primitives.xml",
+        "lib/net8.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net8.0/Microsoft.Extensions.Primitives.xml",
+        "lib/net9.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net9.0/Microsoft.Extensions.Primitives.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+        "microsoft.extensions.primitives.10.0.13.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.OpenApi/1.2.3": {
       "sha512": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "type": "package",
@@ -420,10 +609,33 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Rent.Application/1.0.0": {
+      "type": "project",
+      "path": "../Rent.Application/Rent.Application.csproj",
+      "msbuildProject": "../Rent.Application/Rent.Application.csproj"
+    },
+    "Rent.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Rent.Contracts/Rent.Contracts.csproj",
+      "msbuildProject": "../Rent.Contracts/Rent.Contracts.csproj"
+    },
+    "Rent.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Rent.Domain/Rent.Domain.csproj",
+      "msbuildProject": "../Rent.Domain/Rent.Domain.csproj"
+    },
+    "Rent.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Rent.Infrastructure/Rent.Infrastructure.csproj",
+      "msbuildProject": "../Rent.Infrastructure/Rent.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Rent.Application >= 1.0.0",
+      "Rent.Contracts >= 1.0.0",
+      "Rent.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -433,11 +645,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.API\\Rent.API.csproj",
+      "projectUniqueName": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.API\\Rent.API.csproj",
       "projectName": "Rent.API",
-      "projectPath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.API\\Rent.API.csproj",
+      "projectPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.API\\Rent.API.csproj",
       "packagesPath": "C:\\Users\\raj.kumar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.API\\obj\\",
+      "outputPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\raj.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -454,7 +666,17 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Application\\Rent.Application.csproj": {
+              "projectPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Application\\Rent.Application.csproj"
+            },
+            "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Contracts\\Rent.Contracts.csproj": {
+              "projectPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Contracts\\Rent.Contracts.csproj"
+            },
+            "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Rent.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Rent.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

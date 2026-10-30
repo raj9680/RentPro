@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "oWZL4o3dcf4=",
+  "dgSpecHash": "gy0+LO3EMeY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Infrastructure\\Rent.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Rent.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\raj.kumar\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.13\\microsoft.extensions.configuration.abstractions.10.0.13.nupkg.sha512",
+    "C:\\Users\\raj.kumar\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.13\\microsoft.extensions.dependencyinjection.abstractions.10.0.13.nupkg.sha512",
+    "C:\\Users\\raj.kumar\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.13\\microsoft.extensions.primitives.10.0.13.nupkg.sha512"
+  ],
   "logs": []
 }

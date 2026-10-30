@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Domain\\Rent.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\Rent.Domain.csproj",
       "projectName": "Rent.Domain",
-      "projectPath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Domain\\Rent.Domain.csproj",
+      "projectPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\Rent.Domain.csproj",
       "packagesPath": "C:\\Users\\raj.kumar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\raj.kumar\\Documents\\RentPro\\Rent.Domain\\obj\\",
+      "outputPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\raj.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
