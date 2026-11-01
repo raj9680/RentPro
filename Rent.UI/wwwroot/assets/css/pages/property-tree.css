@@ -1,0 +1,25 @@
+/* Property detail: space tree */
+.tree { display: flex; flex-direction: column; }
+.tree-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) 90px 110px 110px 100px 120px;
+  align-items: center; gap: 12px; padding: 10px 20px; font-size: 13px; color: var(--text-2);
+}
+.tree-row:nth-child(odd) { background: var(--row-alt); }
+.tree-head { font-size: var(--fs-xs); color: var(--muted); font-weight: 500; background: none !important; border-bottom: 1px solid var(--line); padding-top: 14px; padding-bottom: 14px; }
+.tree-name { display: flex; align-items: center; gap: 8px; color: var(--text); font-weight: 500; min-width: 0; }
+.tree-name .type-icon { width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--surface-muted); display: grid; place-items: center; color: var(--text-2); flex: none; }
+.tree-name .type-icon .icon { width: 15px; height: 15px; }
+.tree-toggle { width: 20px; height: 20px; display: grid; place-items: center; color: var(--muted); flex: none; }
+.tree-toggle .icon { width: 14px; height: 14px; transition: transform .15s ease; }
+.tree-row.collapsed .tree-toggle .icon { transform: rotate(-90deg); }
+.tree-spacer { width: 20px; flex: none; }
+.tree-row[data-depth="1"] .tree-name { padding-left: 24px; }
+.tree-row[data-depth="2"] .tree-name { padding-left: 48px; }
+.tree-row[data-depth="3"] .tree-name { padding-left: 72px; }
+.tree-actions { display: flex; justify-content: flex-end; gap: 2px; }
+.tree-row.hidden-child { display: none; }
+@media (max-width: 900px) {
+  .tree-row { grid-template-columns: minmax(0, 1fr) 80px 90px; }
+  .tree-row > :nth-child(4), .tree-row > :nth-child(5) { display: none; }
+  .tree-row > :nth-child(6) { display: none; }
+}

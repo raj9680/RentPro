@@ -10,10 +10,11 @@ builder.Services.AddUiDI();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (builder.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseDeveloperExceptionPage();
 }
+
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -22,6 +23,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Homee}/{action=Index}/{id?}");
 
 app.Run();

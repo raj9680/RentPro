@@ -1,0 +1,23 @@
+/* Dashboards (owner, tenant, admin) */
+.dash-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start; }
+.dash-left { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.dash-right { display: flex; flex-direction: column; gap: 20px; }
+.donut-wrap { position: relative; height: 180px; margin-top: 4px; }
+.area-wrap { height: 150px; margin: 0 -20px; }
+.area-labels { display: flex; justify-content: space-around; font-size: 11.5px; color: var(--text); font-weight: 500; margin-top: 8px; }
+.stay-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; }
+.stay-path { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.stay-path .icon { width: 12px; height: 12px; }
+.due-box { text-align: right; }
+.due-box .stat-label { margin-bottom: 4px; }
+.bar-wrap { height: 220px; }
+
+@media (max-width: 1200px) {
+  .dash-grid { grid-template-columns: minmax(0, 1fr); }
+  .dash-right { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .dash-right { grid-template-columns: minmax(0, 1fr); }
+  .stay-card { grid-template-columns: minmax(0, 1fr); }
+  .due-box { text-align: left; }
+}

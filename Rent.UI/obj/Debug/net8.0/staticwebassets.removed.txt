@@ -1,0 +1,3 @@
+C:\Users\aryan\OneDrive\Desktop\RentPro\Rent.UI\wwwroot\css\site.css
+C:\Users\aryan\OneDrive\Desktop\RentPro\Rent.UI\wwwroot\favicon.png
+C:\Users\aryan\OneDrive\Desktop\RentPro\Rent.UI\wwwroot\js\site.js
