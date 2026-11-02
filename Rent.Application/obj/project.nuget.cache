@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VQL7LhCPCnc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Application\\Rent.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\raj.kumar\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.14\\microsoft.extensions.dependencyinjection.abstractions.10.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
