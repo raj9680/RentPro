@@ -18,3 +18,5 @@ C:\Users\raj.kumar\Desktop\RentPro\Rent.Infrastructure\obj\Debug\net8.0\Rent.Inf
 C:\Users\raj.kumar\Desktop\RentPro\Rent.Infrastructure\obj\Debug\net8.0\refint\Rent.Infrastructure.dll
 C:\Users\raj.kumar\Desktop\RentPro\Rent.Infrastructure\obj\Debug\net8.0\Rent.Infrastructure.pdb
 C:\Users\raj.kumar\Desktop\RentPro\Rent.Infrastructure\obj\Debug\net8.0\ref\Rent.Infrastructure.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Infrastructure\bin\Debug\net8.0\Rent.Infrastructure.runtimeconfig.json
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Infrastructure\obj\Debug\net8.0\Rent.Infrastructure.genruntimeconfig.cache

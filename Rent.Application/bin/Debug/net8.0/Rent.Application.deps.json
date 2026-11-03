@@ -1,0 +1,63 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Rent.Application/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.14",
+          "Rent.Contracts": "1.0.0",
+          "Rent.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Rent.Application.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.14": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1426.52326"
+          }
+        }
+      },
+      "Rent.Contracts/1.0.0": {
+        "runtime": {
+          "Rent.Contracts.dll": {}
+        }
+      },
+      "Rent.Domain/1.0.0": {
+        "runtime": {
+          "Rent.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Rent.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QtpQzuSZVyTPCuHW058yCs9Nj0394uUkNyFHS813nOmK9UgUdBdaprJ5PPsBgsQIpxADTsTkbaMMonykem6qdw==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.14",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.10.0.14.nupkg.sha512"
+    },
+    "Rent.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Rent.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

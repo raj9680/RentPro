@@ -22,8 +22,11 @@ namespace Rent.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // UserConfiguration
+
+            // Entities Configurations
             UserConfiguration.Configure(modelBuilder);
+            UserIdentificationConfiguration.Configure(modelBuilder);
+            UserIdentificationDocumentConfiguration.Configure(modelBuilder);
         }
     }
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 100001,
+    "UserName": "admin",
+    "Email": "admin@rentpro.com",
+    "PasswordHash": "PREGENERATED_PASSWORD_HASH",
+    "Role": 1,
+    "Status": 1,
+    "CreatedAt": "2026-11-03T14:30:45Z",
+    "UpdatedAt": "2026-12-03T14:30:45Z"
+  },
+  {
+    "Id": 100002,
+    "UserName": "owner",
+    "Email": "landlord@rentpro.com",
+    "PasswordHash": "PREGENERATED_PASSWORD_HASH",
+    "Role": 2,
+    "Status": 1,
+    "CreatedAt": "2026-10-03T14:30:45Z",
+    "UpdatedAt": "2026-11-03T14:30:45Z"
+  },
+  {
+    "Id": 100003,
+    "UserName": "renter",
+    "Email": "renter@rentpro.com",
+    "PasswordHash": "VALID_PASSWORD_HASH",
+    "Role": 3,
+    "Status": 1,
+    "CreatedAt": "2026-10-03T14:30:45Z",
+    "UpdatedAt": "2026-11-03T14:30:45Z"
+  },
+  {
+    "Id": 100004,
+    "UserName": "guest",
+    "Email": "guest@rentpro.com",
+    "PasswordHash": "VALID_PASSWORD_HASH",
+    "Role": 4,
+    "Status": 1,
+    "CreatedAt": "2026-10-03T14:30:45Z",
+    "UpdatedAt": "2026-11-03T14:30:45Z"
+  }
+]

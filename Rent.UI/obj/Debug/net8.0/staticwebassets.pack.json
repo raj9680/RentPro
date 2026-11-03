@@ -1,20 +1,108 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Rent.UI.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Rent.UI.bundle.scp.css"
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\common\\base.css",
+      "PackagePath": "staticwebassets\\assets\\css\\common\\base.css"
     },
     {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\common\\components.css",
+      "PackagePath": "staticwebassets\\assets\\css\\common\\components.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\common\\layout.css",
+      "PackagePath": "staticwebassets\\assets\\css\\common\\layout.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\common\\variables.css",
+      "PackagePath": "staticwebassets\\assets\\css\\common\\variables.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\pages\\auth.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pages\\auth.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\pages\\dashboard.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pages\\dashboard.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\pages\\move-in.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pages\\move-in.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\pages\\property-tree.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pages\\property-tree.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\pages\\search.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pages\\search.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\css\\pages\\space-status.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pages\\space-status.css"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\common\\ajax.js",
+      "PackagePath": "staticwebassets\\assets\\js\\common\\ajax.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\common\\app.js",
+      "PackagePath": "staticwebassets\\assets\\js\\common\\app.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\common\\charts.js",
+      "PackagePath": "staticwebassets\\assets\\js\\common\\charts.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\account.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\account.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\admin-owners.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\admin-owners.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\auth.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\auth.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\inquiries.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\inquiries.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\invoices.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\invoices.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\move-in.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\move-in.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\property-detail.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\property-detail.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\property-form.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\property-form.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\reports.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\reports.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\search.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\search.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\space-status.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\space-status.js"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\tenancy.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\tenancy.js"
     },
     {
       "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
       "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\lib\\bootstrap\\LICENSE",

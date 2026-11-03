@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 300001,
+    "UserIdentificationId": 200001,
+    "DocumentType": 2,
+    "DocumentNumber": "XXXX-XXXX-1001",
+    "FilePath": "seed-documents/owner/aadhar.pdf"
+  },
+  {
+    "Id": 300002,
+    "UserIdentificationId": 200002,
+    "DocumentType": 3,
+    "DocumentNumber": "ABCDE1001F",
+    "FilePath": "seed-documents/owner/pan.pdf"
+  },
+  {
+    "Id": 300003,
+    "UserIdentificationId": 200002,
+    "DocumentType": 2,
+    "DocumentNumber": "XXXX-XXXX-1002",
+    "FilePath": "seed-documents/renter/aadhar.pdf"
+  }
+]

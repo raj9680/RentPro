@@ -1,10 +1,12 @@
 ﻿using Rent.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rent.Domain.Entities
 {
     public class User
     {
+        [Key]
         public int Id { get; set; }
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
@@ -15,14 +17,12 @@ namespace Rent.Domain.Entities
         public DateTime UpdatedAt { get; set; }
 
 
-        // Navigation Property
-        // Relationship 1: User's own KYC
+        // NVP - Relationship 1: User's own KYC
         [InverseProperty(nameof(UserIdentification.User))]
         public UserIdentification? UserIdentification { get; set; }
 
 
-        // Navigation Property
-        // Relationship 2: KYC records verified by this user
+        // NVP - Relationship 2: KYC records verified by this user
         [InverseProperty(nameof(UserIdentification.VerifiedByUser))]
         public ICollection<UserIdentification> VerifiedIdentifications { get; set; }
             = new List<UserIdentification>();

@@ -1,10 +1,12 @@
 ﻿using Rent.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rent.Domain.Entities
 {
     public class UserIdentification
     {
+        [Key]
         public int Id { get; set; }
 
         // Foreign Key to User

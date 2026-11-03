@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 200001,
+    "UserId": 100002,
+    "FullName": "Sample Owner",
+    "PhoneNumber": "9000000001",
+    "DOB": "1990-05-15",
+    "KycStatus": 1,
+    "VerifiedAt": "2026-01-15T10:30:00Z",
+    "VerifiedBy": 100002
+  },
+  {
+    "Id": 200002,
+    "UserId": 100003,
+    "FullName": "Sample Renter",
+    "PhoneNumber": "9000000002",
+    "DOB": "1998-08-20",
+    "KycStatus": 3,
+    "VerifiedAt": null,
+    "VerifiedBy": 100002
+  }
+]

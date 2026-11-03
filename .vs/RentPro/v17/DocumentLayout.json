@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.infrastructure\\persistence\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|solutionrelative:rent.infrastructure\\persistence\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.infrastructure\\persistence\\rentprodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|solutionrelative:rent.infrastructure\\persistence\\rentprodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B05E99CA-F900-427B-85E2-A7E9132F4678}|Rent.Domain\\Rent.Domain.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B05E99CA-F900-427B-85E2-A7E9132F4678}|Rent.Domain\\Rent.Domain.csproj|solutionrelative:rent.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,45 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\Configurations\\UserConfiguration.cs",
-              "RelativeDocumentMoniker": "Rent.Infrastructure\\Persistence\\Configurations\\UserConfiguration.cs",
-              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\Configurations\\UserConfiguration.cs",
-              "RelativeToolTip": "Rent.Infrastructure\\Persistence\\Configurations\\UserConfiguration.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-02T09:27:51.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RentProDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\RentProDbContext.cs",
-              "RelativeDocumentMoniker": "Rent.Infrastructure\\Persistence\\RentProDbContext.cs",
-              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\RentProDbContext.cs",
-              "RelativeToolTip": "Rent.Infrastructure\\Persistence\\RentProDbContext.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAgwBsAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-02T09:14:17.889Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "Rent.Domain\\Entities\\User.cs",
-              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\Entities\\User.cs",
-              "RelativeToolTip": "Rent.Domain\\Entities\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-02T09:09:31.861Z",
-              "EditorCaption": ""
             }
           ]
         }

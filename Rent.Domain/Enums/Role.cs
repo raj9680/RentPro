@@ -2,9 +2,9 @@
 {
     public enum Role
     {
-        Renter, 
-        Owner, 
-        Admin, 
-        Guest
+        Renter = 1, 
+        Owner  = 2, 
+        Admin  = 3, 
+        Guest  = 4
     }
 }

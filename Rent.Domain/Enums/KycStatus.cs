@@ -2,6 +2,6 @@
 {
     public enum KycStatus
     {
-        Verified, Unverified, Pending
+        Verified = 1, Unverified = 2, Pending = 3
     }
 }

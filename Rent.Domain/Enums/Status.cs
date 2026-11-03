@@ -2,6 +2,6 @@
 {
     public enum Status
     {
-        Active, Inactive, Banned
+        Active = 1, Inactive = 2, Banned = 3
     }
 }
