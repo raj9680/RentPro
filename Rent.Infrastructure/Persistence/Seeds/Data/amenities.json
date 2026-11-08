@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 500001,
+    "Name": "Air Conditioner"
+  },
+  {
+    "Id": 500002,
+    "Name": "Gyser"
+  },
+  {
+    "Id": 500003,
+    "Name": "Attached Bathroom"
+  },
+  {
+    "Id": 500004,
+    "Name": "Wi-Fi"
+  },
+  {
+    "Id": 500005,
+    "Name": "Furnished"
+  },
+  {
+    "Id": 500006,
+    "Name": "Parking"
+  },
+  {
+    "Id": 500007,
+    "Name": "Furnished"
+  },
+  {
+    "Id": 500008,
+    "Name": "Power Backup"
+  },
+  {
+    "Id": 500009,
+    "Name": "Meals"
+  }
+]

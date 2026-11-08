@@ -37,6 +37,10 @@ public static class DatabaseSeeder
             await ReadJsonAsync<UserIdentificationDocument>(
                 "user-identification-documents.json");
 
+        var properties = await ReadJsonAsync<Property>("properties.json");
+
+        var amenities = await ReadJsonAsync<Amenity>("amenities.json");
+
         // Insert users
         await using var transaction =
             await context.Database.BeginTransactionAsync();
@@ -66,6 +70,19 @@ public static class DatabaseSeeder
         await context.SaveChangesAsync();
         await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.UserIdentificationDocuments OFF");
 
+
+        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Properties ON");
+        context.Properties.AddRange(properties);
+        await context.SaveChangesAsync();
+        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Properties OFF");
+
+
+        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Amenities ON");
+        context.Amenities.AddRange(amenities);
+        await context.SaveChangesAsync();
+        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Amenities OFF");
+
+
         await transaction.CommitAsync();
     }
 
@@ -81,7 +98,6 @@ public static class DatabaseSeeder
         var json = await File.ReadAllTextAsync(filePath);
 
         return JsonSerializer.Deserialize<List<T>>(
-            json,
-            JsonOptions) ?? new List<T>();
+            json, JsonOptions) ?? new List<T>();
     }
 }

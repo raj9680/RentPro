@@ -17,6 +17,13 @@ namespace Rent.Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<UserIdentification> UserIdentifications { get; set; }
         public DbSet<UserIdentificationDocument> UserIdentificationDocuments { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<Floor> Floors { get; set; }
+        public DbSet<Flat> Flats { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Bed> Beds { get; set; }
+        public DbSet<Amenity> Amenities { get; set; }
+        public DbSet<FloorAmenity> FloorAmenities { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,6 +34,7 @@ namespace Rent.Infrastructure.Persistence
             UserConfiguration.Configure(modelBuilder);
             UserIdentificationConfiguration.Configure(modelBuilder);
             UserIdentificationDocumentConfiguration.Configure(modelBuilder);
+            FloorAmenityConfiguration.Configure(modelBuilder);
         }
     }
 }

@@ -1,10 +1,102 @@
-{
-  "exclude": [
-    "**/bin",
-    "**/bower_components",
-    "**/jspm_packages",
-    "**/node_modules",
-    "**/obj",
-    "**/platforms"
-  ]
-}
+[
+  {
+    "Id": 600001,
+    "Name": "Green Valley Apartments",
+    "Address": "Sector 56, Golf Course Road",
+    "PinCode": "122011",
+    "City": "Gurugram",
+    "State": "Haryana",
+    "Status": 1,
+    "Description": "Residential apartment property with 2 and 3 BHK units."
+  },
+  {
+    "Id": 600002,
+    "Name": "Sunrise Residency",
+    "Address": "Sector 45, near HUDA City Centre",
+    "PinCode": "122003",
+    "City": "Gurugram",
+    "State": "Haryana",
+    "Status": 1,
+    "Description": "Multi-storey residential building with modern amenities."
+  },
+  {
+    "Id": 600003,
+    "Name": "Royal Enclave",
+    "Address": "Sector 15, Part 2",
+    "PinCode": "122001",
+    "City": "Gurugram",
+    "State": "Haryana",
+    "Status": 1,
+    "Description": "Independent residential property with family-sized flats."
+  },
+  {
+    "Id": 600004,
+    "Name": "Maple Heights",
+    "Address": "Sector 62, Golf Course Extension Road",
+    "PinCode": "122102",
+    "City": "Gurugram",
+    "State": "Haryana",
+    "Status": 1,
+    "Description": "Gated residential community with apartments and parking."
+  },
+  {
+    "Id": 600005,
+    "Name": "City View Homes",
+    "Address": "Sector 21, near Palam Vihar",
+    "PinCode": "122016",
+    "City": "Gurugram",
+    "State": "Haryana",
+    "Status": 1,
+    "Description": "Residential property with compact and spacious housing options."
+  },
+  {
+    "Id": 600006,
+    "Name": "Lotus Apartments",
+    "Address": "Sector 50, Nirvana Country",
+    "PinCode": "122018",
+    "City": "Gurugram",
+    "State": "Haryana",
+    "Status": 1,
+    "Description": "Apartment complex with landscaped common areas."
+  },
+  {
+    "Id": 600007,
+    "Name": "Pearl Residency",
+    "Address": "Sector 137, Noida Expressway",
+    "PinCode": "201305",
+    "City": "Noida",
+    "State": "Uttar Pradesh",
+    "Status": 1,
+    "Description": "Residential apartment complex near the Noida Expressway."
+  },
+  {
+    "Id": 600008,
+    "Name": "Silver Oak Homes",
+    "Address": "Sector 75, Noida",
+    "PinCode": "201304",
+    "City": "Noida",
+    "State": "Uttar Pradesh",
+    "Status": 1,
+    "Description": "Modern residential complex with multiple apartment configurations."
+  },
+  {
+    "Id": 600009,
+    "Name": "Parkside Residency",
+    "Address": "Dwarka Sector 12",
+    "PinCode": "110078",
+    "City": "New Delhi",
+    "State": "Delhi",
+    "Status": 1,
+    "Description": "Residential property close to local markets and public transport."
+  },
+  {
+    "Id": 600010,
+    "Name": "Golden Homes",
+    "Address": "Ranjit Avenue",
+    "PinCode": "143001",
+    "City": "Amritsar",
+    "State": "Punjab",
+    "Status": 1,
+    "Description": "Residential property in a well-connected urban neighbourhood."
+  }
+]

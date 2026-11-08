@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rent.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45386718c85724e6688befc56a5ba7d5c363c4af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e73a6cb480d304a3b6a1b7e638676eb0d38fa8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rent.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rent.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
