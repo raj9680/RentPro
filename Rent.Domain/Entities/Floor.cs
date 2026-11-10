@@ -20,7 +20,13 @@ namespace Rent.Domain.Entities
         public ICollection<Flat> Flats { get; set; } = new List<Flat>(); // NVP
 
 
+        // NVP
         [InverseProperty(nameof(FloorAmenity.Floor))]
-        public ICollection<FloorAmenity> FloorAmenities { get; set; } = new List<FloorAmenity>(); // NVP
+        public ICollection<FloorAmenity> FloorAmenities { get; set; } = new List<FloorAmenity>();
+
+
+        // NVP
+        [InverseProperty(nameof(Occupancy.Floor))]
+        public ICollection<Occupancy> Occupancies { get; set; } = new List<Occupancy>();
     }
 }

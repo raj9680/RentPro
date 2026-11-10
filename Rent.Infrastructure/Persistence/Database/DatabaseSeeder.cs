@@ -1,10 +1,10 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 using Rent.Domain.Entities;
-using Rent.Infrastructure.Persistence;
 
-namespace RentPro.Infrastructure.Persistence.Database;
+namespace Rent.Infrastructure.Persistence.Seeding;
 
 public static class DatabaseSeeder
 {
@@ -13,91 +13,72 @@ public static class DatabaseSeeder
         PropertyNameCaseInsensitive = true
     };
 
-    public static IConfiguration _configuration = default!;
     public static async Task SeedAsync(RentProDbContext context, IConfiguration configuration)
     {
-        _configuration = configuration;
-        // Check whether any relevant table contains data
-        bool hasData =
-            await context.Users.AnyAsync() ||
-            await context.UserIdentifications.AnyAsync() ||
-            await context.UserIdentificationDocuments.AnyAsync();
+        var dataPath = configuration["SeedSettings:DataPath"];
+        if (string.IsNullOrWhiteSpace(dataPath))
+            throw new InvalidOperationException("SeedSettings:DataPath is not configured.");
 
-        if (hasData)
-            return;
+        await using var transaction = await context.Database.BeginTransactionAsync();
 
-        // Read JSON files
-        var users = await ReadJsonAsync<User>("users.json");
-
-        var identifications =
-            await ReadJsonAsync<UserIdentification>(
-                "user-identifications.json");
-
-        var documents =
-            await ReadJsonAsync<UserIdentificationDocument>(
-                "user-identification-documents.json");
-
-        var properties = await ReadJsonAsync<Property>("properties.json");
-
-        var amenities = await ReadJsonAsync<Amenity>("amenities.json");
-
-        // Insert users
-        await using var transaction =
-            await context.Database.BeginTransactionAsync();
-
-        var now = DateTime.UtcNow;
-
-        foreach (var user in users)
-        {
-            user.CreatedAt = now;
-            user.UpdatedAt = now;
-        }
-
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Users ON");
-        context.Users.AddRange(users);
-        await context.SaveChangesAsync();
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Users OFF");
-
-
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.UserIdentifications ON");
-        context.UserIdentifications.AddRange(identifications);
-        await context.SaveChangesAsync();
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.UserIdentifications OFF");
-
-
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.UserIdentificationDocuments ON");
-        context.UserIdentificationDocuments.AddRange(documents);
-        await context.SaveChangesAsync();
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.UserIdentificationDocuments OFF");
-
-
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Properties ON");
-        context.Properties.AddRange(properties);
-        await context.SaveChangesAsync();
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Properties OFF");
-
-
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Amenities ON");
-        context.Amenities.AddRange(amenities);
-        await context.SaveChangesAsync();
-        await context.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT dbo.Amenities OFF");
-
+        // check if already contains data to entity
+        await SeedIfEmptyAsync<User>(context, dataPath, "users.json");
+        await SeedIfEmptyAsync<UserIdentification>(context, dataPath, "user-identifications.json");
+        await SeedIfEmptyAsync<UserIdentificationDocument>(context, dataPath, "user-identification-documents.json");
+        await SeedIfEmptyAsync<Property>(context, dataPath, "properties.json");
+        await SeedIfEmptyAsync<Floor>(context, dataPath, "floors.json");
+        await SeedIfEmptyAsync<Flat>(context, dataPath, "flats.json");
+        await SeedIfEmptyAsync<Room>(context, dataPath, "rooms.json");
+        await SeedIfEmptyAsync<Bed>(context, dataPath, "beds.json");
+        await SeedIfEmptyAsync<Amenity>(context, dataPath, "amenities.json");
+        await SeedIfEmptyAsync<Occupancy>(context, dataPath, "occupancies.json");
+        await SeedIfEmptyAsync<Bill>(context, dataPath, "bills.json");
+        await SeedIfEmptyAsync<Payment>(context, dataPath, "payments.json");
+        await SeedIfEmptyAsync<FloorAmenity>(context, dataPath, "floor-amenities.json");
 
         await transaction.CommitAsync();
     }
 
-    private static async Task<List<T>> ReadJsonAsync<T>(string fileName)
+    private static async Task SeedIfEmptyAsync<T>(
+        RentProDbContext context, string dataPath, string fileName) where T : class
     {
-        var dataPath = _configuration["SeedSettings:DataPath"];
-        var filePath = Path.Combine(dataPath!, fileName);
+        if (await context.Set<T>().AnyAsync())
+            return;
 
-        if (!File.Exists(filePath))
-            throw new FileNotFoundException(
-                $"Seed file not found: {filePath}");
+        var path = Path.Combine(dataPath, fileName);
+        if (!File.Exists(path))
+            return;
 
-        var json = await File.ReadAllTextAsync(filePath);
+        var json = await File.ReadAllTextAsync(path);
+        var items = JsonSerializer.Deserialize<List<T>>(json, JsonOptions);
+        if (items is null || items.Count == 0)
+            return;
 
-        return JsonSerializer.Deserialize<List<T>>(
-            json, JsonOptions) ?? new List<T>();
+        context.Set<T>().AddRange(items);
+
+        // Does this table have an identity column?
+        var entityType = context.Model.FindEntityType(typeof(T))!;
+        var hasIdentity = entityType.GetProperties().Any(p =>
+            p.GetValueGenerationStrategy() == SqlServerValueGenerationStrategy.IdentityColumn);
+
+        if (!hasIdentity)
+        {
+            await context.SaveChangesAsync();
+            return;
+        }
+
+        var table = $"[{entityType.GetSchema() ?? "dbo"}].[{entityType.GetTableName()}]";
+        var sqlOn = "SET IDENTITY_INSERT " + table + " ON";
+        var sqlOff = "SET IDENTITY_INSERT " + table + " OFF";
+
+        await context.Database.ExecuteSqlRawAsync(sqlOn);
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        finally
+        {
+            await context.Database.ExecuteSqlRawAsync(sqlOff);
+        }
     }
 }

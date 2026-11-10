@@ -978,6 +978,9 @@
         }
       },
       "Rent.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.20"
+        },
         "runtime": {
           "Rent.Domain.dll": {}
         }

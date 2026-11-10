@@ -10,3 +10,4 @@ C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.dll
 C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\refint\Rent.Domain.dll
 C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.pdb
 C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\ref\Rent.Domain.dll
+C:\Users\raj.kumar\Desktop\RentPro\Rent.Domain\obj\Debug\net8.0\Rent.Domain.csproj.AssemblyReference.cache

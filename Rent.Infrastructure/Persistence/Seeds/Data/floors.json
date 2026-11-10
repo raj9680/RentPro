@@ -1,0 +1,87 @@
+[
+  {
+    "Id": 700001,
+    "PropId": 600001,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700002,
+    "PropId": 600001,
+    "Name": "First Floor"
+  },
+  {
+    "Id": 700003,
+    "PropId": 600001,
+    "Name": "Second Floor"
+  },
+  {
+    "Id": 700004,
+    "PropId": 600002,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700005,
+    "PropId": 600002,
+    "Name": "First Floor"
+  },
+  {
+    "Id": 700006,
+    "PropId": 600003,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700007,
+    "PropId": 600003,
+    "Name": "First Floor"
+  },
+  {
+    "Id": 700008,
+    "PropId": 600004,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700009,
+    "PropId": 600005,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700010,
+    "PropId": 600005,
+    "Name": "First Floor"
+  },
+  {
+    "Id": 700011,
+    "PropId": 600006,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700012,
+    "PropId": 600007,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700013,
+    "PropId": 600007,
+    "Name": "First Floor"
+  },
+  {
+    "Id": 700014,
+    "PropId": 600008,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700015,
+    "PropId": 600009,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700016,
+    "PropId": 600010,
+    "Name": "Ground Floor"
+  },
+  {
+    "Id": 700017,
+    "PropId": 600010,
+    "Name": "First Floor"
+  }
+]

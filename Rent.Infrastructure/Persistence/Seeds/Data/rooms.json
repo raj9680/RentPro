@@ -1,0 +1,152 @@
+[
+  {
+    "Id": 900001,
+    "FlatId": 800001,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900002,
+    "FlatId": 800001,
+    "Name": "Room 2"
+  },
+  {
+    "Id": 900003,
+    "FlatId": 800002,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900004,
+    "FlatId": 800002,
+    "Name": "Room 2"
+  },
+  {
+    "Id": 900005,
+    "FlatId": 800003,
+    "Name": "Master Bedroom"
+  },
+  {
+    "Id": 900006,
+    "FlatId": 800003,
+    "Name": "Bedroom 2"
+  },
+  {
+    "Id": 900007,
+    "FlatId": 800004,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900008,
+    "FlatId": 800005,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900009,
+    "FlatId": 800005,
+    "Name": "Room 2"
+  },
+  {
+    "Id": 900010,
+    "FlatId": 800006,
+    "Name": "Bedroom 1"
+  },
+  {
+    "Id": 900011,
+    "FlatId": 800006,
+    "Name": "Bedroom 2"
+  },
+  {
+    "Id": 900012,
+    "FlatId": 800007,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900013,
+    "FlatId": 800008,
+    "Name": "Master Bedroom"
+  },
+  {
+    "Id": 900014,
+    "FlatId": 800009,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900015,
+    "FlatId": 800009,
+    "Name": "Room 2"
+  },
+  {
+    "Id": 900016,
+    "FlatId": 800010,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900017,
+    "FlatId": 800011,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900018,
+    "FlatId": 800012,
+    "Name": "Bedroom 1"
+  },
+  {
+    "Id": 900019,
+    "FlatId": 800013,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900020,
+    "FlatId": 800014,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900021,
+    "FlatId": 800015,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900022,
+    "FlatId": 800016,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900023,
+    "FlatId": 800017,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900024,
+    "FlatId": 800018,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900025,
+    "FlatId": 800019,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900026,
+    "FlatId": 800020,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900027,
+    "FlatId": 800021,
+    "Name": "Bedroom 1"
+  },
+  {
+    "Id": 900028,
+    "FlatId": 800021,
+    "Name": "Bedroom 2"
+  },
+  {
+    "Id": 900029,
+    "FlatId": 800022,
+    "Name": "Room 1"
+  },
+  {
+    "Id": 900030,
+    "FlatId": 800023,
+    "Name": "Room 1"
+  }
+]

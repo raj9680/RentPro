@@ -1,0 +1,177 @@
+[
+  {
+    "Id": 10001,
+    "RoomId": 900001,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10002,
+    "RoomId": 900001,
+    "Name": "Bed 2"
+  },
+  {
+    "Id": 10003,
+    "RoomId": 900002,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10004,
+    "RoomId": 900002,
+    "Name": "Bed 2"
+  },
+  {
+    "Id": 10005,
+    "RoomId": 900003,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10006,
+    "RoomId": 900003,
+    "Name": "Bed 2"
+  },
+  {
+    "Id": 10007,
+    "RoomId": 900004,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10008,
+    "RoomId": 900005,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10009,
+    "RoomId": 900005,
+    "Name": "Bed 2"
+  },
+  {
+    "Id": 10010,
+    "RoomId": 900006,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10011,
+    "RoomId": 900007,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10012,
+    "RoomId": 900008,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10013,
+    "RoomId": 900008,
+    "Name": "Bed 2"
+  },
+  {
+    "Id": 10014,
+    "RoomId": 900009,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10015,
+    "RoomId": 900010,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10016,
+    "RoomId": 900011,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10017,
+    "RoomId": 900012,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10018,
+    "RoomId": 900013,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10019,
+    "RoomId": 900014,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10020,
+    "RoomId": 900015,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10021,
+    "RoomId": 900016,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10022,
+    "RoomId": 900017,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10023,
+    "RoomId": 900018,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10024,
+    "RoomId": 900019,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10025,
+    "RoomId": 900020,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10026,
+    "RoomId": 900021,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10027,
+    "RoomId": 900022,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10028,
+    "RoomId": 900023,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10029,
+    "RoomId": 900024,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10030,
+    "RoomId": 900025,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10031,
+    "RoomId": 900026,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10032,
+    "RoomId": 900027,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10033,
+    "RoomId": 900028,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10034,
+    "RoomId": 900029,
+    "Name": "Bed 1"
+  },
+  {
+    "Id": 10035,
+    "RoomId": 900030,
+    "Name": "Bed 1"
+  }
+]

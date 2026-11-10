@@ -22,6 +22,270 @@ namespace Rent.Infrastructure.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Rent.Domain.Entities.Amenity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Amenities");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Bed", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 10001L);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Beds");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Bill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 300001L);
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly>("BillingMonth")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("DueDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("OccupancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OccupancyId", "BillingMonth")
+                        .IsUnique();
+
+                    b.ToTable("Bills");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Flat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 800001L);
+
+                    b.Property<int>("FloorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FloorId");
+
+                    b.ToTable("Flats");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Floor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 800001L);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PropId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PropId");
+
+                    b.ToTable("Floors");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.FloorAmenity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 400001L);
+
+                    b.Property<int>("AmenityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FloorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AmenityId");
+
+                    b.HasIndex("FloorId", "AmenityId")
+                        .IsUnique();
+
+                    b.ToTable("FloorAmenities");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Occupancy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 110001L);
+
+                    b.Property<int?>("BedId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CheckInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOutDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FlatId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FloorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BedId");
+
+                    b.HasIndex("FlatId");
+
+                    b.HasIndex("FloorId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Occupancies");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 400001L);
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("BillId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Mode")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("PaidOn")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillId");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Property", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 600001L);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PinCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Properties");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 900001L);
+
+                    b.Property<int>("FlatId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FlatId");
+
+                    b.ToTable("Rooms");
+                });
+
             modelBuilder.Entity("Rent.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -130,6 +394,141 @@ namespace Rent.Infrastructure.Persistence.Migrations
                     b.ToTable("UserIdentificationDocuments");
                 });
 
+            modelBuilder.Entity("Rent.Domain.Entities.Bed", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Room", "Room")
+                        .WithMany("Beds")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Bill", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Occupancy", "Occupancy")
+                        .WithMany("Bills")
+                        .HasForeignKey("OccupancyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Occupancy");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Flat", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Floor", "Floor")
+                        .WithMany("Flats")
+                        .HasForeignKey("FloorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Floor");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Floor", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Property", "Property")
+                        .WithMany("Floors")
+                        .HasForeignKey("PropId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Property");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.FloorAmenity", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Amenity", "Amenity")
+                        .WithMany("FloorAmenities")
+                        .HasForeignKey("AmenityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Rent.Domain.Entities.Floor", "Floor")
+                        .WithMany("FloorAmenities")
+                        .HasForeignKey("FloorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Amenity");
+
+                    b.Navigation("Floor");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Occupancy", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Bed", "Bed")
+                        .WithMany("Occupancies")
+                        .HasForeignKey("BedId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Rent.Domain.Entities.Flat", "Flat")
+                        .WithMany("Occupancies")
+                        .HasForeignKey("FlatId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Rent.Domain.Entities.Floor", "Floor")
+                        .WithMany("Occupancies")
+                        .HasForeignKey("FloorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Rent.Domain.Entities.Room", "Room")
+                        .WithMany("Occupancies")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Rent.Domain.Entities.User", "User")
+                        .WithMany("Occupancies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Bed");
+
+                    b.Navigation("Flat");
+
+                    b.Navigation("Floor");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Payment", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Bill", "Bill")
+                        .WithMany("Payments")
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Bill");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Property", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.User", "Owner")
+                        .WithMany("Properties")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Room", b =>
+                {
+                    b.HasOne("Rent.Domain.Entities.Flat", "Flat")
+                        .WithMany("Rooms")
+                        .HasForeignKey("FlatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Flat");
+                });
+
             modelBuilder.Entity("Rent.Domain.Entities.UserIdentification", b =>
                 {
                     b.HasOne("Rent.Domain.Entities.User", "User")
@@ -158,8 +557,60 @@ namespace Rent.Infrastructure.Persistence.Migrations
                     b.Navigation("UserIdentification");
                 });
 
+            modelBuilder.Entity("Rent.Domain.Entities.Amenity", b =>
+                {
+                    b.Navigation("FloorAmenities");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Bed", b =>
+                {
+                    b.Navigation("Occupancies");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Bill", b =>
+                {
+                    b.Navigation("Payments");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Flat", b =>
+                {
+                    b.Navigation("Occupancies");
+
+                    b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Floor", b =>
+                {
+                    b.Navigation("Flats");
+
+                    b.Navigation("FloorAmenities");
+
+                    b.Navigation("Occupancies");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Occupancy", b =>
+                {
+                    b.Navigation("Bills");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Property", b =>
+                {
+                    b.Navigation("Floors");
+                });
+
+            modelBuilder.Entity("Rent.Domain.Entities.Room", b =>
+                {
+                    b.Navigation("Beds");
+
+                    b.Navigation("Occupancies");
+                });
+
             modelBuilder.Entity("Rent.Domain.Entities.User", b =>
                 {
+                    b.Navigation("Occupancies");
+
+                    b.Navigation("Properties");
+
                     b.Navigation("UserIdentification");
 
                     b.Navigation("VerifiedIdentifications");

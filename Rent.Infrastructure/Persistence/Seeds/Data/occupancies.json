@@ -1,0 +1,112 @@
+[
+  {
+    "Id": 110001,
+    "UserId": 100003,
+    "FloorId": 700003,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": null,
+    "CheckInDate": "2026-02-01",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110002,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": 800006,
+    "RoomId": null,
+    "BedId": null,
+    "CheckInDate": "2026-03-01",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110003,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": 900014,
+    "BedId": null,
+    "CheckInDate": "2026-04-01",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110004,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": 900015,
+    "BedId": null,
+    "CheckInDate": "2026-04-01",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110005,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": 800002,
+    "RoomId": null,
+    "BedId": null,
+    "CheckInDate": "2025-07-01",
+    "CheckOutDate": "2025-12-31"
+  },
+  {
+    "Id": 110006,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": 10005,
+    "CheckInDate": "2026-01-15",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110007,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": 10006,
+    "CheckInDate": "2026-01-15",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110008,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": 10001,
+    "CheckInDate": "2026-01-01",
+    "CheckOutDate": "2026-05-31"
+  },
+  {
+    "Id": 110009,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": 10001,
+    "CheckInDate": "2026-07-01",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110010,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": 10003,
+    "CheckInDate": "2026-06-01",
+    "CheckOutDate": null
+  },
+  {
+    "Id": 110011,
+    "UserId": 100003,
+    "FloorId": null,
+    "FlatId": null,
+    "RoomId": null,
+    "BedId": 10023,
+    "CheckInDate": "2026-08-01",
+    "CheckOutDate": null
+  }
+]

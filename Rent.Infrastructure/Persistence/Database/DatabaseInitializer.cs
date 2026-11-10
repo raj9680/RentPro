@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using RentPro.Infrastructure.Persistence.Database;
+using Rent.Infrastructure.Persistence.Seeding;
 
 namespace Rent.Infrastructure.Persistence.Database
 {

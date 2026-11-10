@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.infrastructure\\persistence\\configurations\\propertyconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|solutionrelative:rent.infrastructure\\persistence\\configurations\\propertyconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B05E99CA-F900-427B-85E2-A7E9132F4678}|Rent.Domain\\Rent.Domain.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.domain\\entities\\floor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B05E99CA-F900-427B-85E2-A7E9132F4678}|Rent.Domain\\Rent.Domain.csproj|solutionrelative:rent.domain\\entities\\floor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.infrastructure\\persistence\\database\\databaseseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{047D3B44-CCE5-48BB-BE1E-B70815DD2FCB}|Rent.Infrastructure\\Rent.Infrastructure.csproj|solutionrelative:rent.infrastructure\\persistence\\database\\databaseseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,49 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DatabaseSeeder.cs",
-              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\Database\\DatabaseSeeder.cs",
-              "RelativeDocumentMoniker": "Rent.Infrastructure\\Persistence\\Database\\DatabaseSeeder.cs",
-              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\Database\\DatabaseSeeder.cs",
-              "RelativeToolTip": "Rent.Infrastructure\\Persistence\\Database\\DatabaseSeeder.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAA1wE0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T10:37:19.394Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Floor.cs",
-              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\Entities\\Floor.cs",
-              "RelativeDocumentMoniker": "Rent.Domain\\Entities\\Floor.cs",
-              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Domain\\Entities\\Floor.cs",
-              "RelativeToolTip": "Rent.Domain\\Entities\\Floor.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T10:58:51.862Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PropertyConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\Configurations\\PropertyConfiguration.cs",
-              "RelativeDocumentMoniker": "Rent.Infrastructure\\Persistence\\Configurations\\PropertyConfiguration.cs",
-              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.Infrastructure\\Persistence\\Configurations\\PropertyConfiguration.cs",
-              "RelativeToolTip": "Rent.Infrastructure\\Persistence\\Configurations\\PropertyConfiguration.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-06T10:59:30.09Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"

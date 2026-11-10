@@ -1,0 +1,117 @@
+[
+  {
+    "Id": 800001,
+    "FloorId": 700001,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800002,
+    "FloorId": 700001,
+    "Name": "Flat B"
+  },
+  {
+    "Id": 800003,
+    "FloorId": 700002,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800004,
+    "FloorId": 700002,
+    "Name": "Flat B"
+  },
+  {
+    "Id": 800005,
+    "FloorId": 700003,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800006,
+    "FloorId": 700004,
+    "Name": "Flat 101"
+  },
+  {
+    "Id": 800007,
+    "FloorId": 700004,
+    "Name": "Flat 102"
+  },
+  {
+    "Id": 800008,
+    "FloorId": 700005,
+    "Name": "Flat 201"
+  },
+  {
+    "Id": 800009,
+    "FloorId": 700006,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800010,
+    "FloorId": 700006,
+    "Name": "Flat B"
+  },
+  {
+    "Id": 800011,
+    "FloorId": 700007,
+    "Name": "Flat C"
+  },
+  {
+    "Id": 800012,
+    "FloorId": 700008,
+    "Name": "Flat 1"
+  },
+  {
+    "Id": 800013,
+    "FloorId": 700009,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800014,
+    "FloorId": 700009,
+    "Name": "Flat B"
+  },
+  {
+    "Id": 800015,
+    "FloorId": 700010,
+    "Name": "Flat C"
+  },
+  {
+    "Id": 800016,
+    "FloorId": 700011,
+    "Name": "Flat 101"
+  },
+  {
+    "Id": 800017,
+    "FloorId": 700012,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800018,
+    "FloorId": 700013,
+    "Name": "Flat B"
+  },
+  {
+    "Id": 800019,
+    "FloorId": 700014,
+    "Name": "Flat 1"
+  },
+  {
+    "Id": 800020,
+    "FloorId": 700015,
+    "Name": "Flat A"
+  },
+  {
+    "Id": 800021,
+    "FloorId": 700016,
+    "Name": "Flat 101"
+  },
+  {
+    "Id": 800022,
+    "FloorId": 700016,
+    "Name": "Flat 102"
+  },
+  {
+    "Id": 800023,
+    "FloorId": 700017,
+    "Name": "Flat 201"
+  }
+]

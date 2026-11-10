@@ -26,5 +26,15 @@ namespace Rent.Domain.Entities
         [InverseProperty(nameof(UserIdentification.VerifiedByUser))]
         public ICollection<UserIdentification> VerifiedIdentifications { get; set; }
             = new List<UserIdentification>();
+
+
+        // NVP
+        [InverseProperty(nameof(Property.Owner))]
+        public ICollection<Property>? Properties { get; set; }
+
+
+        // NVP
+        [InverseProperty(nameof(Occupancy.User))]
+        public ICollection<Occupancy> Occupancies { get; set; } = new List<Occupancy>();
     }
 }

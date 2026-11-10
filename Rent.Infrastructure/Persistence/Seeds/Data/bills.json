@@ -1,0 +1,86 @@
+[
+  {
+    "Id": 300001,
+    "OccupancyId": 110005,
+    "BillingMonth": "2025-11-01",
+    "Amount": 15000.00,
+    "DueDate": "2025-11-05"
+  },
+  {
+    "Id": 300002,
+    "OccupancyId": 110005,
+    "BillingMonth": "2025-12-01",
+    "Amount": 15000.00,
+    "DueDate": "2025-12-05"
+  },
+  {
+    "Id": 300003,
+    "OccupancyId": 110001,
+    "BillingMonth": "2026-10-01",
+    "Amount": 45000.00,
+    "DueDate": "2026-10-05"
+  },
+  {
+    "Id": 300004,
+    "OccupancyId": 110001,
+    "BillingMonth": "2026-11-01",
+    "Amount": 45000.00,
+    "DueDate": "2026-11-05"
+  },
+  {
+    "Id": 300005,
+    "OccupancyId": 110002,
+    "BillingMonth": "2026-10-01",
+    "Amount": 18000.00,
+    "DueDate": "2026-10-05"
+  },
+  {
+    "Id": 300006,
+    "OccupancyId": 110002,
+    "BillingMonth": "2026-11-01",
+    "Amount": 18000.00,
+    "DueDate": "2026-11-05"
+  },
+  {
+    "Id": 300007,
+    "OccupancyId": 110003,
+    "BillingMonth": "2026-11-01",
+    "Amount": 6000.00,
+    "DueDate": "2026-11-05"
+  },
+  {
+    "Id": 300008,
+    "OccupancyId": 110004,
+    "BillingMonth": "2026-11-01",
+    "Amount": 5500.00,
+    "DueDate": "2026-11-05"
+  },
+  {
+    "Id": 300009,
+    "OccupancyId": 110006,
+    "BillingMonth": "2026-01-01",
+    "Amount": 2193.55,
+    "DueDate": "2026-01-20"
+  },
+  {
+    "Id": 300010,
+    "OccupancyId": 110008,
+    "BillingMonth": "2026-05-01",
+    "Amount": 4000.00,
+    "DueDate": "2026-05-05"
+  },
+  {
+    "Id": 300011,
+    "OccupancyId": 110010,
+    "BillingMonth": "2026-11-01",
+    "Amount": 4000.00,
+    "DueDate": "2026-11-05"
+  },
+  {
+    "Id": 300012,
+    "OccupancyId": 110011,
+    "BillingMonth": "2026-08-01",
+    "Amount": 4000.00,
+    "DueDate": "2026-08-05"
+  }
+]

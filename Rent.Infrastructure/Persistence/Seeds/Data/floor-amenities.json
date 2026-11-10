@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 20001,
+    "FloorId": 700001,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20002,
+    "FloorId": 700001,
+    "AmenityId": 500002
+  },
+  {
+    "Id": 20003,
+    "FloorId": 700001,
+    "AmenityId": 500003
+  },
+  {
+    "Id": 20004,
+    "FloorId": 700002,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20005,
+    "FloorId": 700002,
+    "AmenityId": 500004
+  },
+  {
+    "Id": 20006,
+    "FloorId": 700003,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20007,
+    "FloorId": 700003,
+    "AmenityId": 500005
+  },
+  {
+    "Id": 20008,
+    "FloorId": 700004,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20009,
+    "FloorId": 700004,
+    "AmenityId": 500002
+  },
+  {
+    "Id": 20010,
+    "FloorId": 700005,
+    "AmenityId": 500003
+  },
+  {
+    "Id": 20011,
+    "FloorId": 700006,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20012,
+    "FloorId": 700006,
+    "AmenityId": 500006
+  },
+  {
+    "Id": 20013,
+    "FloorId": 700007,
+    "AmenityId": 500002
+  },
+  {
+    "Id": 20014,
+    "FloorId": 700008,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20015,
+    "FloorId": 700009,
+    "AmenityId": 500003
+  },
+  {
+    "Id": 20016,
+    "FloorId": 700010,
+    "AmenityId": 500004
+  },
+  {
+    "Id": 20017,
+    "FloorId": 700011,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20018,
+    "FloorId": 700012,
+    "AmenityId": 500005
+  },
+  {
+    "Id": 20019,
+    "FloorId": 700013,
+    "AmenityId": 500002
+  },
+  {
+    "Id": 20020,
+    "FloorId": 700014,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20021,
+    "FloorId": 700015,
+    "AmenityId": 500006
+  },
+  {
+    "Id": 20022,
+    "FloorId": 700016,
+    "AmenityId": 500001
+  },
+  {
+    "Id": 20023,
+    "FloorId": 700016,
+    "AmenityId": 500002
+  },
+  {
+    "Id": 20024,
+    "FloorId": 700017,
+    "AmenityId": 500003
+  }
+]

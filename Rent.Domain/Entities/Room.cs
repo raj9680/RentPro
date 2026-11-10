@@ -15,8 +15,12 @@ namespace Rent.Domain.Entities
 
         public string? Name { get; set; }
 
-
+        // NVP
         [InverseProperty(nameof(Bed.Room))]
-        public ICollection<Bed> Beds { get; set; } = new List<Bed>(); // NVP
+        public ICollection<Bed> Beds { get; set; } = new List<Bed>();
+
+        // NVP
+        public ICollection<Occupancy> Occupancies { get; set; } = new List<Occupancy>(); 
+
     }
 }

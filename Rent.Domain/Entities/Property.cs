@@ -8,6 +8,12 @@ namespace Rent.Domain.Entities
     {
         [Key]
         public int Id { get; set; }
+        public int OwnerId { get; set; }
+
+        [ForeignKey(nameof(OwnerId))]
+        [InverseProperty(nameof(User.Properties))]
+        public User? Owner { get; set; }
+
         public string? Name { get; set; }
         public string? Address { get; set; }
         public string? PinCode { get; set; }
@@ -17,8 +23,9 @@ namespace Rent.Domain.Entities
         public string? Description { get; set; }
 
 
+        // NVP
         [InverseProperty(nameof(Floor.Property))]
         public ICollection<Floor> Floors { get; set; } = new List<Floor>(); 
-        // NVP
+        
     }
 }
