@@ -1,0 +1,58 @@
+﻿@model LoginRequest
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="auth-page">
+    <aside class="auth-side">
+        <a class="brand" href="/"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons/icons.svg#logo" /></svg></span><span class="brand-name">StayNest</span></a>
+        <div class="auth-side-copy">
+            <h2>Beds, rooms and flats in one place.</h2>
+            <p>See what is vacant, move people in, and know who has paid this month.</p>
+            <div class="auth-preview" aria-hidden="true">
+                <div class="card"><div class="stat-label">Occupancy</div><div class="stat-value">77.3%</div></div>
+                <div class="card"><div class="stat-label">Collected</div><div class="stat-value text-green">₹1.06L</div></div>
+                <div class="card"><div class="stat-label">Vacant</div><div class="stat-value">4</div></div>
+            </div>
+        </div>
+        <p class="auth-foot">Template preview. Numbers are sample data.</p>
+    </aside>
+    <main class="auth-main">
+        <form class="auth-card" asp-controller="Auth" asp-action="Login" method="post">
+            <div><h1>Log in</h1>
+                @if (ViewBag.Message == "Active")
+                {
+                    <p class="lead">Registered successfully!</p>
+                }
+                @if (ViewBag.Message == "LoggedIn")
+                {
+                    <p class="lead">Successfully Logged in!</p>
+                }
+                <p class="lead">Welcome back. Enter your email and password.</p>
+                </div>
+            <div class="alert alert-danger hidden" id="login-error" role="alert"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#alert-triangle" /></svg>
+                <span>Email or password is incorrect.</span></div>
+            <div class="field"><label for="l-email">Email</label><div class="input-group"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#mail" /></svg>
+                <input class="input" asp-for="@Model.Email" type="email"></div>
+                <span asp-validation-for="@Model.Email" class="field-error">Enter a valid email.</span></div>
+            <div class="field">
+                <label for="l-pass">Password</label>
+                <div class="input-group">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#lock" /></svg>
+                    <input class="input" asp-for="Password" type="password" style="padding-right:44px">
+                    <span class="field-error" asp-validation-for="Password">Email or password is incorrect.</span>
+                    <button type="button" class="btn-icon input-action" data-password-toggle="l-pass" aria-label="Show password"><span class="eye-on"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#eye" /></svg></span><span class="eye-off hidden"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#eye-off" /></svg></span></button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+
+            <div class="auth-links"><span>New property owner?</span><a asp-controller="Auth" asp-action="Register">Create an owner account</a></div>
+        </form>
+    </main>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+    

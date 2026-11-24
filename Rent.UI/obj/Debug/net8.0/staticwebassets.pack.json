@@ -41,8 +41,224 @@
       "PackagePath": "staticwebassets\\assets\\css\\pages\\space-status.css"
     },
     {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\common\\ajax.js",
-      "PackagePath": "staticwebassets\\assets\\js\\common\\ajax.js"
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\icons.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\icons.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\alert-triangle.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\alert-triangle.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\apartment.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\apartment.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\bath.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\bath.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\bed.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\bed.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\bell.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\bell.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\building.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\building.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\calendar.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\calendar.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\car.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\car.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\chart-pie.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\chart-pie.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\check.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\check.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\chevron-down.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\chevron-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\chevron-left.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\chevron-left.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\chevron-right.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\chevron-right.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\clock.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\clock.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\close.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\close.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\door.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\door.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\download.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\download.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\edit.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\edit.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\eye-off.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\eye-off.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\eye.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\eye.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\file.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\file.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\grid.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\grid.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\hand.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\hand.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\home.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\home.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\inbox.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\inbox.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\info.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\info.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\key.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\key.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\layers.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\layers.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\lock.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\lock.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\logo.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\logout.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\logout.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\mail.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\mail.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\map-pin.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\map-pin.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\menu.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\menu.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\more-vertical.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\more-vertical.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\phone.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\phone.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\plus.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\plus.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\receipt.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\receipt.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\refresh.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\refresh.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\rupee.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\rupee.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\search.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\search.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\send.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\send.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\shield.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\shield.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\sliders.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\sliders.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\snowflake.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\snowflake.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\sofa.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\sofa.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\trash.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\trash.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\upload.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\upload.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\user-plus.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\user-plus.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\user.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\user.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\users.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\users.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\utensils.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\utensils.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\wifi.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\wifi.svg"
+    },
+    {
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\icons\\svg\\zap.svg",
+      "PackagePath": "staticwebassets\\assets\\icons\\svg\\zap.svg"
     },
     {
       "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\common\\app.js",
@@ -53,24 +269,8 @@
       "PackagePath": "staticwebassets\\assets\\js\\common\\charts.js"
     },
     {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\account.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\account.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\admin-owners.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\admin-owners.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\auth.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\auth.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\inquiries.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\inquiries.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\invoices.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\invoices.js"
+      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\dropzone.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\dropzone.js"
     },
     {
       "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\move-in.js",
@@ -79,26 +279,6 @@
     {
       "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\property-detail.js",
       "PackagePath": "staticwebassets\\assets\\js\\pages\\property-detail.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\property-form.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\property-form.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\reports.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\reports.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\search.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\search.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\space-status.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\space-status.js"
-    },
-    {
-      "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\assets\\js\\pages\\tenancy.js",
-      "PackagePath": "staticwebassets\\assets\\js\\pages\\tenancy.js"
     },
     {
       "Id": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\wwwroot\\favicon.ico",

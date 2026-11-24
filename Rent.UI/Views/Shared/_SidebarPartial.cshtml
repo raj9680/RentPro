@@ -1,0 +1,172 @@
+﻿<aside class="sidebar" aria-label="Main navigation">
+    <button type="button" class="sidebar-toggle" aria-label="Collapse sidebar" aria-expanded="true">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <use href='@Url.Icon("chevron-left")'></use>
+
+        </svg>
+    </button>
+    <a class="brand" href="/">
+        <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <use href='@Url.Icon("logo")'></use>
+            </svg>
+        </span><span class="brand-name">StayNest</span>
+    </a>
+    <div class="sidebar-scroll">
+
+        <nav class="nav">
+            <a class="nav-link" href="/">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href='@Url.Icon("home")'></use>
+                </svg>
+                <span class="nav-text">Dashboard</span>
+            </a>
+
+            <div class="nav-group open">
+                <button type="button"
+                        class="nav-group-toggle has-active"
+                        aria-expanded="true">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("building")'></use>
+                    </svg>
+                    <span class="nav-text">Properties</span>
+                    <svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("chevron-down")'></use>
+                    </svg>
+                </button>
+
+                <div class="subnav">
+                    @* Active Nav *@
+                    <a class="subnav-link active"
+                       asp-controller="Owner"
+                       asp-action="Properties"
+                       aria-current="page">
+                        <span>All properties</span>
+                        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href='@Url.Icon("chevron-right")'></use>
+                        </svg>
+                    </a>
+
+                    <a class="subnav-link" 
+                        asp-controller="Owner"
+                        asp-action="AddProperty">
+                        <span>Add property</span>
+                    </a>
+
+                    <a class="subnav-link" 
+                        asp-controller="Owner"
+                        asp-action="SpaceStatus">
+                        <span>Space status</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <button type="button"
+                        class="nav-group-toggle"
+                        aria-expanded="false">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("users")'></use>
+                    </svg>
+                    <span class="nav-text">Tenants</span>
+                    <svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("chevron-down")'></use>
+                    </svg>
+                </button>
+
+                <div class="subnav">
+                    <a class="subnav-link" 
+                        asp-controller="Owner"
+                        asp-action="AllTenants">
+                        <span>All tenants</span>
+                    </a>
+
+                    <a class="subnav-link" 
+                        asp-controller="Owner"
+                        asp-action="MoveInTenants">
+                        <span>Move in a tenant</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <button type="button"
+                        class="nav-group-toggle"
+                        aria-expanded="false">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("receipt")'></use>
+                    </svg>
+                    <span class="nav-text">Billing</span>
+                    <svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("chevron-down")'></use>
+                    </svg>
+                </button>
+
+                <div class="subnav">
+                    <a class="subnav-link"
+                        asp-controller="Owner"
+                        asp-action="BillsAndPayments">
+                        <span>Bills and payments</span>
+                        <span class="count-badge orange" aria-label="1 new">1</span>
+                    </a>
+                </div>
+            </div>
+
+            <a class="nav-link" 
+                asp-controller="Owner"
+                asp-action="Inquiries">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href='@Url.Icon("inbox")'></use>
+                </svg>
+                <span class="nav-text">Inquiries</span>
+                <span class="count-badge green" aria-label="2 new">2</span>
+            </a>
+
+            <div class="nav-group">
+                <button type="button"
+                        class="nav-group-toggle"
+                        aria-expanded="false">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("chart-pie")'></use>
+                    </svg>
+                    <span class="nav-text">Reports</span>
+                    <svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href='@Url.Icon("chevron-down")'></use>
+                    </svg>
+                </button>
+
+                <div class="subnav">
+                    <a class="subnav-link"
+                        asp-controller="Owner"
+                        asp-action="CollectionReports">
+                        <span>Collections</span>
+                    </a>
+
+                    <a class="subnav-link"
+                        asp-controller="Owner"
+                        asp-action="OccupancyReports">
+                        <span>Occupancy</span>
+                    </a>
+                </div>
+            </div>
+
+            <a class="nav-link"
+                asp-controller="Owner"
+                asp-action="Settings">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href='@Url.Icon("sliders")'></use>
+                </svg>
+                <span class="nav-text">Settings</span>
+            </a>
+        </nav>
+
+    </div>
+    <a class="sidebar-cta"
+        asp-controller="Owner"
+        asp-action="MoveInTenant">
+        <span class="cta-plus"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></span>
+        <span class="cta-title">Move in a tenant</span>
+        <span class="cta-sub">Allocate a vacant space</span>
+    </a>
+</aside>
+<div class="sidebar-overlay"></div>

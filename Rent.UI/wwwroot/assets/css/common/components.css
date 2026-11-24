@@ -189,7 +189,8 @@
 .pager-info { font-size: 12.5px; color: var(--muted); }
 .pager { display: flex; align-items: center; gap: 4px; }
 .pager a, .pager span { min-width: 32px; height: 32px; padding: 0 8px; border-radius: var(--radius-sm); display: inline-grid; place-items: center; font-size: 12.5px; color: var(--text-2); }
-.pager a:hover { background: var(--surface-muted); }
+/*.pager a:hover { background: var(--surface-muted); }*/
+.current-1 a:hover { background-color: #eee; }
 .pager .current { background: var(--primary); color: #fff; font-weight: 600; }
 .pager .disabled { color: var(--line-strong); pointer-events: none; }
 .pager .icon { width: 14px; height: 14px; }

@@ -1,0 +1,29 @@
+/* Space status grid */
+.status-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start; }
+.floor { display: flex; flex-direction: column; gap: 12px; }
+.floor + .floor { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+.floor-title { font-size: 13px; font-weight: 600; color: var(--text-2); display: flex; align-items: center; gap: 8px; }
+.floor-title .icon { width: 15px; height: 15px; color: var(--muted); }
+.unit-group { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.unit-group-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.tile {
+  text-align: left; padding: 12px 14px; border-radius: var(--radius); border: 1px solid transparent;
+  display: flex; flex-direction: column; gap: 6px; min-height: 88px; transition: box-shadow .15s ease;
+}
+.tile:hover { box-shadow: var(--shadow-pop); }
+.tile.selected { border-color: var(--text); }
+.tile-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.tile-name { font-weight: 600; font-size: 13.5px; color: var(--text); }
+.tile-meta { font-size: 11.5px; color: var(--text-2); }
+.tile .icon { width: 16px; height: 16px; }
+.tile-vacant { background: var(--green-fill); color: var(--pill-green-tx); }
+.tile-occupied { background: var(--red-fill); color: var(--pill-red-tx); }
+.tile-notice { background: #FEF1E6; color: var(--pill-orange-tx); }
+.tile-blocked { background: var(--surface-muted); color: var(--pill-grey-tx); }
+.status-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-2); }
+.status-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.status-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.panel-sticky { position: sticky; top: calc(var(--topbar-h) + 8px); }
+.panel-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 30px 10px; }
+@media (max-width: 1200px) { .status-layout { grid-template-columns: minmax(0, 1fr); } .panel-sticky { position: static; } }

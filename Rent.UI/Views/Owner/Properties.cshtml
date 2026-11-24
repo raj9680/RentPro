@@ -1,0 +1,159 @@
+﻿@model PropertySummaryResponse
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app">
+
+    @* Partial Sidebar *@
+    <partial name="_SidebarPartial" />
+
+    <div class="main">
+
+        <header class="topbar">
+            <button type="button" class="menu-btn" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#menu" /></svg></button>
+            <label class="command-search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search" /></svg><span class="sr-only">Search</span><input type="search" placeholder="Search tenants, spaces or bills"></label>
+            <div class="topbar-right">
+                <div class="dropdown">
+                    <button type="button" class="icon-btn" data-dropdown aria-label="Notifications" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#bell" /></svg><span class="dot"></span></button>
+                    <div class="dropdown-menu" style="min-width:320px">
+                        <div class="dropdown-head"><strong>Notifications</strong><span>3 unread</span></div>
+                        <a class="notice-item" href="#"><span class="notice-icon pill-red"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#alert-triangle" /></svg></span><span>Sahil Gupta's October bill is overdue (₹8,000).<time>2 hours ago</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-green"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#inbox" /></svg></span><span>New inquiry for Room 201 from Priya Nair.<time>Yesterday</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-orange"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#clock" /></svg></span><span>Arjun Nair moves out on 2 Dec 2026.<time>2 days ago</time></span></a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button type="button" class="user-btn" data-dropdown aria-expanded="false" aria-label="Account menu">
+                        <span class="user-name">Rajesh Mehta</span><span class="avatar avatar-lg av-5" aria-hidden="true">RM</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down" /></svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-head"><strong>Rajesh Mehta</strong><span>rajesh.mehta@example.com (Owner)</span></div>
+                        <a class="dropdown-item" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#user" /></svg>Account settings</a>
+                        <a class="dropdown-item" href="../auth/change-password.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#key" /></svg>Change password</a>
+                        <a class="dropdown-item danger" href="../auth/logged-out.html" data-confirm="Log out of StayNest?" data-confirm-message="You will need to log in again to continue." data-confirm-text="Log out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#logout" /></svg>Log out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="content" id="main">
+
+            <div class="page-head">
+                <div><h1>Properties</h1><p>All buildings and addresses you manage.</p></div>
+                <div class="page-actions"><a class="btn btn-primary" href="property-form.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#plus" /></svg>Add property</a></div>
+            </div>
+            <section class="card card-flush">
+                <div class="card-head">
+                    <div class="toolbar">
+                        <label class="search-sm"><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search" /></svg><span class="sr-only">Search properties</span><input type="search" placeholder="Search by name or city"></label>
+                        <select class="select" aria-label="Status"><option>All statuses</option><option>Active</option><option>Inactive</option></select>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table class="table" id="properties-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <button type="button" class="th-sort">
+                                        Property<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button type="button" class="th-sort">
+                                        City<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th class="num" scope="col">
+                                    <button type="button" class="th-sort">
+                                        Rentable spaces<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th class="num" scope="col">
+                                    <button type="button" class="th-sort">
+                                        Capacity<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th class="num" scope="col">
+                                    <button type="button" class="th-sort">
+                                        Staying<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th class="num" scope="col">
+                                    <button type="button" class="th-sort">
+                                        Occupancy<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button type="button" class="th-sort">
+                                        Status<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <use href="../assets/icons/icons.svg#chevron-down" />
+                                        </svg>
+                                    </button>
+                                </th>
+                                <th class="actions" scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+
+                                @foreach(var item in Model.Items)
+                                {
+                                <tr>
+                                    <td>
+                                        <a class="cell-user" href="property-detail.html">
+                                            <span class="avatar av-2">
+                                                <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <use href="../assets/icons/icons.svg#building" />
+                                                </svg>
+                                            </span><span>@item.Name<span class="cell-sub">@item.Address</span></span>
+                                        </a>
+                                    </td>
+                                    <td>@item.City</td>
+                                    <td class="num">@item.EmptySpace</td>
+                                    <td class="num">@item.Capacity</td>
+                                    <td class="num">@item.Occupied</td>
+                                    <td><span class="pill pill-green">@item.Status</span></td>
+                                    <td class="actions">
+                                        <a class="btn btn-sm btn-soft" asp-controller="Owner" asp-action="Property" asp-route-id="@item.Id">Open</a>
+                                        </td>
+                                </tr>
+                                }
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-foot">
+                    <span class="pager-info">Showing 1 to 3 of @(Model.TotalRecords) properties</span>
+                    @if(Model.TotalPages > 1)
+                    {
+                        <nav class="pager" aria-label="Pagination">
+                            @for(int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                if(i == Model.CurrentPage)
+                                {
+                                    <a class="current" aria-current="page">@i</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Owner" asp-action="Properties" asp-route-page="@i" class="current-1" aria-current="page">@i</a>
+                                }
+                            }
+                        </nav>
+                    }
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>

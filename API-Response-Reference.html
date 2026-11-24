@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RentPro API Response Guide</title>
+<style>
+:root{
+  --bg:#f6f8fb; --surface:#ffffff; --surface-2:#f1f4f8; --border:#dfe5ec;
+  --text:#1d2633; --muted:#5f6b7a; --accent:#1f5fae; --accent-soft:#e7f0fb;
+  --code-bg:#0f1b2d; --code-text:#d8e2ef;
+  --ok:#17803d; --ok-soft:#e5f5eb; --warn:#a15c00; --warn-soft:#fdf1df;
+  --err:#b42318; --err-soft:#fdeceb;
+  --get:#17803d; --post:#1f5fae; --put:#a15c00; --patch:#6b3fb5; --del:#b42318;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --surface:#151d29; --surface-2:#1b2533; --border:#2a3647;
+    --text:#e3e9f1; --muted:#9aa7b8; --accent:#6aa8ff; --accent-soft:#1a2b45;
+    --code-bg:#0a1019; --code-text:#d8e2ef;
+    --ok:#4cc27a; --ok-soft:#14301f; --warn:#f0a948; --warn-soft:#33260f;
+    --err:#ff7a6e; --err-soft:#3a1714;
+    --get:#4cc27a; --post:#6aa8ff; --put:#f0a948; --patch:#b58cff; --del:#ff7a6e;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --surface:#151d29; --surface-2:#1b2533; --border:#2a3647;
+  --text:#e3e9f1; --muted:#9aa7b8; --accent:#6aa8ff; --accent-soft:#1a2b45;
+  --code-bg:#0a1019; --code-text:#d8e2ef;
+  --ok:#4cc27a; --ok-soft:#14301f; --warn:#f0a948; --warn-soft:#33260f;
+  --err:#ff7a6e; --err-soft:#3a1714;
+  --get:#4cc27a; --post:#6aa8ff; --put:#f0a948; --patch:#b58cff; --del:#ff7a6e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+code,pre{font-family:ui-monospace,Consolas,"Cascadia Mono",Menlo,monospace}
+a{color:var(--accent);text-decoration:none}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1240px;margin:0 auto}
+nav{position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 18px;border-right:1px solid var(--border)}
+nav .brand{font-weight:700;font-size:16px;margin-bottom:4px}
+nav .sub{font-size:12px;color:var(--muted);margin-bottom:18px}
+nav a{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;color:var(--text);font-size:14px}
+nav a:hover,nav a.active{background:var(--accent-soft);color:var(--accent)}
+nav .group{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 10px 4px}
+main{padding:32px 36px 80px;min-width:0}
+header.hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:28px}
+header.hero h1{margin:0 0 6px;font-size:28px}
+header.hero p{margin:0;color:var(--muted)}
+.draft{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--err);background:var(--err-soft);padding:2px 8px;border-radius:999px;margin-bottom:10px}
+section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:22px}
+section h2{margin:0 0 6px;font-size:21px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h3{margin:22px 0 8px;font-size:16px}
+section > p.lead{margin:0 0 14px;color:var(--muted)}
+.endpoint{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:13px;margin:4px 0 12px}
+.m{display:inline-block;font:700 11px/1 ui-monospace,Consolas,monospace;padding:5px 7px;border-radius:5px;color:#fff;letter-spacing:.03em}
+.m.get{background:var(--get)} .m.post{background:var(--post)} .m.put{background:var(--put)} .m.patch{background:var(--patch)} .m.del{background:var(--del)}
+.s{display:inline-block;font:700 12px/1 ui-monospace,Consolas,monospace;padding:4px 7px;border-radius:5px;white-space:nowrap}
+.s.ok{color:var(--ok);background:var(--ok-soft)} .s.warn{color:var(--warn);background:var(--warn-soft)} .s.err{color:var(--err);background:var(--err-soft)}
+.t{color:var(--ok);font-weight:600} .f{color:var(--err);font-weight:600}
+.table-wrap{overflow-x:auto;margin:10px 0 6px;border:1px solid var(--border);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:var(--surface-2);text-align:left;font-weight:600;padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td code,p code,li code{background:var(--surface-2);border:1px solid var(--border);padding:1px 5px;border-radius:5px;font-size:13px}
+.code{position:relative;margin:10px 0 14px}
+.code .label{position:absolute;top:0;left:0;font:600 11px/1 ui-monospace,Consolas,monospace;color:#9fb3cc;padding:9px 12px}
+.code button{position:absolute;top:6px;right:6px;font:12px system-ui,sans-serif;background:#22324a;color:#cfdced;border:1px solid #33475f;border-radius:6px;padding:4px 9px;cursor:pointer}
+.code button:hover{background:#2b3f5c}
+pre{margin:0;background:var(--code-bg);color:var(--code-text);padding:32px 16px 14px;border-radius:10px;overflow-x:auto;font-size:13px;line-height:1.55}
+.k{color:#8fc3ff} .str{color:#a5e3a0} .n{color:#f6c177} .b{color:#f29e9e} .kw{color:#c7a6ff}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--surface-2)}
+.card h4{margin:0 0 6px;font-size:14px;display:flex;gap:8px;align-items:center}
+.rules{counter-reset:r;list-style:none;padding:0;margin:8px 0 0}
+.rules li{counter-increment:r;position:relative;padding:8px 0 8px 40px;border-bottom:1px dashed var(--border)}
+.rules li:last-child{border-bottom:none}
+.rules li::before{content:counter(r);position:absolute;left:0;top:7px;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:grid;place-items:center;font-size:13px}
+.note{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:14px}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)}
+.theme{position:fixed;right:16px;bottom:16px;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:8px 14px;font:13px system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  nav{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:4px;padding:14px 16px}
+  nav .brand,nav .sub,nav .group{width:100%;margin:2px 0}
+  main{padding:20px 16px 70px}
+  section{padding:18px 16px}
+}
+@media print{nav,.theme,.code button{display:none}.layout{display:block}section{break-inside:avoid-page}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav id="nav">
+  <div class="brand">RentPro API</div>
+  <div class="sub">Response guide · v1 draft</div>
+  <div class="group">Basics</div>
+  <a href="#envelope">Envelope &amp; rules</a>
+  <a href="#codes">Status codes</a>
+  <a href="#errors">Error templates</a>
+  <div class="group">Methods</div>
+  <a href="#get-one"><span class="m get">GET</span> One item</a>
+  <a href="#get-list"><span class="m get">GET</span> Paginated list</a>
+  <a href="#post-create"><span class="m post">POST</span> Create</a>
+  <a href="#post-action"><span class="m post">POST</span> Action</a>
+  <a href="#put"><span class="m put">PUT</span> Full update</a>
+  <a href="#patch"><span class="m patch">PATCH</span> Partial</a>
+  <a href="#delete"><span class="m del">DEL</span> Delete</a>
+  <a href="#auth"><span class="m post">POST</span> Auth</a>
+  <div class="group">Reference</div>
+  <a href="#classes">C# classes</a>
+  <a href="#checklist">Checklist</a>
+</nav>
+
+<main>
+
+<header class="hero">
+  <span class="draft">DRAFT</span>
+  <h1>RentPro API Response Guide</h1>
+  <p>One response format for every endpoint in RentPro (ASP.NET Core Web API). Pick the section for your HTTP method, then return the matching status code and body.</p>
+</header>
+
+<!-- ENVELOPE -->
+<section id="envelope">
+  <h2>1. The response envelope</h2>
+  <p class="lead">Every response, success or failure, uses this shape.</p>
+  <div class="code"><pre class="json">{
+  "success": true,
+  "data": null,
+  "message": null,
+  "errors": null
+}</pre></div>
+  <div class="table-wrap"><table>
+    <tr><th>Field</th><th>Type</th><th>Meaning</th></tr>
+    <tr><td><code>success</code></td><td>bool</td><td><span class="t">true</span> for 2xx, <span class="f">false</span> for everything else</td></tr>
+    <tr><td><code>data</code></td><td>object / array / null</td><td>The DTO on success. Always null on failure</td></tr>
+    <tr><td><code>message</code></td><td>string / null</td><td>Short text for the user</td></tr>
+    <tr><td><code>errors</code></td><td>object / null</td><td>Field errors, filled only for validation (400). Otherwise null</td></tr>
+  </table></div>
+  <h3>Rules for every endpoint</h3>
+  <ol class="rules">
+    <li><strong>Status code and <code>success</code> always agree.</strong> Never return 200 with <code>"success": false</code>.</li>
+    <li><strong><code>data</code> is null whenever <code>success</code> is false.</strong></li>
+    <li><strong><code>errors</code> is only for validation (400).</strong> Every other failure explains itself in <code>message</code>.</li>
+    <li><strong>A 500 never shows the real exception text.</strong> Return a generic message and log the real error.</li>
+    <li><strong>Never return secrets.</strong> No <code>PasswordHash</code>, no other user's tokens, in any response.</li>
+  </ol>
+</section>
+
+<!-- STATUS CODES -->
+<section id="codes">
+  <h2>2. Status code reference</h2>
+  <div class="grid2">
+    <div>
+      <h3>Success codes</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Method</th><th>Code</th><th>data contains</th></tr>
+        <tr><td><span class="m get">GET</span> one</td><td><span class="s ok">200</span></td><td>The item</td></tr>
+        <tr><td><span class="m get">GET</span> list</td><td><span class="s ok">200</span></td><td>Paged list (empty is still 200)</td></tr>
+        <tr><td><span class="m post">POST</span> create</td><td><span class="s ok">201</span></td><td>Created item with Id</td></tr>
+        <tr><td><span class="m post">POST</span> action</td><td><span class="s ok">200</span></td><td>Result or null</td></tr>
+        <tr><td><span class="m put">PUT</span></td><td><span class="s ok">200</span></td><td>Updated item</td></tr>
+        <tr><td><span class="m patch">PATCH</span></td><td><span class="s ok">200</span></td><td>Updated item</td></tr>
+        <tr><td><span class="m del">DELETE</span></td><td><span class="s ok">200</span></td><td>null</td></tr>
+      </table></div>
+    </div>
+    <div>
+      <h3>Failure codes</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Code</th><th>When to use it</th></tr>
+        <tr><td><span class="s warn">400</span></td><td>DTO validation failed. The only case that fills <code>errors</code></td></tr>
+        <tr><td><span class="s warn">401</span></td><td>No token, invalid/expired token, or wrong login credentials</td></tr>
+        <tr><td><span class="s warn">403</span></td><td>Logged in but not allowed: wrong role, not the owner, or inactive account</td></tr>
+        <tr><td><span class="s warn">404</span></td><td>The Id in the URL does not exist</td></tr>
+        <tr><td><span class="s warn">409</span></td><td>Duplicate, double booking, overpayment, delete blocked by related data</td></tr>
+        <tr><td><span class="s err">500</span></td><td>Anything unexpected. Generic message only</td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ERRORS -->
+<section id="errors">
+  <h2>3. Error response templates</h2>
+  <p class="lead">The same for every method. Only the message changes.</p>
+  <div class="code"><span class="label">HTTP 400 · Validation failed</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "Validation failed.",
+  "errors": {
+    "Email": [ "The Email field is not a valid e-mail address." ],
+    "Password": [ "The field Password must be a string with a minimum length of 8." ]
+  }
+}</pre></div>
+  <div class="grid2">
+    <div class="code"><span class="label">HTTP 401 · Unauthorized</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "Authentication required.",
+  "errors": null
+}</pre></div>
+    <div class="code"><span class="label">HTTP 403 · Forbidden</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "You do not have permission to perform this action.",
+  "errors": null
+}</pre></div>
+    <div class="code"><span class="label">HTTP 404 · Not found</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "Property not found.",
+  "errors": null
+}</pre></div>
+    <div class="code"><span class="label">HTTP 409 · Conflict</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "A property with this name already exists.",
+  "errors": null
+}</pre></div>
+  </div>
+  <div class="code"><span class="label">HTTP 500 · Server error</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "An unexpected error occurred.",
+  "errors": null
+}</pre></div>
+</section>
+
+<!-- GET ONE -->
+<section id="get-one">
+  <h2><span class="m get">GET</span> 4. One item</h2>
+  <div class="endpoint"><span class="m get">GET</span> <code>api/properties/600001</code></div>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>success</th><th>data</th><th>message</th></tr>
+    <tr><td>Found</td><td><span class="s ok">200</span></td><td class="t">true</td><td>The item</td><td>null</td></tr>
+    <tr><td>Does not exist</td><td><span class="s warn">404</span></td><td class="f">false</td><td>null</td><td>"Property not found."</td></tr>
+    <tr><td>Not logged in</td><td><span class="s warn">401</span></td><td class="f">false</td><td>null</td><td>"Authentication required."</td></tr>
+    <tr><td>Another owner's property</td><td><span class="s warn">403</span></td><td class="f">false</td><td>null</td><td>"You do not have access to this property."</td></tr>
+  </table></div>
+  <div class="code"><span class="label">HTTP 200</span><pre class="json">{
+  "success": true,
+  "data": { "id": 600001, "name": "Green Valley Apartments", "city": "Gurugram", "status": 1 },
+  "message": null,
+  "errors": null
+}</pre></div>
+</section>
+
+<!-- GET LIST -->
+<section id="get-list">
+  <h2><span class="m get">GET</span> 5. Paginated list</h2>
+  <div class="endpoint"><span class="m get">GET</span> <code>api/properties?page=2&amp;pageSize=3&amp;city=Gurugram&amp;sortBy=name&amp;sortOrder=asc</code></div>
+
+  <h3>Query parameters</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Parameter</th><th>Default</th><th>Rule</th></tr>
+    <tr><td><code>page</code></td><td>1</td><td>1 or greater</td></tr>
+    <tr><td><code>pageSize</code></td><td>20</td><td>1 to 100. The maximum protects the server</td></tr>
+    <tr><td><code>search</code></td><td>none</td><td>Optional text filter</td></tr>
+    <tr><td>Filters (<code>city</code>, <code>status</code>…)</td><td>none</td><td>Optional, specific to each endpoint</td></tr>
+    <tr><td><code>sortBy</code></td><td>e.g. <code>createdAt</code></td><td>Only names from an allowed list. Never pass straight into a query</td></tr>
+    <tr><td><code>sortOrder</code></td><td><code>desc</code></td><td><code>asc</code> or <code>desc</code></td></tr>
+  </table></div>
+
+  <h3>Response fields</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Field</th><th>Meaning</th><th>How it is calculated</th></tr>
+    <tr><td><code>items</code></td><td>Rows on this page</td><td><code>Skip((page - 1) * pageSize).Take(pageSize)</code></td></tr>
+    <tr><td><code>page</code></td><td>Current page</td><td>From the request</td></tr>
+    <tr><td><code>pageSize</code></td><td>Rows per page</td><td>From the request</td></tr>
+    <tr><td><code>totalCount</code></td><td>Rows across all pages, after filters</td><td><code>Count()</code> on the filtered query</td></tr>
+    <tr><td><code>totalPages</code></td><td>Number of pages</td><td><code>ceil(totalCount / pageSize)</code></td></tr>
+    <tr><td><code>hasPrevious</code></td><td>Is there an earlier page?</td><td><code>page &gt; 1</code></td></tr>
+    <tr><td><code>hasNext</code></td><td>Is there a later page?</td><td><code>page &lt; totalPages</code></td></tr>
+  </table></div>
+
+  <h3>Normal page (10 properties, 3 per page, page 2)</h3>
+  <div class="code"><span class="label">HTTP 200</span><pre class="json">{
+  "success": true,
+  "data": {
+    "items": [
+      { "id": 600004, "name": "Maple Heights", "city": "Gurugram" },
+      { "id": 600005, "name": "City View Homes", "city": "Gurugram" },
+      { "id": 600006, "name": "Lotus Apartments", "city": "Gurugram" }
+    ],
+    "page": 2,
+    "pageSize": 3,
+    "totalCount": 10,
+    "totalPages": 4,
+    "hasPrevious": true,
+    "hasNext": true
+  },
+  "message": null,
+  "errors": null
+}</pre></div>
+
+  <h3>Edge cases</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>items</th><th>Notes</th></tr>
+    <tr><td>Normal page</td><td><span class="s ok">200</span></td><td>Full page</td><td></td></tr>
+    <tr><td>Last page</td><td><span class="s ok">200</span></td><td>Fewer than pageSize</td><td><code>hasNext: false</code></td></tr>
+    <tr><td>No results</td><td><span class="s ok">200</span></td><td><code>[]</code></td><td><code>totalCount: 0</code>, <code>totalPages: 0</code>. Not a 404</td></tr>
+    <tr><td>Page beyond the last</td><td><span class="s ok">200</span></td><td><code>[]</code></td><td>Real totals, so the client can correct itself</td></tr>
+    <tr><td>Invalid parameters</td><td><span class="s warn">400</span></td><td>— (<code>data: null</code>)</td><td>Field errors in <code>errors</code></td></tr>
+    <tr><td>Not logged in / not allowed</td><td><span class="s warn">401</span> <span class="s warn">403</span></td><td>— (<code>data: null</code>)</td><td></td></tr>
+  </table></div>
+
+  <div class="grid2">
+    <div class="code"><span class="label">HTTP 200 · No results</span><pre class="json">{
+  "success": true,
+  "data": {
+    "items": [],
+    "page": 1, "pageSize": 20,
+    "totalCount": 0, "totalPages": 0,
+    "hasPrevious": false, "hasNext": false
+  },
+  "message": null,
+  "errors": null
+}</pre></div>
+    <div class="code"><span class="label">HTTP 200 · page=9, only 4 pages</span><pre class="json">{
+  "success": true,
+  "data": {
+    "items": [],
+    "page": 9, "pageSize": 3,
+    "totalCount": 10, "totalPages": 4,
+    "hasPrevious": true, "hasNext": false
+  },
+  "message": null,
+  "errors": null
+}</pre></div>
+  </div>
+  <div class="code"><span class="label">HTTP 400 · Invalid parameters</span><pre class="json">{
+  "success": false,
+  "data": null,
+  "message": "Validation failed.",
+  "errors": {
+    "Page": [ "Page must be 1 or greater." ],
+    "PageSize": [ "PageSize must be between 1 and 100." ],
+    "SortBy": [ "SortBy must be one of: name, city, createdAt." ]
+  }
+}</pre></div>
+</section>
+
+<!-- POST CREATE -->
+<section id="post-create">
+  <h2><span class="m post">POST</span> 6. Create</h2>
+  <div class="endpoint"><span class="m post">POST</span> <code>api/properties</code></div>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>success</th><th>data</th><th>message</th></tr>
+    <tr><td>Created</td><td><span class="s ok">201</span></td><td class="t">true</td><td>Created item with Id</td><td>"Property created successfully."</td></tr>
+    <tr><td>Invalid input</td><td><span class="s warn">400</span></td><td class="f">false</td><td>null</td><td>"Validation failed." + errors</td></tr>
+    <tr><td>Duplicate</td><td><span class="s warn">409</span></td><td class="f">false</td><td>null</td><td>"A property with this name already exists."</td></tr>
+    <tr><td>Parent does not exist</td><td><span class="s warn">404</span></td><td class="f">false</td><td>null</td><td>"Property not found."</td></tr>
+    <tr><td>Not logged in / not allowed</td><td><span class="s warn">401</span> <span class="s warn">403</span></td><td class="f">false</td><td>null</td><td>Matching message</td></tr>
+  </table></div>
+  <div class="code"><span class="label">HTTP 201</span><pre class="json">{
+  "success": true,
+  "data": { "id": 600011, "name": "Lake View PG", "city": "Noida", "status": 1 },
+  "message": "Property created successfully.",
+  "errors": null
+}</pre></div>
+</section>
+
+<!-- POST ACTION -->
+<section id="post-action">
+  <h2><span class="m post">POST</span> 7. Action</h2>
+  <p class="lead">For operations that are not "create a resource".</p>
+  <div class="endpoint"><span class="m post">POST</span> <code>api/occupancies/110001/check-out</code></div>
+  <div class="endpoint"><span class="m post">POST</span> <code>api/bills/300006/payments</code></div>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>success</th><th>data</th><th>message</th></tr>
+    <tr><td>Done, with a result</td><td><span class="s ok">200</span></td><td class="t">true</td><td>Result</td><td>"Checked out successfully."</td></tr>
+    <tr><td>Done, nothing to return</td><td><span class="s ok">200</span></td><td class="t">true</td><td>null</td><td>"Checked out successfully."</td></tr>
+    <tr><td>Invalid input</td><td><span class="s warn">400</span></td><td class="f">false</td><td>null</td><td>"Validation failed." + errors</td></tr>
+    <tr><td>Target does not exist</td><td><span class="s warn">404</span></td><td class="f">false</td><td>null</td><td>"Occupancy not found."</td></tr>
+    <tr><td>Business rule blocks it</td><td><span class="s warn">409</span></td><td class="f">false</td><td>null</td><td>"This occupancy is already checked out."</td></tr>
+  </table></div>
+  <div class="note">409 business rules include double booking, overpayment and checking out twice.</div>
+</section>
+
+<!-- PUT -->
+<section id="put">
+  <h2><span class="m put">PUT</span> 8. Full update</h2>
+  <div class="endpoint"><span class="m put">PUT</span> <code>api/properties/600001</code></div>
+  <p>The client sends <strong>all</strong> editable fields. A missing field is a validation error.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>success</th><th>data</th><th>message</th></tr>
+    <tr><td>Updated</td><td><span class="s ok">200</span></td><td class="t">true</td><td>Updated item</td><td>"Property updated successfully."</td></tr>
+    <tr><td>Invalid input / missing field</td><td><span class="s warn">400</span></td><td class="f">false</td><td>null</td><td>"Validation failed." + errors</td></tr>
+    <tr><td>Does not exist</td><td><span class="s warn">404</span></td><td class="f">false</td><td>null</td><td>"Property not found."</td></tr>
+    <tr><td>Name taken</td><td><span class="s warn">409</span></td><td class="f">false</td><td>null</td><td>"A property with this name already exists."</td></tr>
+    <tr><td>Not allowed</td><td><span class="s warn">403</span></td><td class="f">false</td><td>null</td><td>"You do not have access to this property."</td></tr>
+  </table></div>
+  <div class="code"><span class="label">HTTP 200</span><pre class="json">{
+  "success": true,
+  "data": { "id": 600001, "name": "Green Valley Residency", "city": "Gurugram", "status": 1 },
+  "message": "Property updated successfully.",
+  "errors": null
+}</pre></div>
+</section>
+
+<!-- PATCH -->
+<section id="patch">
+  <h2><span class="m patch">PATCH</span> 9. Partial update</h2>
+  <div class="endpoint"><span class="m patch">PATCH</span> <code>api/properties/600001/status</code></div>
+  <p>The client sends <strong>only</strong> the fields to change. A missing field means "do not change it".</p>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>success</th><th>data</th><th>message</th></tr>
+    <tr><td>Updated</td><td><span class="s ok">200</span></td><td class="t">true</td><td>Updated item</td><td>"Status updated successfully."</td></tr>
+    <tr><td>Invalid value</td><td><span class="s warn">400</span></td><td class="f">false</td><td>null</td><td>"Validation failed." + errors</td></tr>
+    <tr><td>Does not exist</td><td><span class="s warn">404</span></td><td class="f">false</td><td>null</td><td>"Property not found."</td></tr>
+    <tr><td>Not allowed</td><td><span class="s warn">403</span></td><td class="f">false</td><td>null</td><td>Matching message</td></tr>
+  </table></div>
+  <div class="note">Use a small DTO with only the changeable fields (e.g. <code>UpdatePropertyStatusRequest</code> with just <code>Status</code>) rather than generic JSON Patch.</div>
+</section>
+
+<!-- DELETE -->
+<section id="delete">
+  <h2><span class="m del">DELETE</span> 10. Delete</h2>
+  <div class="endpoint"><span class="m del">DELETE</span> <code>api/properties/600001</code></div>
+  <div class="table-wrap"><table>
+    <tr><th>Case</th><th>HTTP</th><th>success</th><th>data</th><th>message</th></tr>
+    <tr><td>Deleted</td><td><span class="s ok">200</span></td><td class="t">true</td><td>null</td><td>"Property deleted successfully."</td></tr>
+    <tr><td>Does not exist</td><td><span class="s warn">404</span></td><td class="f">false</td><td>null</td><td>"Property not found."</td></tr>
+    <tr><td>Blocked by related data (Restrict FK)</td><td><span class="s warn">409</span></td><td class="f">false</td><td>null</td><td>"This property has rental history and cannot be deleted. Mark it inactive instead."</td></tr>
+    <tr><td>Not allowed</td><td><span class="s warn">403</span></td><td class="f">false</td><td>null</td><td>Matching message</td></tr>
+  </table></div>
+  <div class="note warn">The 409 comes from <code>Restrict</code> foreign keys. Catch the database error in the service and return this message, rather than letting a raw SQL error become a 500.</div>
+  <div class="code"><span class="label">HTTP 200</span><pre class="json">{
+  "success": true,
+  "data": null,
+  "message": "Property deleted successfully.",
+  "errors": null
+}</pre></div>
+</section>
+
+<!-- AUTH -->
+<section id="auth">
+  <h2><span class="m post">POST</span> 11. Auth endpoints</h2>
+  <p class="lead">All under <code>api/auth</code>.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Endpoint</th><th>Success</th><th>Failure cases</th></tr>
+    <tr><td><code>register</code></td><td><span class="s ok">201</span> data: <code>{ userId, accountStatus }</code><br>"Registered successfully."</td><td><span class="s warn">400</span> validation<br><span class="s warn">409</span> "An account with this email already exists."</td></tr>
+    <tr><td><code>login</code></td><td><span class="s ok">200</span> data: <code>{ accessToken, expiresAt, userId, userName, role }</code></td><td><span class="s warn">400</span> validation<br><span class="s warn">401</span> "Invalid email or password."<br><span class="s warn">403</span> "Account is not active."</td></tr>
+    <tr><td><code>logout</code></td><td><span class="s ok">200</span> data: null<br>"Logged out successfully."</td><td><span class="s warn">401</span> not logged in</td></tr>
+    <tr><td><code>change-password</code></td><td><span class="s ok">200</span> data: null<br>"Password changed successfully."</td><td><span class="s warn">400</span> validation<br><span class="s warn">401</span> "Current password is incorrect."<br><span class="s warn">401</span> not logged in</td></tr>
+    <tr><td><code>forgot-password</code></td><td><span class="s ok">200</span> data: null<br>"If this email is registered, a reset link has been sent."</td><td><span class="s warn">400</span> validation</td></tr>
+    <tr><td><code>reset-password</code></td><td><span class="s ok">200</span> data: null<br>"Password reset successfully."</td><td><span class="s warn">400</span> validation<br><span class="s warn">400</span> "The reset link is invalid or has expired."</td></tr>
+  </table></div>
+
+  <h3>Security rules</h3>
+  <div class="grid2">
+    <div class="card"><h4>Login</h4>Same message for an unknown email and a wrong password, so nobody can test which emails are registered.</div>
+    <div class="card"><h4>Forgot password</h4>Always 200 with the same message, whether or not the email exists.</div>
+    <div class="card"><h4>Change password</h4>No <code>UserId</code> in the request. The user comes from the token.</div>
+    <div class="card"><h4>Inactive / banned users</h4>Refuse login with 403. Never issue a token with a warning.</div>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="code"><span class="label">HTTP 200 · Login</span><pre class="json">{
+  "success": true,
+  "data": {
+    "accessToken": "eyJhbGciOi...",
+    "expiresAt": "2026-11-12T10:00:00Z",
+    "userId": 100003,
+    "userName": "renter",
+    "role": 1
+  },
+  "message": null,
+  "errors": null
+}</pre></div>
+    <div class="code"><span class="label">HTTP 201 · Register</span><pre class="json">{
+  "success": true,
+  "data": { "userId": 100005, "accountStatus": 1 },
+  "message": "Registered successfully.",
+  "errors": null
+}</pre></div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section id="classes">
+  <h2>12. C# classes</h2>
+  <h3>ApiResponse&lt;T&gt;</h3>
+  <p>Suggested location: <code>Rent.API/Common/ApiResponse.cs</code>. It's an HTTP concern; the Application layer keeps returning plain DTOs.</p>
+  <div class="code"><span class="label">C#</span><pre class="cs">public class ApiResponse&lt;T&gt;
+{
+    public bool Success { get; set; }
+    public T? Data { get; set; }
+    public string? Message { get; set; }
+    public Dictionary&lt;string, string[]&gt;? Errors { get; set; }
+}</pre></div>
+
+  <h3>PaginationQuery</h3>
+  <p>Base class for list requests. Endpoint-specific queries inherit from it.</p>
+  <div class="code"><span class="label">C#</span><pre class="cs">using System.ComponentModel.DataAnnotations;
+
+public class PaginationQuery
+{
+    [Range(1, int.MaxValue, ErrorMessage = "Page must be 1 or greater.")]
+    public int Page { get; set; } = 1;
+
+    [Range(1, 100, ErrorMessage = "PageSize must be between 1 and 100.")]
+    public int PageSize { get; set; } = 20;
+
+    [MaxLength(100)]
+    public string? Search { get; set; }
+
+    public string? SortBy { get; set; }
+
+    [RegularExpression("^(asc|desc)$", ErrorMessage = "SortOrder must be 'asc' or 'desc'.")]
+    public string SortOrder { get; set; } = "desc";
+}
+
+public class PropertyQuery : PaginationQuery
+{
+    [MaxLength(100)]
+    public string? City { get; set; }
+}</pre></div>
+
+  <h3>PagedResponse&lt;T&gt;</h3>
+  <p>The calculated fields are worked out from the stored ones, so they can never disagree.</p>
+  <div class="code"><span class="label">C#</span><pre class="cs">public class PagedResponse&lt;T&gt;
+{
+    public List&lt;T&gt; Items { get; set; } = new();
+    public int Page { get; set; }
+    public int PageSize { get; set; }
+    public int TotalCount { get; set; }
+
+    public int TotalPages =&gt; (int)Math.Ceiling(TotalCount / (double)PageSize);
+    public bool HasPrevious =&gt; Page &gt; 1;
+    public bool HasNext =&gt; Page &lt; TotalPages;
+}</pre></div>
+  <p>A list endpoint returns <code>ApiResponse&lt;PagedResponse&lt;PropertySummaryResponse&gt;&gt;</code>.</p>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist">
+  <h2>13. Checklist before you ship an endpoint</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Check</th><th>Expected</th></tr>
+    <tr><td>Status code matches <code>success</code>?</td><td>2xx = true, everything else = false</td></tr>
+    <tr><td><code>data</code> on failure?</td><td>Always null</td></tr>
+    <tr><td><code>errors</code> filled?</td><td>Only for 400 validation</td></tr>
+    <tr><td>Create returns?</td><td><span class="s ok">201</span> with the new Id</td></tr>
+    <tr><td>Empty list returns?</td><td><span class="s ok">200</span> with <code>items: []</code>, never 404</td></tr>
+    <tr><td>Page size limited?</td><td>Maximum 100</td></tr>
+    <tr><td><code>sortBy</code> checked?</td><td>Against an allowed list</td></tr>
+    <tr><td>Secrets in response?</td><td>Never (<code>PasswordHash</code>, other users' tokens)</td></tr>
+    <tr><td>500 message?</td><td>Generic only; real error goes to the log</td></tr>
+    <tr><td>Delete blocked by related data?</td><td><span class="s warn">409</span> with a clear message, not 500</td></tr>
+  </table></div>
+</section>
+
+</main>
+</div>
+
+<button class="theme" id="themeBtn" type="button">Toggle theme</button>
+
+<script>
+// JSON highlighting
+document.querySelectorAll('pre.json').forEach(function (pre) {
+  var src = pre.textContent;
+  var esc = src.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  esc = esc.replace(/("(?:[^"\\]|\\.)*")(\s*:)?|\b(true|false)\b|\bnull\b|-?\b\d+(?:\.\d+)?\b/g, function (m, str, colon, bool) {
+    if (str) return colon ? '<span class="k">' + str + '</span>' + colon : '<span class="str">' + str + '</span>';
+    if (bool) return '<span class="b">' + m + '</span>';
+    if (m === 'null') return '<span class="kw">null</span>';
+    return '<span class="n">' + m + '</span>';
+  });
+  pre.innerHTML = esc;
+});
+
+// C# keyword highlighting
+document.querySelectorAll('pre.cs').forEach(function (pre) {
+  var esc = pre.innerHTML;
+  esc = esc.replace(/("(?:[^"\\]|\\.)*")/g, '<span class="str">$1</span>');
+  esc = esc.replace(/\b(public|class|using|get|set|int|bool|string|double|new|return)\b(?![^<]*<\/span>)/g, '<span class="kw">$1</span>');
+  pre.innerHTML = esc;
+});
+
+// Copy buttons
+document.querySelectorAll('.code').forEach(function (box) {
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.textContent = 'Copy';
+  btn.addEventListener('click', function () {
+    var text = box.querySelector('pre').textContent;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1200); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  });
+  box.appendChild(btn);
+});
+function fallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+// Theme toggle (remembered per browser)
+var root = document.documentElement;
+try { var saved = localStorage.getItem('rp-theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+document.getElementById('themeBtn').addEventListener('click', function () {
+  var dark = root.getAttribute('data-theme') === 'dark' ||
+    (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+  var next = dark ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('rp-theme', next); } catch (e) {}
+});
+
+// Highlight current section in the nav
+var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+var obs = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) {
+    if (e.isIntersecting) {
+      links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('main section').forEach(function (s) { obs.observe(s); });
+</script>
+</body>
+</html>

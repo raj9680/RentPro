@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documents | StayNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/common/variables.css">
+  <link rel="stylesheet" href="../assets/css/common/base.css">
+  <link rel="stylesheet" href="../assets/css/common/layout.css">
+  <link rel="stylesheet" href="../assets/css/common/components.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <button type="button" class="sidebar-toggle" aria-label="Collapse sidebar" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-left"/></svg></button>
+    <a class="brand" href="../tenant/dashboard.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons/icons.svg#logo"/></svg></span><span class="brand-name">StayNest</span></a>
+    <div class="sidebar-scroll">
+      <nav class="nav">
+        <a class="nav-link" href="../tenant/dashboard.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#home"/></svg><span class="nav-text">My stay</span></a><a class="nav-link" href="../tenant/invoices.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#receipt"/></svg><span class="nav-text">My bills</span><span class="count-badge orange" aria-label="1 new">1</span></a><a class="nav-link active" href="../tenant/documents.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#file"/></svg><span class="nav-text">Documents</span></a><a class="nav-link" href="../tenant/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#sliders"/></svg><span class="nav-text">Settings</span></a>
+      </nav>
+    </div>
+    <a class="sidebar-cta" href="../tenant/invoices.html">
+      <span class="cta-plus"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#plus"/></svg></span>
+      <span class="cta-title">View my bills</span>
+      <span class="cta-sub">Due and paid amounts</span>
+    </a>
+  </aside>
+  <div class="sidebar-overlay"></div>
+  <div class="main">
+
+    <header class="topbar">
+      <button type="button" class="menu-btn" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#menu"/></svg></button>
+      <label class="command-search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"/></svg><span class="sr-only">Search</span><input type="search" placeholder="Search my bills or documents"></label>
+      <div class="topbar-right">
+        <div class="dropdown">
+          <button type="button" class="icon-btn" data-dropdown aria-label="Notifications" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#bell"/></svg><span class="dot"></span></button>
+          <div class="dropdown-menu" style="min-width:320px">
+            <div class="dropdown-head"><strong>Notifications</strong><span>2 unread</span></div>
+            <a class="notice-item" href="#"><span class="notice-icon pill-blue"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#receipt"/></svg></span><span>Your November bill of ₹8,000 is due on 5 Nov.<time>3 hours ago</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-green"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#file"/></svg></span><span>Rental agreement was added to your documents.<time>Last week</time></span></a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button type="button" class="user-btn" data-dropdown aria-expanded="false" aria-label="Account menu">
+            <span class="user-name">Ankit Jain</span><span class="avatar avatar-lg av-4" aria-hidden="true">AJ</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-head"><strong>Ankit Jain</strong><span>ankit.jain@example.com (Tenant)</span></div>
+            <a class="dropdown-item" href="../tenant/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#user"/></svg>Account settings</a>
+            <a class="dropdown-item" href="../auth/change-password.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#key"/></svg>Change password</a>
+            <a class="dropdown-item danger" href="../auth/logged-out.html" data-confirm="Log out of StayNest?" data-confirm-message="You will need to log in again to continue." data-confirm-text="Log out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#logout"/></svg>Log out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="content" id="main">
+
+      <div class="page-head"><div><h1>Documents</h1><p>Files your owner has added for your stay. Only you and your owner can see them.</p></div></div>
+      <section class="card">
+        <div class="file-row"><span class="file-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#file"/></svg></span><div class="file-meta"><strong>Aadhaar card.pdf</strong><span>ID proof, 1.2 MB, added 16 Oct 2026</span></div><a class="btn btn-sm btn-soft" href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#download"/></svg>Download</a></div>
+        <div class="file-row"><span class="file-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#file"/></svg></span><div class="file-meta"><strong>Rental agreement.pdf</strong><span>Rental agreement, 640 KB, added 17 Oct 2026</span></div><a class="btn btn-sm btn-soft" href="#"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#download"/></svg>Download</a></div>
+      </section>
+      <div class="alert alert-info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#shield"/></svg><span>Need to replace a document? Ask your owner to upload the new file.</span></div>
+
+    </main>
+  </div>
+</div>
+<script src="../assets/js/common/app.js"></script>
+</body>
+</html>

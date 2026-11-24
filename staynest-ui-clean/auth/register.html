@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create owner account | StayNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/common/variables.css">
+  <link rel="stylesheet" href="../assets/css/common/base.css">
+  <link rel="stylesheet" href="../assets/css/common/layout.css">
+  <link rel="stylesheet" href="../assets/css/common/components.css">
+  <link rel="stylesheet" href="../assets/css/pages/auth.css">
+</head>
+<body class="">
+<div class="auth-page">
+  <aside class="auth-side">
+    <a class="brand" href="../index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons/icons.svg#logo"/></svg></span><span class="brand-name">StayNest</span></a>
+    <div class="auth-side-copy">
+      <h2>Beds, rooms and flats in one place.</h2>
+      <p>See what is vacant, move people in, and know who has paid this month.</p>
+      <div class="auth-preview" aria-hidden="true">
+        <div class="card"><div class="stat-label">Occupancy</div><div class="stat-value">77.3%</div></div>
+        <div class="card"><div class="stat-label">Collected</div><div class="stat-value text-green">₹1.06L</div></div>
+        <div class="card"><div class="stat-label">Vacant</div><div class="stat-value">4</div></div>
+      </div>
+    </div>
+    <p class="auth-foot">Template preview. Numbers are sample data.</p>
+  </aside>
+  <main class="auth-main">
+    <form class="auth-card" id="register-form">
+      <input type="hidden" name="__RequestVerificationToken" value="template-token">
+      <div><h1>Create an owner account</h1><p class="lead">Tenants do not sign up here. You add them when they move in.</p></div>
+      <div class="field"><label for="r-name">Full name</label><input class="input" id="r-name" name="FullName" autocomplete="name"><span class="field-error">Enter your full name.</span></div>
+      <div class="field"><label for="r-email">Email</label><input class="input" id="r-email" name="Email" type="email" autocomplete="email"><span class="field-error">Enter a valid email.</span></div>
+      <div class="field"><label for="r-phone">Mobile number</label><input class="input" id="r-phone" name="Phone" inputmode="numeric" placeholder="10 digits"><span class="field-error">Enter a 10-digit mobile number.</span></div>
+      <div class="field">
+        <label for="r-pass">Password</label>
+        <div class="input-group"><input class="input" id="r-pass" name="Password" type="password" autocomplete="new-password" style="padding-right:44px">
+          <button type="button" class="btn-icon input-action" data-password-toggle="r-pass" aria-label="Show password"><span class="eye-on"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#eye"/></svg></span><span class="eye-off hidden"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#eye-off"/></svg></span></button></div>
+        <div class="strength" id="r-strength" data-level="0"><i></i><i></i><i></i><i></i></div>
+        <ul class="rules" id="r-rules">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#check"/></svg>At least 8 characters</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#check"/></svg>One uppercase letter</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#check"/></svg>One lowercase letter</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#check"/></svg>One number</li>
+        </ul>
+        <span class="field-error">Password does not meet the rules.</span>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create account</button>
+      <div class="auth-links"><span>Already have an account?</span><a href="login.html">Log in</a></div>
+    </form>
+  </main>
+</div>
+<script src="../assets/js/common/app.js"></script>
+</body>
+</html>

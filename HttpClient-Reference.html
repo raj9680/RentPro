@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RentPro HttpClient Reference</title>
+<style>
+:root{
+  --bg:#f6f8fb; --surface:#ffffff; --surface-2:#f1f4f8; --border:#dfe5ec;
+  --text:#1d2633; --muted:#5f6b7a; --accent:#1f5fae; --accent-soft:#e7f0fb;
+  --code-bg:#0f1b2d; --code-text:#d8e2ef;
+  --ok:#17803d; --ok-soft:#e5f5eb; --warn:#a15c00; --warn-soft:#fdf1df;
+  --err:#b42318; --err-soft:#fdeceb;
+  --get:#17803d; --post:#1f5fae; --put:#a15c00; --patch:#6b3fb5; --del:#b42318;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --surface:#151d29; --surface-2:#1b2533; --border:#2a3647;
+    --text:#e3e9f1; --muted:#9aa7b8; --accent:#6aa8ff; --accent-soft:#1a2b45;
+    --code-bg:#0a1019; --code-text:#d8e2ef;
+    --ok:#4cc27a; --ok-soft:#14301f; --warn:#f0a948; --warn-soft:#33260f;
+    --err:#ff7a6e; --err-soft:#3a1714;
+    --get:#4cc27a; --post:#6aa8ff; --put:#f0a948; --patch:#b58cff; --del:#ff7a6e;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --surface:#151d29; --surface-2:#1b2533; --border:#2a3647;
+  --text:#e3e9f1; --muted:#9aa7b8; --accent:#6aa8ff; --accent-soft:#1a2b45;
+  --code-bg:#0a1019; --code-text:#d8e2ef;
+  --ok:#4cc27a; --ok-soft:#14301f; --warn:#f0a948; --warn-soft:#33260f;
+  --err:#ff7a6e; --err-soft:#3a1714;
+  --get:#4cc27a; --post:#6aa8ff; --put:#f0a948; --patch:#b58cff; --del:#ff7a6e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+code,pre{font-family:ui-monospace,Consolas,"Cascadia Mono",Menlo,monospace}
+a{color:var(--accent);text-decoration:none}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1240px;margin:0 auto}
+nav{position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 18px;border-right:1px solid var(--border)}
+nav .brand{font-weight:700;font-size:16px;margin-bottom:4px}
+nav .sub{font-size:12px;color:var(--muted);margin-bottom:18px}
+nav a{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;color:var(--text);font-size:14px}
+nav a:hover,nav a.active{background:var(--accent-soft);color:var(--accent)}
+nav .group{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 10px 4px}
+main{padding:32px 36px 80px;min-width:0}
+header.hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:28px}
+header.hero h1{margin:0 0 6px;font-size:28px}
+header.hero p{margin:0;color:var(--muted)}
+.draft{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--err);background:var(--err-soft);padding:2px 8px;border-radius:999px;margin-bottom:10px}
+section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:22px}
+section h2{margin:0 0 6px;font-size:21px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h3{margin:22px 0 8px;font-size:16px}
+section > p.lead{margin:0 0 14px;color:var(--muted)}
+.endpoint{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:13px;margin:4px 0 12px}
+.m{display:inline-block;font:700 11px/1 ui-monospace,Consolas,monospace;padding:5px 7px;border-radius:5px;color:#fff;letter-spacing:.03em}
+.m.get{background:var(--get)} .m.post{background:var(--post)} .m.put{background:var(--put)} .m.patch{background:var(--patch)} .m.del{background:var(--del)}
+.s{display:inline-block;font:700 12px/1 ui-monospace,Consolas,monospace;padding:4px 7px;border-radius:5px;white-space:nowrap}
+.s.ok{color:var(--ok);background:var(--ok-soft)} .s.warn{color:var(--warn);background:var(--warn-soft)} .s.err{color:var(--err);background:var(--err-soft)}
+.t{color:var(--ok);font-weight:600} .f{color:var(--err);font-weight:600}
+.table-wrap{overflow-x:auto;margin:10px 0 6px;border:1px solid var(--border);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:var(--surface-2);text-align:left;font-weight:600;padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td code,p code,li code{background:var(--surface-2);border:1px solid var(--border);padding:1px 5px;border-radius:5px;font-size:13px}
+.code{position:relative;margin:10px 0 14px}
+.code .label{position:absolute;top:0;left:0;font:600 11px/1 ui-monospace,Consolas,monospace;color:#9fb3cc;padding:9px 12px}
+.code button{position:absolute;top:6px;right:6px;font:12px system-ui,sans-serif;background:#22324a;color:#cfdced;border:1px solid #33475f;border-radius:6px;padding:4px 9px;cursor:pointer}
+.code button:hover{background:#2b3f5c}
+pre{margin:0;background:var(--code-bg);color:var(--code-text);padding:32px 16px 14px;border-radius:10px;overflow-x:auto;font-size:13px;line-height:1.55}
+.k{color:#8fc3ff} .str{color:#a5e3a0} .n{color:#f6c177} .b{color:#f29e9e} .kw{color:#c7a6ff}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--surface-2)}
+.card h4{margin:0 0 6px;font-size:14px;display:flex;gap:8px;align-items:center}
+.rules{counter-reset:r;list-style:none;padding:0;margin:8px 0 0}
+.rules li{counter-increment:r;position:relative;padding:8px 0 8px 40px;border-bottom:1px dashed var(--border)}
+.rules li:last-child{border-bottom:none}
+.rules li::before{content:counter(r);position:absolute;left:0;top:7px;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:grid;place-items:center;font-size:13px}
+.note{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:14px}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)}
+.theme{position:fixed;right:16px;bottom:16px;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:8px 14px;font:13px system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  nav{position:static;height:auto;border-right:none;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:4px;padding:14px 16px}
+  nav .brand,nav .sub,nav .group{width:100%;margin:2px 0}
+  main{padding:20px 16px 70px}
+  section{padding:18px 16px}
+}
+@media print{nav,.theme,.code button{display:none}.layout{display:block}section{break-inside:avoid-page}}
+.c{color:#7f8ea3;font-style:italic}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav id="nav">
+  <div class="brand">RentPro HttpClient</div>
+  <div class="sub">MVC → API · draft</div>
+  <div class="group">Basics</div>
+  <a href="#hc-intro">How it works</a>
+  <a href="#hc-setup">Setup</a>
+  <a href="#hc-core">Core classes</a>
+  <a href="#hc-token">Token handler</a>
+  <a href="#hc-methods">Built-in methods</a>
+  <a href="#hc-failures">Handling results</a>
+  <div class="group">Recipes</div>
+  <a href="#hc-login"><span class="m post">POST</span> Login</a>
+  <a href="#hc-register"><span class="m post">POST</span> Register &amp; logout</a>
+  <a href="#hc-get-one"><span class="m get">GET</span> One item</a>
+  <a href="#hc-get-list"><span class="m get">GET</span> Paginated list</a>
+  <a href="#hc-post-create"><span class="m post">POST</span> Create</a>
+  <a href="#hc-post-action"><span class="m post">POST</span> Action</a>
+  <a href="#hc-put"><span class="m put">PUT</span> Full update</a>
+  <a href="#hc-patch"><span class="m patch">PATCH</span> Partial</a>
+  <a href="#hc-delete"><span class="m del">DEL</span> Delete</a>
+  <div class="group">Reference</div>
+  <a href="#hc-mistakes">Common mistakes</a>
+  <a href="#hc-checklist">Checklist</a>
+</nav>
+
+<main>
+
+<header class="hero">
+  <span class="draft">DRAFT</span>
+  <h1>RentPro HttpClient Reference</h1>
+  <p>How the MVC app calls the API with HttpClient: setup, token, and one recipe per request type. These patterns work in any ASP.NET Core MVC app that calls a JSON API. Only the URLs and DTO names are RentPro-specific.</p>
+</header>
+
+
+<section id="hc-intro">
+  <h2>1. How HttpClient works</h2>
+  <p class="lead">HttpClient is the C# class that sends HTTP requests and reads responses: what Postman or a browser does, done from code. In an MVC app, the browser never talks to the API. The MVC controller does, using HttpClient.</p>
+<div class="code"><span class="label">Flow</span><pre class="plain">Browser ──form post──►  MVC controller  ──HttpClient──►  Rent.API controller
+   ▲                         │  ▲                              │
+   │                         │  └──── JSON (ApiResponse) ──────┘
+   └────── HTML page ◄───────┘</pre></div><h3>A request has four parts</h3><div class="table-wrap"><table><tr><th>Part</th><th>Example</th><th>Notes</th></tr><tr><td>Method</td><td><code>GET</code> <code>POST</code> <code>PUT</code> <code>PATCH</code> <code>DELETE</code></td><td>What you want to do</td></tr><tr><td>URL</td><td><code>https://localhost:7001/api/properties/600001</code></td><td>BaseAddress + path</td></tr><tr><td>Headers</td><td><code>Authorization: Bearer eyJhbGciOi...</code><br><code>Content-Type: application/json</code></td><td>Token and body type</td></tr><tr><td>Body</td><td><code>{ "name": "Lake View PG", "city": "Noida" }</code></td><td>JSON of a request DTO. None for GET and DELETE</td></tr></table></div><h3>A response has three parts</h3><div class="table-wrap"><table><tr><th>Part</th><th>Example</th></tr><tr><td>Status code</td><td><span class="s ok">200</span> <span class="s ok">201</span> <span class="s warn">400</span> <span class="s warn">401</span> <span class="s warn">404</span> <span class="s warn">409</span> <span class="s err">500</span></td></tr><tr><td>Headers</td><td><code>Content-Type: application/json; charset=utf-8</code></td></tr><tr><td>Body</td><td>The <code>ApiResponse</code> envelope: <code>{ success, data, message, errors }</code></td></tr></table></div><h3>Which method for what</h3><div class="table-wrap"><table><tr><th>Method</th><th>Use for</th><th>Body?</th></tr><tr><td><span class="m get">GET</span></td><td>Read one item or a list</td><td>No</td></tr><tr><td><span class="m post">POST</span></td><td>Create, login, register, actions (check-out, pay)</td><td>Yes</td></tr><tr><td><span class="m put">PUT</span></td><td>Replace all editable fields</td><td>Yes</td></tr><tr><td><span class="m patch">PATCH</span></td><td>Change only some fields</td><td>Yes</td></tr><tr><td><span class="m del">DEL</span></td><td>Remove an item</td><td>No</td></tr></table></div><div class="note"><strong>HTML forms can only send GET and POST.</strong> The browser always posts to an MVC action; the MVC action then sends PUT, PATCH or DELETE to the API with HttpClient.</div>
+</section>
+
+
+<section id="hc-setup">
+  <h2>2. Setup</h2>
+  <p class="lead">Register once in Program.cs; every controller then gets a ready-to-use client by constructor injection.</p>
+<h3>Three ways to get an HttpClient</h3><div class="table-wrap"><table><tr><th>Way</th><th>Example</th><th>Verdict</th></tr><tr><td><code>new HttpClient()</code> in each action</td><td><code>using var c = new HttpClient();</code></td><td><span class="f">Avoid.</span> Runs out of connections under load</td></tr><tr><td>Named client</td><td><code>factory.CreateClient("RentApi")</code></td><td>Works. Every controller repeats the JSON and error handling</td></tr><tr><td>Typed client</td><td><code>class ApiClient(HttpClient http)</code></td><td><span class="t">Recommended.</span> One class owns base URL, token and JSON reading</td></tr></table></div><div class="note">No NuGet package is needed. <code>HttpClient</code>, <code>IHttpClientFactory</code> and <code>System.Net.Http.Json</code> ship with ASP.NET Core.</div><h3>Folder layout (MVC project)</h3><div class="code"><span class="label">Structure</span><pre class="plain">Rent.Web/                         (MVC project; name assumed)
+├─ Controllers/
+│  ├─ AppController.cs            base class: failure handling
+│  ├─ AccountController.cs        login, register, logout
+│  └─ PropertiesController.cs     example CRUD
+├─ Services/Api/
+│  ├─ ApiClient.cs                typed HttpClient
+│  ├─ ApiResult.cs                what every call returns
+│  └─ BearerTokenHandler.cs       adds the JWT to each request
+├─ Extensions/
+│  └─ ModelStateExtensions.cs     API errors → form errors
+└─ Views/</pre></div><h3>appsettings.json</h3><div class="code"><span class="label">appsettings.json</span><pre class="json">{
+  "ApiSettings": {
+    "BaseUrl": "https://localhost:7001/"
+  }
+}</pre></div><h3>Program.cs</h3><div class="code"><span class="label">Program.cs (MVC project)</span><pre class="cs">using Microsoft.AspNetCore.Authentication.Cookies;
+using Rent.Web.Services.Api;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
+// Browser &lt;-&gt; MVC: cookie authentication
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =&gt;
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+
+        options.Cookie.Name = "RentPro.Auth";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+
+        options.SlidingExpiration = false;
+        options.ExpireTimeSpan = TimeSpan.FromHours(1); // fallback; real expiry set at login
+    });
+builder.Services.AddAuthorization();
+
+// MVC &lt;-&gt; API: typed HttpClient with the token handler
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient&lt;BearerTokenHandler&gt;();
+builder.Services.AddHttpClient&lt;ApiClient&gt;(client =&gt;
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]!);
+    client.Timeout = TimeSpan.FromSeconds(30);
+})
+.AddHttpMessageHandler&lt;BearerTokenHandler&gt;();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();</pre></div><h3>The BaseAddress slash rule</h3><div class="table-wrap"><table><tr><th>BaseAddress</th><th>Path</th><th>Final URL</th><th></th></tr><tr><td><code>https://localhost:7001/</code></td><td><code>api/properties</code></td><td><code>https://localhost:7001/api/properties</code></td><td><span class="t">OK</span></td></tr><tr><td><code>https://localhost:7001/api/</code></td><td><code>properties</code></td><td><code>https://localhost:7001/api/properties</code></td><td><span class="t">OK</span></td></tr><tr><td><code>https://localhost:7001/api</code></td><td><code>properties</code></td><td><code>https://localhost:7001/properties</code></td><td><span class="f">"api" dropped</span></td></tr><tr><td><code>https://localhost:7001/api/</code></td><td><code>/properties</code></td><td><code>https://localhost:7001/properties</code></td><td><span class="f">leading / goes to root</span></td></tr></table></div><div class="note warn"><strong>Rule:</strong> BaseAddress ends with <code>/</code>. Paths never start with <code>/</code>.</div>
+</section>
+
+
+<section id="hc-core">
+  <h2>3. Core classes</h2>
+  <p class="lead">Two small classes do all the HTTP work. Controllers never touch HttpClient directly.</p>
+<h3>Shared DTOs</h3><p>MVC sends and reads the same JSON shapes as the API, so it reuses the classes from <code>Rent.Contracts</code>: request/response DTOs, <code>ApiResponse&lt;T&gt;</code> and <code>PagedResponse&lt;T&gt;</code>.</p><div class="note warn"><code>ApiResponse&lt;T&gt;</code> currently lives in <code>Rent.API/Common</code>. MVC cannot reference Rent.API, so <code>ApiResponse&lt;T&gt;</code> and <code>PagedResponse&lt;T&gt;</code> need to move to <code>Rent.Contracts</code> (or be copied into MVC). Not decided yet.</div><h3>ApiResponse&lt;T&gt;: the JSON envelope</h3><div class="code"><span class="label">ApiResponse.cs</span><pre class="cs">public class ApiResponse&lt;T&gt;
+{
+    public bool Success { get; set; }
+    public T? Data { get; set; }
+    public string? Message { get; set; }
+    public Dictionary&lt;string, string[]&gt;? Errors { get; set; }
+}</pre></div><h3>PagedResponse&lt;T&gt;: the data of a list endpoint</h3><div class="code"><span class="label">PagedResponse.cs</span><pre class="cs">public class PagedResponse&lt;T&gt;
+{
+    public List&lt;T&gt; Items { get; set; } = new();
+    public int Page { get; set; }
+    public int PageSize { get; set; }
+    public int TotalCount { get; set; }
+
+    public int TotalPages =&gt; (int)Math.Ceiling(TotalCount / (double)PageSize);
+    public bool HasPrevious =&gt; Page &gt; 1;
+    public bool HasNext =&gt; Page &lt; TotalPages;
+}</pre></div><h3>ApiResult&lt;T&gt;: what every call returns</h3><div class="code"><span class="label">Services/Api/ApiResult.cs</span><pre class="cs">using System.Net;
+
+namespace Rent.Web.Services.Api;
+
+public class ApiResult&lt;T&gt;
+{
+    public HttpStatusCode StatusCode { get; init; }
+    public bool Success { get; init; }
+    public T? Data { get; init; }
+    public string? Message { get; init; }
+    public Dictionary&lt;string, string[]&gt;? Errors { get; init; }
+
+    // 400 and 409 are shown on the form; everything else is handled centrally
+    public bool IsFormError =&gt;
+        StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.Conflict;
+
+    public static ApiResult&lt;T&gt; Fail(HttpStatusCode statusCode, string message) =&gt;
+        new() { StatusCode = statusCode, Success = false, Message = message };
+}</pre></div><h3>ApiClient: the typed client</h3><div class="code"><span class="label">Services/Api/ApiClient.cs</span><pre class="cs">using System.Net;
+using System.Net.Http.Json;
+using System.Text.Json;
+using Rent.Contracts; // ApiResponse&lt;T&gt;
+
+namespace Rent.Web.Services.Api;
+
+public class ApiClient
+{
+    private readonly HttpClient _http;
+    private readonly ILogger&lt;ApiClient&gt; _logger;
+
+    public ApiClient(HttpClient http, ILogger&lt;ApiClient&gt; logger)
+    {
+        _http = http;
+        _logger = logger;
+    }
+
+    public Task&lt;ApiResult&lt;T&gt;&gt; GetAsync&lt;T&gt;(string url, CancellationToken ct = default)
+        =&gt; SendAsync&lt;T&gt;(HttpMethod.Get, url, null, ct);
+
+    public Task&lt;ApiResult&lt;T&gt;&gt; PostAsync&lt;T&gt;(string url, object? body, CancellationToken ct = default)
+        =&gt; SendAsync&lt;T&gt;(HttpMethod.Post, url, body, ct);
+
+    public Task&lt;ApiResult&lt;T&gt;&gt; PutAsync&lt;T&gt;(string url, object body, CancellationToken ct = default)
+        =&gt; SendAsync&lt;T&gt;(HttpMethod.Put, url, body, ct);
+
+    public Task&lt;ApiResult&lt;T&gt;&gt; PatchAsync&lt;T&gt;(string url, object body, CancellationToken ct = default)
+        =&gt; SendAsync&lt;T&gt;(HttpMethod.Patch, url, body, ct);
+
+    public Task&lt;ApiResult&lt;T&gt;&gt; DeleteAsync&lt;T&gt;(string url, CancellationToken ct = default)
+        =&gt; SendAsync&lt;T&gt;(HttpMethod.Delete, url, null, ct);
+
+    private async Task&lt;ApiResult&lt;T&gt;&gt; SendAsync&lt;T&gt;(
+        HttpMethod method, string url, object? body, CancellationToken ct)
+    {
+        using var request = new HttpRequestMessage(method, url);
+        if (body is not null)
+            request.Content = JsonContent.Create(body); // JSON + Content-Type header
+
+        try
+        {
+            using var response = await _http.SendAsync(request, ct);
+            var envelope = await TryReadEnvelopeAsync&lt;T&gt;(response, ct);
+
+            return new ApiResult&lt;T&gt;
+            {
+                StatusCode = response.StatusCode,
+                Success = response.IsSuccessStatusCode,
+                Data = envelope is null ? default : envelope.Data,
+                Message = envelope?.Message ?? DefaultMessage(response.StatusCode),
+                Errors = envelope?.Errors
+            };
+        }
+        catch (HttpRequestException ex) // API not running, DNS, SSL
+        {
+            _logger.LogError(ex, "API unreachable: {Method} {Url}", method, url);
+            return ApiResult&lt;T&gt;.Fail(HttpStatusCode.ServiceUnavailable,
+                "The service is not available. Please try again later.");
+        }
+        catch (TaskCanceledException ex) when (!ct.IsCancellationRequested) // timeout
+        {
+            _logger.LogError(ex, "API timeout: {Method} {Url}", method, url);
+            return ApiResult&lt;T&gt;.Fail(HttpStatusCode.GatewayTimeout,
+                "The request took too long. Please try again.");
+        }
+    }
+
+    // Some responses have no JSON body (e.g. a 401 from [Authorize]); never crash on them
+    private static async Task&lt;ApiResponse&lt;T&gt;?&gt; TryReadEnvelopeAsync&lt;T&gt;(
+        HttpResponseMessage response, CancellationToken ct)
+    {
+        var mediaType = response.Content.Headers.ContentType?.MediaType;
+        if (mediaType is null || !mediaType.Contains("json"))
+            return null;
+
+        try
+        {
+            return await response.Content.ReadFromJsonAsync&lt;ApiResponse&lt;T&gt;&gt;(ct);
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
+    }
+
+    private static string? DefaultMessage(HttpStatusCode code) =&gt; code switch
+    {
+        HttpStatusCode.Unauthorized =&gt; "Your session has expired. Please log in again.",
+        HttpStatusCode.Forbidden =&gt; "You do not have permission to perform this action.",
+        HttpStatusCode.NotFound =&gt; "The requested item was not found.",
+        _ when (int)code &lt; 300 =&gt; null,
+        _ =&gt; "Something went wrong. Please try again."
+    };
+}</pre></div><h3>What ApiClient handles for you</h3><div class="table-wrap"><table><tr><th>Situation</th><th>Without ApiClient</th><th>With ApiClient</th></tr><tr><td>Sending JSON</td><td>Serialize and set Content-Type by hand</td><td>Pass the DTO</td></tr><tr><td>Reading the envelope</td><td>Repeat <code>ReadFromJsonAsync</code> everywhere</td><td><code>result.Data</code>, <code>result.Message</code></td></tr><tr><td>401 with an empty body</td><td>JsonException crash</td><td>Default message, status 401</td></tr><tr><td>API not running</td><td>HttpRequestException crash</td><td>Status 503, friendly message</td></tr><tr><td>API too slow</td><td>TaskCanceledException crash</td><td>Status 504, friendly message</td></tr><tr><td>JWT header</td><td>Set in every call</td><td>Added by BearerTokenHandler (Section 4)</td></tr></table></div><div class="note">By default, ASP.NET Core returns an <strong>empty body</strong> for a 401 from <code>[Authorize]</code> (JWT missing or expired). That is why ApiClient reads the body only when it is JSON.</div>
+</section>
+
+
+<section id="hc-token">
+  <h2>4. Bearer token handler</h2>
+  <p class="lead">A DelegatingHandler sits between ApiClient and the network. It runs on every request, so no controller ever sets the Authorization header.</p>
+<div class="code"><span class="label">Pipeline</span><pre class="plain">ApiClient.SendAsync
+      │
+      ▼
+BearerTokenHandler   reads the JWT from the login cookie
+      │              adds: Authorization: Bearer eyJhbGciOi...
+      ▼
+Network  ───────────►  Rent.API  (JwtBearer validates the token)</pre></div><div class="code"><span class="label">Services/Api/BearerTokenHandler.cs</span><pre class="cs">using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authentication;
+
+namespace Rent.Web.Services.Api;
+
+public class BearerTokenHandler : DelegatingHandler
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public BearerTokenHandler(IHttpContextAccessor httpContextAccessor)
+    {
+        _httpContextAccessor = httpContextAccessor;
+    }
+
+    protected override async Task&lt;HttpResponseMessage&gt; SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var httpContext = _httpContextAccessor.HttpContext;
+        if (httpContext is not null)
+        {
+            // Saved at login with props.StoreTokens(...) (Section 7)
+            var token = await httpContext.GetTokenAsync("access_token");
+            if (!string.IsNullOrEmpty(token))
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        }
+
+        return await base.SendAsync(request, cancellationToken);
+    }
+}</pre></div><div class="table-wrap"><table><tr><th>Request</th><th>Token in cookie?</th><th>Header sent</th></tr><tr><td>Login / Register</td><td>No (not logged in yet)</td><td>None. The API endpoints allow anonymous calls</td></tr><tr><td>Any call after login</td><td>Yes</td><td><code>Authorization: Bearer eyJ...</code></td></tr><tr><td>After the cookie expired</td><td>No (cookie gone)</td><td>None; MVC <code>[Authorize]</code> redirects to Login before the call</td></tr></table></div>
+</section>
+
+
+<section id="hc-methods">
+  <h2>5. Built-in HttpClient methods</h2>
+  <p class="lead">For reference. With ApiClient you rarely call these directly.</p>
+<div class="table-wrap"><table><tr><th>Method</th><th>What it does</th><th>Throws on 4xx/5xx?</th></tr><tr><td><code>GetFromJsonAsync&lt;T&gt;(url)</code></td><td>GET and read JSON in one step</td><td><span class="f">Yes</span> (HttpRequestException)</td></tr><tr><td><code>GetAsync(url)</code></td><td>GET, returns the full response</td><td>No</td></tr><tr><td><code>PostAsJsonAsync(url, body)</code></td><td>POST a JSON body</td><td>No</td></tr><tr><td><code>PutAsJsonAsync(url, body)</code></td><td>PUT a JSON body</td><td>No</td></tr><tr><td><code>PatchAsJsonAsync(url, body)</code></td><td>PATCH a JSON body (.NET 7+)</td><td>No</td></tr><tr><td><code>DeleteAsync(url)</code></td><td>DELETE</td><td>No</td></tr><tr><td><code>SendAsync(request)</code></td><td>Any method, full control. ApiClient uses this</td><td>No</td></tr><tr><td><code>response.EnsureSuccessStatusCode()</code></td><td>Throws if not 2xx</td><td><span class="f">Yes</span></td></tr><tr><td><code>response.Content.ReadFromJsonAsync&lt;T&gt;()</code></td><td>Read the body as JSON</td><td>Throws JsonException on an empty or non-JSON body</td></tr></table></div><h3>The same call without ApiClient (to see what it hides)</h3><div class="code"><span class="label">Raw HttpClient</span><pre class="cs">var response = await http.GetAsync("api/properties/600001");
+var body = await response.Content.ReadFromJsonAsync&lt;ApiResponse&lt;PropertyResponse&gt;&gt;();
+
+if (response.IsSuccessStatusCode)
+{
+    var property = body!.Data;      // the DTO
+}
+else
+{
+    var message = body?.Message;    // "Property not found."
+}</pre></div><div class="note">Avoid <code>GetFromJsonAsync</code> with this API: on a 404 it throws and the API's message ("Property not found.") is lost.</div><h3>JSON rules</h3><div class="table-wrap"><table><tr><th>Rule</th><th>Detail</th></tr><tr><td>Property names</td><td>Sent as camelCase, read case-insensitively (<code>JsonSerializerDefaults.Web</code>). <code>FullName</code> ↔ <code>"fullName"</code></td></tr><tr><td>Enums</td><td>The API sends numbers (<code>"status": 1</code>) unless it adds <code>JsonStringEnumConverter</code>. The DTO type must match</td></tr><tr><td>Dates</td><td>ISO 8601: <code>"2026-11-14T11:30:00Z"</code> (DateTime), <code>"2026-11-14"</code> (DateOnly)</td></tr><tr><td>Money</td><td>decimal in the DTO, plain number in JSON: <code>12500.00</code></td></tr></table></div>
+</section>
+
+
+<section id="hc-failures">
+  <h2>6. Handling API results in MVC</h2>
+  <p class="lead">Every recipe below follows the same pattern: success → view or redirect; 400/409 → show on the form; anything else → HandleFailureAsync.</p>
+<div class="table-wrap"><table><tr><th>API status</th><th>Typical cause</th><th>MVC does</th></tr><tr><td><span class="s ok">200</span> <span class="s ok">201</span></td><td>Success</td><td>Show the view, or redirect after a POST</td></tr><tr><td><span class="s warn">400</span></td><td>Validation failed</td><td>Copy <code>errors</code> into ModelState, show the form again</td></tr><tr><td><span class="s warn">401</span></td><td>Token missing or expired</td><td>Sign out the cookie, redirect to Login with returnUrl</td></tr><tr><td><span class="s warn">403</span></td><td>Wrong role, not the owner</td><td>Redirect to AccessDenied</td></tr><tr><td><span class="s warn">404</span></td><td>Id does not exist</td><td>Return <code>NotFound()</code></td></tr><tr><td><span class="s warn">409</span></td><td>Business rule (duplicate, double booking)</td><td>Form: error on the form. Button: TempData error</td></tr><tr><td><span class="s err">500</span> <span class="s err">503</span> <span class="s err">504</span></td><td>Server error, API down, timeout</td><td>Error page with the generic message</td></tr></table></div><div class="note"><strong>Post/Redirect/Get:</strong> after a successful POST, always redirect. Returning a view directly makes the browser re-submit the form when the user presses refresh.</div><div class="code"><span class="label">Extensions/ModelStateExtensions.cs</span><pre class="cs">using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Rent.Web.Services.Api;
+
+namespace Rent.Web.Extensions;
+
+public static class ModelStateExtensions
+{
+    public static void AddApiErrors&lt;T&gt;(this ModelStateDictionary modelState, ApiResult&lt;T&gt; result)
+    {
+        if (result.Errors is { Count: &gt; 0 })
+        {
+            // "Email": ["..."] lands next to the Email input
+            foreach (var (field, messages) in result.Errors)
+                foreach (var message in messages)
+                    modelState.AddModelError(field, message);
+        }
+        else
+        {
+            // Empty key = form-level error (validation summary)
+            modelState.AddModelError(string.Empty, result.Message ?? "Something went wrong.");
+        }
+    }
+}</pre></div><div class="code"><span class="label">Controllers/AppController.cs</span><pre class="cs">using System.Net;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Rent.Web.Services.Api;
+
+namespace Rent.Web.Controllers;
+
+public abstract class AppController : Controller
+{
+    // For failures that the page itself cannot fix
+    protected async Task&lt;IActionResult&gt; HandleFailureAsync&lt;T&gt;(ApiResult&lt;T&gt; result)
+    {
+        switch (result.StatusCode)
+        {
+            case HttpStatusCode.Unauthorized:
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return RedirectToAction("Login", "Account",
+                    new { returnUrl = Request.Path + Request.QueryString });
+
+            case HttpStatusCode.Forbidden:
+                return RedirectToAction("AccessDenied", "Account");
+
+            case HttpStatusCode.NotFound:
+                return NotFound();
+
+            default:
+                ViewData["Message"] = result.Message;
+                return View("ApiError");
+        }
+    }
+}</pre></div><div class="code"><span class="label">Views/Shared/ApiError.cshtml</span><pre class="plain">@{
+    ViewData["Title"] = "Error";
+}
+&lt;h1&gt;Something went wrong&lt;/h1&gt;
+&lt;p&gt;@ViewData["Message"]&lt;/p&gt;</pre></div><div class="code"><span class="label">Views/Shared/_Layout.cshtml (inside &lt;main&gt;, above @RenderBody())</span><pre class="plain">@if (TempData["Success"] is string success)
+{
+    &lt;div class="alert alert-success"&gt;@success&lt;/div&gt;
+}
+@if (TempData["Error"] is string error)
+{
+    &lt;div class="alert alert-danger"&gt;@error&lt;/div&gt;
+}</pre></div>
+</section>
+
+
+<section id="hc-login">
+  <h2><span class="m post">POST</span> 7. Login</h2>
+  <p class="lead">The MVC app logs in through the API, then keeps the user signed in with its own cookie.</p>
+<div class="endpoint"><span class="m post">POST</span> <code>api/auth/login</code></div><div class="code"><span class="label">Flow</span><pre class="plain">1. Browser posts the form        → MVC Login(model)
+2. MVC calls the API             → POST api/auth/login
+3. API returns token + expiresAt + user
+4. MVC builds claims             → who the user is
+5. MVC sets cookie expiry        → = token expiresAt
+6. MVC stores the JWT            → inside the encrypted cookie
+7. SignInAsync writes the cookie → redirect to returnUrl or Home</pre></div><div class="code"><span class="label">Controllers/AccountController.cs (login part)</span><pre class="cs">using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Rent.Contracts;              // LoginRequest, LoginResponse, RegisterRequest
+using Rent.Web.Extensions;
+using Rent.Web.Services.Api;
+
+namespace Rent.Web.Controllers;
+
+public class AccountController : AppController
+{
+    private readonly ApiClient _api;
+
+    public AccountController(ApiClient api)
+    {
+        _api = api;
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public IActionResult Login(string? returnUrl = null)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+        return View();
+    }
+
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    public async Task&lt;IActionResult&gt; Login(LoginRequest model, string? returnUrl, CancellationToken ct)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+        if (!ModelState.IsValid)
+            return View(model);
+
+        var result = await _api.PostAsync&lt;LoginResponse&gt;("api/auth/login", model, ct);
+
+        // Wrong password (401), inactive (403), validation (400), API down (503):
+        // all shown on the login form
+        if (!result.Success || result.Data is null)
+        {
+            ModelState.AddApiErrors(result);
+            return View(model);
+        }
+
+        var login = result.Data;
+
+        // Who the user is
+        var claims = new List&lt;Claim&gt;
+        {
+            new(ClaimTypes.Email, model.Email),
+            new(ClaimTypes.Name, login.User.FullName),
+            new(ClaimTypes.Role, login.User.Role),
+            new("Status", login.User.Status)
+        };
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+        // Cookie expires exactly when the token expires
+        var expiresAtUtc = DateTime.SpecifyKind(login.ExpiresAt, DateTimeKind.Utc);
+        var props = new AuthenticationProperties
+        {
+            IsPersistent = true,
+            ExpiresUtc = new DateTimeOffset(expiresAtUtc),
+            AllowRefresh = false
+        };
+
+        // JWT kept inside the encrypted cookie; BearerTokenHandler reads it back
+        props.StoreTokens(new[]
+        {
+            new AuthenticationToken { Name = "access_token", Value = login.AccessToken }
+        });
+
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(identity),
+            props);
+
+        if (!string.IsNullOrEmpty(returnUrl) &amp;&amp; Url.IsLocalUrl(returnUrl))
+            return Redirect(returnUrl);
+
+        return RedirectToAction("Index", "Home");
+    }
+}</pre></div><div class="code"><span class="label">Views/Account/Login.cshtml</span><pre class="plain">@model LoginRequest
+
+&lt;h1&gt;Log in&lt;/h1&gt;
+
+&lt;form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post"&gt;
+    &lt;div asp-validation-summary="ModelOnly" class="text-danger"&gt;&lt;/div&gt;
+
+    &lt;label asp-for="Email"&gt;&lt;/label&gt;
+    &lt;input asp-for="Email" /&gt;
+    &lt;span asp-validation-for="Email" class="text-danger"&gt;&lt;/span&gt;
+
+    &lt;label asp-for="Password"&gt;&lt;/label&gt;
+    &lt;input asp-for="Password" type="password" /&gt;
+    &lt;span asp-validation-for="Password" class="text-danger"&gt;&lt;/span&gt;
+
+    &lt;button type="submit"&gt;Log in&lt;/button&gt;
+&lt;/form&gt;</pre></div><div class="table-wrap"><table><tr><th>Line</th><th>Why</th></tr><tr><td><code>asp-validation-summary="ModelOnly"</code></td><td>Shows form-level errors such as "Invalid email or password."</td></tr><tr><td><code>&lt;form method="post"&gt;</code></td><td>The form tag helper adds the anti-forgery token for <code>[ValidateAntiForgeryToken]</code></td></tr><tr><td><code>SpecifyKind(..., Utc)</code></td><td>Reads expiresAt as UTC, not server time</td></tr><tr><td><code>IsPersistent = true</code></td><td>The browser cookie keeps the same expiry and survives a browser restart</td></tr><tr><td><code>Url.IsLocalUrl(returnUrl)</code></td><td>Blocks redirects to other sites</td></tr></table></div><div class="note">Login handles its own 401 (wrong password) as a form error. <code>HandleFailureAsync</code> is for 401s on pages where the user was already logged in.</div><div class="note warn"><strong>Response shape conflict:</strong> the API Response Guide (Section 11) shows login data as <code>{ accessToken, expiresAt, userId, userName, role }</code>. The implemented API (per the project handover) returns <code>{ accessToken, expiresAt, user { fullName, role, status } }</code>. This code uses the implemented shape. Update that guide or the API so they match.</div>
+</section>
+
+
+<section id="hc-register">
+  <h2><span class="m post">POST</span> 8. Register and logout</h2>
+  <p class="lead">Register redirects to the login page. Logout only deletes the cookie.</p>
+<div class="endpoint"><span class="m post">POST</span> <code>api/auth/register</code></div><div class="code"><span class="label">AccountController.cs (register part)</span><pre class="cs">[HttpGet]
+[AllowAnonymous]
+public IActionResult Register() =&gt; View();
+
+[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Register(RegisterRequest model, CancellationToken ct)
+{
+    if (!ModelState.IsValid)
+        return View(model);   // [Compare] on ConfirmPassword is checked here too
+
+    var result = await _api.PostAsync&lt;object&gt;("api/auth/register", model, ct);
+
+    if (!result.Success)
+    {
+        // 400: field errors; 409: "An account with this email already exists."
+        ModelState.AddApiErrors(result);
+        return View(model);
+    }
+
+    TempData["Success"] = "Registration successful. Please log in.";
+    return RedirectToAction(nameof(Login));
+}</pre></div><div class="table-wrap"><table><tr><th>API response</th><th>User sees</th></tr><tr><td><span class="s ok">201</span></td><td>Login page with "Registration successful. Please log in."</td></tr><tr><td><span class="s warn">400</span></td><td>Register form, message next to each wrong field</td></tr><tr><td><span class="s warn">409</span></td><td>Register form, "An account with this email already exists." at the top</td></tr></table></div><h3>Logout</h3><div class="code"><span class="label">AccountController.cs (logout part)</span><pre class="cs">[HttpPost]
+[Authorize]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Logout()
+{
+    // The JWT is stateless: deleting the cookie also discards the token
+    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    return RedirectToAction(nameof(Login));
+}
+
+[HttpGet]
+public IActionResult AccessDenied() =&gt; View();</pre></div><div class="code"><span class="label">Logout button (in _Layout.cshtml)</span><pre class="plain">&lt;form asp-controller="Account" asp-action="Logout" method="post"&gt;
+    &lt;button type="submit"&gt;Log out&lt;/button&gt;
+&lt;/form&gt;</pre></div><div class="note">Logout is a POST, not a link. A GET link can be triggered by another site (or by a browser prefetching links) and log the user out.</div>
+</section>
+
+
+<section id="hc-get-one">
+  <h2><span class="m get">GET</span> 9. Get one item</h2>
+  <p class="lead">The simplest call: read, then show.</p>
+<div class="endpoint"><span class="m get">GET</span> <code>api/properties/600001</code></div><div class="note">The Property endpoints and DTO names (<code>PropertyResponse</code>, <code>CreatePropertyRequest</code>, ...) are examples. They are not built yet.</div><div class="code"><span class="label">Controllers/PropertiesController.cs (skeleton for Sections 9–15)</span><pre class="cs">using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using Rent.Contracts;
+using Rent.Web.Extensions;
+using Rent.Web.Services.Api;
+
+namespace Rent.Web.Controllers;
+
+[Authorize]
+public class PropertiesController : AppController
+{
+    private readonly ApiClient _api;
+
+    public PropertiesController(ApiClient api)
+    {
+        _api = api;
+    }
+
+    // actions from the sections below go here
+}</pre></div><div class="code"><span class="label">PropertiesController.cs</span><pre class="cs">[HttpGet]
+public async Task&lt;IActionResult&gt; Details(int id, CancellationToken ct)
+{
+    var result = await _api.GetAsync&lt;PropertyResponse&gt;($"api/properties/{id}", ct);
+
+    if (!result.Success)
+        return await HandleFailureAsync(result);   // 401, 403, 404, 500
+
+    return View(result.Data);
+}</pre></div><div class="table-wrap"><table><tr><th>Line</th><th>Why</th></tr><tr><td><code>CancellationToken ct</code></td><td>MVC fills it automatically. If the user closes the tab, the API call is cancelled too</td></tr><tr><td><code>$"api/properties/{id}"</code></td><td>id is an int, so it is safe in the URL. Text values go through QueryHelpers (Section 10)</td></tr><tr><td><code>GetAsync&lt;PropertyResponse&gt;</code></td><td>T is the type inside <code>data</code></td></tr></table></div>
+</section>
+
+
+<section id="hc-get-list">
+  <h2><span class="m get">GET</span> 10. Get a paginated list</h2>
+  <p class="lead">Filters and paging go in the query string. The response is PagedResponse&lt;T&gt; from Section 3.</p>
+<div class="endpoint"><span class="m get">GET</span> <code>api/properties?page=2&amp;pageSize=3&amp;city=Gurugram&amp;sortBy=name&amp;sortOrder=asc</code></div><div class="code"><span class="label">PropertiesController.cs</span><pre class="cs">[HttpGet]
+public async Task&lt;IActionResult&gt; Index([FromQuery] PropertyQuery query, CancellationToken ct)
+{
+    var parameters = new Dictionary&lt;string, string?&gt;
+    {
+        ["page"] = query.Page.ToString(),
+        ["pageSize"] = query.PageSize.ToString(),
+        ["search"] = query.Search,
+        ["city"] = query.City,
+        ["sortBy"] = query.SortBy,
+        ["sortOrder"] = query.SortOrder
+    };
+
+    // Skips empty values and URL-encodes the rest ("New Delhi" -&gt; "New%20Delhi")
+    var url = QueryHelpers.AddQueryString("api/properties",
+        parameters.Where(p =&gt; !string.IsNullOrEmpty(p.Value)));
+
+    var result = await _api.GetAsync&lt;PagedResponse&lt;PropertySummaryResponse&gt;&gt;(url, ct);
+
+    if (!result.Success)
+        return await HandleFailureAsync(result);
+
+    ViewData["Query"] = query;   // to keep filters in the pager links
+    return View(result.Data);
+}</pre></div><div class="code"><span class="label">Views/Properties/Index.cshtml</span><pre class="plain">@model PagedResponse&lt;PropertySummaryResponse&gt;
+@{
+    var q = (PropertyQuery)ViewData["Query"]!;
+}
+
+&lt;form asp-action="Index" method="get"&gt;
+    &lt;input name="city" value="@q.City" placeholder="City" /&gt;
+    &lt;button type="submit"&gt;Filter&lt;/button&gt;
+&lt;/form&gt;
+
+@if (Model.Items.Count == 0)
+{
+    &lt;p&gt;No properties found.&lt;/p&gt;
+}
+
+&lt;table&gt;
+    @foreach (var p in Model.Items)
+    {
+        &lt;tr&gt;
+            &lt;td&gt;&lt;a asp-action="Details" asp-route-id="@p.Id"&gt;@p.Name&lt;/a&gt;&lt;/td&gt;
+            &lt;td&gt;@p.City&lt;/td&gt;
+        &lt;/tr&gt;
+    }
+&lt;/table&gt;
+
+&lt;p&gt;Page @Model.Page of @Model.TotalPages (@Model.TotalCount properties)&lt;/p&gt;
+
+@if (Model.HasPrevious)
+{
+    &lt;a asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-city="@q.City"&gt;Previous&lt;/a&gt;
+}
+@if (Model.HasNext)
+{
+    &lt;a asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-city="@q.City"&gt;Next&lt;/a&gt;
+}</pre></div><div class="table-wrap"><table><tr><th>Point</th><th>Detail</th></tr><tr><td>Filter form</td><td>Uses <code>method="get"</code> so the filters stay in the URL and can be bookmarked</td></tr><tr><td>Empty list</td><td>The API returns 200 with <code>items: []</code>. Show "No properties found.", not an error</td></tr><tr><td>Pager links</td><td>Carry every active filter (<code>asp-route-city</code>, ...) or it is lost on the next page</td></tr><tr><td>Never concatenate</td><td><code>"api/properties?city=" + city</code> breaks on spaces and <code>&amp;amp;</code>. Use <code>QueryHelpers.AddQueryString</code></td></tr></table></div>
+</section>
+
+
+<section id="hc-post-create">
+  <h2><span class="m post">POST</span> 11. Create</h2>
+  <p class="lead">The pattern used by every form: validate, call, then redirect, show the form again, or handle centrally.</p>
+<div class="endpoint"><span class="m post">POST</span> <code>api/properties</code></div><div class="code"><span class="label">PropertiesController.cs</span><pre class="cs">[HttpGet]
+public IActionResult Create() =&gt; View(new CreatePropertyRequest());
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Create(CreatePropertyRequest model, CancellationToken ct)
+{
+    if (!ModelState.IsValid)
+        return View(model);   // MVC checks the DTO attributes first; no API call
+
+    var result = await _api.PostAsync&lt;PropertyResponse&gt;("api/properties", model, ct);
+
+    if (result.Success)
+    {
+        TempData["Success"] = result.Message;   // "Property created successfully."
+        return RedirectToAction(nameof(Details), new { id = result.Data!.Id });
+    }
+
+    if (result.IsFormError)   // 400 validation, 409 duplicate
+    {
+        ModelState.AddApiErrors(result);
+        return View(model);
+    }
+
+    return await HandleFailureAsync(result);
+}</pre></div><div class="table-wrap"><table><tr><th>API</th><th>MVC result</th></tr><tr><td><span class="s ok">201</span></td><td>Redirect to Details of the new Id, success message</td></tr><tr><td><span class="s warn">400</span></td><td>Same form, errors next to fields</td></tr><tr><td><span class="s warn">409</span></td><td>Same form, "A property with this name already exists."</td></tr><tr><td><span class="s warn">401</span> <span class="s warn">403</span> <span class="s err">500</span></td><td>HandleFailureAsync</td></tr></table></div><div class="note">Validation runs twice on purpose: MVC catches simple mistakes without a network call; the API stays the final authority.</div>
+</section>
+
+
+<section id="hc-post-action">
+  <h2><span class="m post">POST</span> 12. Action (button)</h2>
+  <p class="lead">For operations that are not create/update: check-out, record payment, approve.</p>
+<div class="endpoint"><span class="m post">POST</span> <code>api/occupancies/110001/check-out</code></div><div class="code"><span class="label">Views/Occupancies/Details.cshtml (button)</span><pre class="plain">&lt;form asp-action="CheckOut" asp-route-id="@Model.Id" method="post"&gt;
+    &lt;button type="submit"&gt;Check out&lt;/button&gt;
+&lt;/form&gt;</pre></div><div class="code"><span class="label">OccupanciesController.cs</span><pre class="cs">[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; CheckOut(int id, CancellationToken ct)
+{
+    // No body here; if the action needs data (e.g. a date), pass a request DTO instead of null
+    var result = await _api.PostAsync&lt;object&gt;($"api/occupancies/{id}/check-out", null, ct);
+
+    if (result.Success)
+        TempData["Success"] = result.Message;   // "Checked out successfully."
+    else if (result.IsFormError)
+        TempData["Error"] = result.Message;     // "This occupancy is already checked out."
+    else
+        return await HandleFailureAsync(result);
+
+    return RedirectToAction(nameof(Details), new { id });
+}</pre></div><div class="note">There is no form to show again, so 400/409 messages go to TempData and the user lands back on the same page.</div>
+</section>
+
+
+<section id="hc-put">
+  <h2><span class="m put">PUT</span> 13. Full update</h2>
+  <p class="lead">Load the item into the form, then send all editable fields back.</p>
+<div class="endpoint"><span class="m put">PUT</span> <code>api/properties/600001</code></div><div class="code"><span class="label">PropertiesController.cs</span><pre class="cs">[HttpGet]
+public async Task&lt;IActionResult&gt; Edit(int id, CancellationToken ct)
+{
+    var result = await _api.GetAsync&lt;PropertyResponse&gt;($"api/properties/{id}", ct);
+    if (!result.Success)
+        return await HandleFailureAsync(result);
+
+    // Response DTO -&gt; request DTO (map every editable field)
+    var p = result.Data!;
+    var model = new UpdatePropertyRequest
+    {
+        Name = p.Name,
+        Address = p.Address,
+        City = p.City
+    };
+
+    ViewData["Id"] = id;
+    return View(model);
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Edit(int id, UpdatePropertyRequest model, CancellationToken ct)
+{
+    ViewData["Id"] = id;
+    if (!ModelState.IsValid)
+        return View(model);
+
+    var result = await _api.PutAsync&lt;PropertyResponse&gt;($"api/properties/{id}", model, ct);
+
+    if (result.Success)
+    {
+        TempData["Success"] = result.Message;
+        return RedirectToAction(nameof(Details), new { id });
+    }
+
+    if (result.IsFormError)
+    {
+        ModelState.AddApiErrors(result);
+        return View(model);
+    }
+
+    return await HandleFailureAsync(result);
+}</pre></div><div class="code"><span class="label">Views/Properties/Edit.cshtml (form tag)</span><pre class="plain">&lt;form asp-action="Edit" asp-route-id="@ViewData["Id"]" method="post"&gt;
+    ...
+&lt;/form&gt;</pre></div><div class="table-wrap"><table><tr><th>Point</th><th>Detail</th></tr><tr><td>Two actions</td><td>GET loads the current values into the form; POST sends them with PUT</td></tr><tr><td>Id in the route, not the body</td><td>The request DTO has no Id; the URL says which item</td></tr><tr><td>All fields</td><td>PUT replaces everything. A field missing from the form is sent empty and fails validation</td></tr></table></div>
+</section>
+
+
+<section id="hc-patch">
+  <h2><span class="m patch">PATCH</span> 14. Partial update</h2>
+  <p class="lead">Send only the fields that change.</p>
+<div class="endpoint"><span class="m patch">PATCH</span> <code>api/properties/600001/status</code></div><div class="code"><span class="label">Views/Properties/Details.cshtml (status form)</span><pre class="plain">&lt;form asp-action="ChangeStatus" asp-route-id="@Model.Id" method="post"&gt;
+    &lt;select name="Status"&gt;
+        &lt;option value="1"&gt;Active&lt;/option&gt;
+        &lt;option value="2"&gt;Inactive&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button type="submit"&gt;Update status&lt;/button&gt;
+&lt;/form&gt;</pre></div><div class="code"><span class="label">PropertiesController.cs</span><pre class="cs">[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; ChangeStatus(int id, UpdatePropertyStatusRequest model, CancellationToken ct)
+{
+    var result = await _api.PatchAsync&lt;PropertyResponse&gt;($"api/properties/{id}/status", model, ct);
+
+    if (result.Success)
+        TempData["Success"] = result.Message;   // "Status updated successfully."
+    else if (result.IsFormError)
+        TempData["Error"] = result.Message;
+    else
+        return await HandleFailureAsync(result);
+
+    return RedirectToAction(nameof(Details), new { id });
+}</pre></div><div class="note">The browser posts; the MVC action sends PATCH. The small DTO (<code>UpdatePropertyStatusRequest { Status }</code>) is the whole body.</div>
+</section>
+
+
+<section id="hc-delete">
+  <h2><span class="m del">DEL</span> 15. Delete</h2>
+  <p class="lead">A POST form in the browser; DELETE to the API.</p>
+<div class="endpoint"><span class="m del">DELETE</span> <code>api/properties/600001</code></div><div class="code"><span class="label">Views/Properties/Details.cshtml (delete button)</span><pre class="plain">&lt;form asp-action="Delete" asp-route-id="@Model.Id" method="post"
+      onsubmit="return confirm('Delete this property?');"&gt;
+    &lt;button type="submit"&gt;Delete&lt;/button&gt;
+&lt;/form&gt;</pre></div><div class="code"><span class="label">PropertiesController.cs</span><pre class="cs">[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Delete(int id, CancellationToken ct)
+{
+    var result = await _api.DeleteAsync&lt;object&gt;($"api/properties/{id}", ct);
+
+    if (result.Success)
+    {
+        TempData["Success"] = result.Message;   // "Property deleted successfully."
+        return RedirectToAction(nameof(Index));
+    }
+
+    if (result.IsFormError)
+    {
+        // 409: "This property has rental history and cannot be deleted. Mark it inactive instead."
+        TempData["Error"] = result.Message;
+        return RedirectToAction(nameof(Details), new { id });
+    }
+
+    return await HandleFailureAsync(result);
+}</pre></div><div class="table-wrap"><table><tr><th>API</th><th>User lands on</th></tr><tr><td><span class="s ok">200</span></td><td>List page, success message</td></tr><tr><td><span class="s warn">409</span></td><td>Same Details page, reason it cannot be deleted</td></tr><tr><td><span class="s warn">404</span></td><td>Not found (already deleted)</td></tr></table></div><div class="note warn">Never delete with a GET link (<code>&lt;a href="/Properties/Delete/600001"&gt;</code>). Links can be triggered by other sites or prefetching. Always a POST form with the anti-forgery token.</div>
+</section>
+
+
+<section id="hc-mistakes">
+  <h2>16. Common mistakes</h2>
+  <p class="lead">Most HttpClient bugs come from this list.</p>
+<div class="table-wrap"><table><tr><th>Mistake</th><th>What goes wrong</th><th>Do this instead</th></tr><tr><td><code>new HttpClient()</code> per request</td><td>Connections run out under load</td><td>Typed client via <code>AddHttpClient&lt;ApiClient&gt;</code></td></tr><tr><td>BaseAddress without a trailing <code>/</code></td><td>Part of the URL is silently dropped</td><td>End BaseAddress with <code>/</code>; no leading <code>/</code> on paths</td></tr><tr><td><code>GetFromJsonAsync</code> on an API with error bodies</td><td>Throws on 404; the message is lost</td><td><code>SendAsync</code> via ApiClient</td></tr><tr><td><code>.Result</code> or <code>.Wait()</code></td><td>Blocked threads, possible deadlocks</td><td><code>async</code>/<code>await</code> all the way</td></tr><tr><td>JWT in localStorage or page JavaScript</td><td>Readable by any injected script</td><td>Keep it inside the HttpOnly cookie</td></tr><tr><td>Id, Role, OwnerId taken from the form</td><td>Users can change them</td><td>The API sets them</td></tr><tr><td>Missing <code>[ValidateAntiForgeryToken]</code></td><td>Other sites can submit forms as the user</td><td>Add it to every POST action</td></tr><tr><td>Delete or logout via a GET link</td><td>Triggered by prefetch or other sites</td><td>POST form</td></tr><tr><td>Query string built with <code>+</code></td><td>Breaks on spaces and <code>&amp;amp;</code></td><td><code>QueryHelpers.AddQueryString</code></td></tr><tr><td>Returning a view after a successful POST</td><td>Refresh re-submits the form</td><td>Redirect (Post/Redirect/Get)</td></tr><tr><td>Showing the raw exception</td><td>Leaks internals</td><td>Generic message; real error in the log</td></tr><tr><td>ApiClient injected into a singleton</td><td>The HttpClient is captured and never refreshed</td><td>Use it in controllers or scoped services</td></tr></table></div>
+</section>
+
+
+<section id="hc-checklist">
+  <h2>17. Checklist for every MVC → API call</h2>
+  
+<div class="table-wrap"><table><tr><th>Check</th><th>Expected</th></tr><tr><td>Client</td><td>Injected <code>ApiClient</code>, never <code>new HttpClient()</code></td></tr><tr><td>URL</td><td>No leading <code>/</code>; text values via <code>QueryHelpers</code></td></tr><tr><td>Token</td><td>Not set by hand; BearerTokenHandler adds it</td></tr><tr><td>CancellationToken</td><td>Accepted by the action and passed to ApiClient</td></tr><tr><td>POST action</td><td><code>[ValidateAntiForgeryToken]</code> and <code>ModelState.IsValid</code> check</td></tr><tr><td>Success after POST</td><td>Redirect, with <code>TempData["Success"]</code></td></tr><tr><td>400 / 409</td><td><code>ModelState.AddApiErrors</code> (forms) or <code>TempData["Error"]</code> (buttons)</td></tr><tr><td>401 / 403 / 404 / 5xx</td><td><code>HandleFailureAsync(result)</code></td></tr><tr><td>Empty list</td><td>"Nothing found" message, not an error page</td></tr><tr><td>Delete / logout</td><td>POST form, never a link</td></tr></table></div>
+</section>
+
+</main>
+</div>
+
+<button class="theme" id="themeBtn" type="button">Toggle theme</button>
+
+<script>
+// JSON highlighting
+document.querySelectorAll('pre.json').forEach(function (pre) {
+  var src = pre.textContent;
+  var esc = src.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  esc = esc.replace(/("(?:[^"\\]|\\.)*")(\s*:)?|\b(true|false)\b|\bnull\b|-?\b\d+(?:\.\d+)?\b/g, function (m, str, colon, bool) {
+    if (str) return colon ? '<span class="k">' + str + '</span>' + colon : '<span class="str">' + str + '</span>';
+    if (bool) return '<span class="b">' + m + '</span>';
+    if (m === 'null') return '<span class="kw">null</span>';
+    return '<span class="n">' + m + '</span>';
+  });
+  pre.innerHTML = esc;
+});
+
+// C# keyword highlighting
+document.querySelectorAll('pre.cs').forEach(function (pre) {
+  var esc = pre.innerHTML;
+  var outside = '(?![^<]*<\\/span>)';
+  esc = esc.replace(/(^|\s)(\/\/[^\n]*)/g, '$1<span class="c">$2</span>');
+  esc = esc.replace(new RegExp('("(?:[^"\\\\\\n]|\\\\.)*")' + outside, 'g'), '<span class="str">$1</span>');
+  var kw = 'public|private|protected|internal|class|abstract|static|readonly|override|using|namespace|get|set|init|int|bool|string|double|decimal|object|var|new|return|async|await|if|else|switch|case|default|foreach|in|is|not|null|true|false|try|catch|when|this';
+  esc = esc.replace(new RegExp('\\b(' + kw + ')\\b' + outside, 'g'), '<span class="kw">$1</span>');
+  pre.innerHTML = esc;
+});
+
+// Copy buttons
+document.querySelectorAll('.code').forEach(function (box) {
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.textContent = 'Copy';
+  btn.addEventListener('click', function () {
+    var text = box.querySelector('pre').textContent;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1200); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  });
+  box.appendChild(btn);
+});
+function fallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+// Theme toggle (remembered per browser)
+var root = document.documentElement;
+try { var saved = localStorage.getItem('rp-theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+document.getElementById('themeBtn').addEventListener('click', function () {
+  var dark = root.getAttribute('data-theme') === 'dark' ||
+    (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+  var next = dark ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('rp-theme', next); } catch (e) {}
+});
+
+// Highlight current section in the nav
+var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+var obs = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) {
+    if (e.isIntersecting) {
+      links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('main section').forEach(function (s) { obs.observe(s); });
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /* ==========================================================================
-   StayNest common UI behavior
-   Sidebar, nav groups, dropdowns, modals, tabs, toasts, password toggles,
-   client-side table search and confirm dialogs.
+   StayNest common UI behavior (design and layout only)
+   Sidebar, nav groups, dropdowns, modals, confirm dialog, tabs and
+   password visibility. No data handling and no validation.
    No dependencies. In the MVC app this file is loaded from _Layout.cshtml.
    ========================================================================== */
 (function () {
@@ -10,10 +10,8 @@
   const SN = (window.StayNest = window.StayNest || {});
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  SN.$ = $;
-  SN.$$ = $$;
 
-  /* ---------- Sidebar ---------- */
+  /* ---------- Sidebar: collapse (desktop), open/close (mobile), nav groups ---------- */
   function initSidebar() {
     const app = $(".app");
     if (!app) return;
@@ -21,12 +19,14 @@
     const menuBtn = $(".menu-btn");
     const overlay = $(".sidebar-overlay");
 
-    toggle && toggle.addEventListener("click", () => {
-      app.classList.toggle("sidebar-collapsed");
-      toggle.setAttribute("aria-expanded", String(!app.classList.contains("sidebar-collapsed")));
-    });
-    menuBtn && menuBtn.addEventListener("click", () => app.classList.add("sidebar-open"));
-    overlay && overlay.addEventListener("click", () => app.classList.remove("sidebar-open"));
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        app.classList.toggle("sidebar-collapsed");
+        toggle.setAttribute("aria-expanded", String(!app.classList.contains("sidebar-collapsed")));
+      });
+    }
+    if (menuBtn) menuBtn.addEventListener("click", () => app.classList.add("sidebar-open"));
+    if (overlay) overlay.addEventListener("click", () => app.classList.remove("sidebar-open"));
 
     $$(".nav-group-toggle").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -57,7 +57,7 @@
     });
   }
 
-  /* ---------- Modals ---------- */
+  /* ---------- Modals: data-modal-open="id" / data-modal-close ---------- */
   let lastFocus = null;
   SN.openModal = function (id) {
     const m = document.getElementById(id);
@@ -66,15 +66,14 @@
     m.classList.add("open");
     m.setAttribute("aria-hidden", "false");
     const first = m.querySelector("input:not([type=hidden]), select, textarea, button");
-    first && setTimeout(() => first.focus(), 30);
-    m.dispatchEvent(new CustomEvent("modal:open"));
+    if (first) setTimeout(() => first.focus(), 30);
   };
   SN.closeModal = function (id) {
     const m = typeof id === "string" ? document.getElementById(id) : id;
     if (!m) return;
     m.classList.remove("open");
     m.setAttribute("aria-hidden", "true");
-    lastFocus && lastFocus.focus();
+    if (lastFocus) lastFocus.focus();
   };
   function initModals() {
     document.addEventListener("click", (e) => {
@@ -82,8 +81,6 @@
       if (opener) {
         e.preventDefault();
         SN.openModal(opener.getAttribute("data-modal-open"));
-        document.getElementById(opener.getAttribute("data-modal-open"))
-          ?.dispatchEvent(new CustomEvent("modal:trigger", { detail: opener }));
         return;
       }
       const closer = e.target.closest("[data-modal-close]");
@@ -97,12 +94,14 @@
       if (e.key !== "Escape") return;
       $$(".modal.open").forEach((m) => SN.closeModal(m));
       $$(".dropdown.open").forEach((d) => d.classList.remove("open"));
-      $(".app")?.classList.remove("sidebar-open");
+      const app = $(".app");
+      if (app) app.classList.remove("sidebar-open");
     });
   }
 
-  /* ---------- Confirm dialog ---------- */
-  SN.confirm = function ({ title, message, confirmText = "Confirm", danger = false }) {
+  /* ---------- Confirm dialog: data-confirm="Title" on a link or button ----------
+     After "Confirm": a link navigates to its href; a button inside a form submits that form. */
+  function confirmDialog(title, message, confirmText, danger) {
     return new Promise((resolve) => {
       let m = document.getElementById("confirm-modal");
       if (!m) {
@@ -126,28 +125,28 @@
       m.querySelector("[data-c-cancel]").onclick = () => done(false);
       SN.openModal("confirm-modal");
     });
-  };
-  function initConfirmLinks() {
+  }
+  function initConfirm() {
     document.addEventListener("click", async (e) => {
       const el = e.target.closest("[data-confirm]");
       if (!el) return;
       e.preventDefault();
-      const ok = await SN.confirm({
-        title: el.getAttribute("data-confirm"),
-        message: el.getAttribute("data-confirm-message") || "",
-        confirmText: el.getAttribute("data-confirm-text") || "Confirm",
-        danger: el.hasAttribute("data-confirm-danger"),
-      });
+      const ok = await confirmDialog(
+        el.getAttribute("data-confirm"),
+        el.getAttribute("data-confirm-message") || "",
+        el.getAttribute("data-confirm-text") || "Confirm",
+        el.hasAttribute("data-confirm-danger")
+      );
       if (!ok) return;
       if (el.tagName === "A" && el.getAttribute("href") && el.getAttribute("href") !== "#") {
         window.location.href = el.getAttribute("href");
-      } else {
-        el.dispatchEvent(new CustomEvent("confirmed", { bubbles: true }));
+      } else if (el.form) {
+        el.form.requestSubmit(el.type === "submit" ? el : undefined);
       }
     });
   }
 
-  /* ---------- Tabs ---------- */
+  /* ---------- Tabs: data-tabs > .tab[data-tab] + [data-tab-panel] ---------- */
   function initTabs() {
     $$("[data-tabs]").forEach((tabs) => {
       const buttons = $$(".tab", tabs);
@@ -163,83 +162,29 @@
     });
   }
 
-  /* ---------- Toasts ---------- */
-  SN.toast = function (message, type = "success") {
-    let stack = $(".toast-stack");
-    if (!stack) {
-      stack = document.createElement("div");
-      stack.className = "toast-stack";
-      stack.setAttribute("aria-live", "polite");
-      document.body.appendChild(stack);
-    }
-    const t = document.createElement("div");
-    t.className = "toast" + (type === "error" ? " error" : "");
-    t.textContent = message;
-    stack.appendChild(t);
-    setTimeout(() => t.remove(), 3500);
-  };
-
-  /* ---------- Password visibility ---------- */
+  /* ---------- Password visibility: data-password-toggle="inputId" ---------- */
   function initPasswordToggles() {
     $$("[data-password-toggle]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const input = document.getElementById(btn.getAttribute("data-password-toggle"));
+        if (!input) return;
         const show = input.type === "password";
         input.type = show ? "text" : "password";
         btn.setAttribute("aria-label", show ? "Hide password" : "Show password");
-        btn.querySelector(".eye-on")?.classList.toggle("hidden", show);
-        btn.querySelector(".eye-off")?.classList.toggle("hidden", !show);
+        const on = btn.querySelector(".eye-on");
+        const off = btn.querySelector(".eye-off");
+        if (on) on.classList.toggle("hidden", show);
+        if (off) off.classList.toggle("hidden", !show);
       });
     });
   }
-
-  /* ---------- Client-side table search (template preview only) ---------- */
-  function initTableSearch() {
-    $$("[data-table-search]").forEach((input) => {
-      const table = document.querySelector(input.getAttribute("data-table-search"));
-      if (!table) return;
-      input.addEventListener("input", () => {
-        const q = input.value.trim().toLowerCase();
-        $$("tbody tr", table).forEach((tr) => {
-          tr.style.display = !q || tr.textContent.toLowerCase().includes(q) ? "" : "none";
-        });
-      });
-    });
-  }
-
-  /* ---------- Simple form validation helper ---------- */
-  SN.validate = function (form) {
-    let valid = true;
-    $$("[required], [data-rule]", form).forEach((input) => {
-      const field = input.closest(".field");
-      if (!field) return;
-      let ok = input.value.trim() !== "";
-      const rule = input.getAttribute("data-rule");
-      if (ok && rule === "email") ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-      if (ok && rule === "phone") ok = /^[6-9]\d{9}$/.test(input.value.replace(/\s/g, ""));
-      if (ok && rule === "pin") ok = /^\d{6}$/.test(input.value.trim());
-      if (ok && rule === "money") ok = Number(input.value) >= 0;
-      if (!input.hasAttribute("required") && input.value.trim() === "") ok = true;
-      field.classList.toggle("invalid", !ok);
-      if (!ok) valid = false;
-    });
-    const firstInvalid = form.querySelector(".field.invalid input, .field.invalid select, .field.invalid textarea");
-    firstInvalid && firstInvalid.focus();
-    return valid;
-  };
-
-  /* ---------- Formatting ---------- */
-  SN.formatINR = function (n) {
-    return "\u20B9" + Number(n).toLocaleString("en-IN", { maximumFractionDigits: 0 });
-  };
 
   document.addEventListener("DOMContentLoaded", () => {
     initSidebar();
     initDropdowns();
     initModals();
-    initConfirmLinks();
+    initConfirm();
     initTabs();
     initPasswordToggles();
-    initTableSearch();
   });
 })();

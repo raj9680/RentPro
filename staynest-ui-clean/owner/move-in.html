@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Move in a tenant | StayNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/common/variables.css">
+  <link rel="stylesheet" href="../assets/css/common/base.css">
+  <link rel="stylesheet" href="../assets/css/common/layout.css">
+  <link rel="stylesheet" href="../assets/css/common/components.css">
+  <link rel="stylesheet" href="../assets/css/pages/move-in.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <button type="button" class="sidebar-toggle" aria-label="Collapse sidebar" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-left"/></svg></button>
+    <a class="brand" href="../owner/dashboard.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons/icons.svg#logo"/></svg></span><span class="brand-name">StayNest</span></a>
+    <div class="sidebar-scroll">
+      <nav class="nav">
+        <a class="nav-link" href="../owner/dashboard.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#home"/></svg><span class="nav-text">Dashboard</span></a><div class="nav-group"><button type="button" class="nav-group-toggle" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#building"/></svg><span class="nav-text">Properties</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/properties.html"><span>All properties</span></a><a class="subnav-link" href="../owner/property-form.html"><span>Add property</span></a><a class="subnav-link" href="../owner/space-status.html"><span>Space status</span></a></div></div><div class="nav-group open"><button type="button" class="nav-group-toggle has-active" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#users"/></svg><span class="nav-text">Tenants</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/tenancies.html"><span>All tenants</span></a><a class="subnav-link active" href="../owner/move-in.html" aria-current="page"><span>Move in a tenant</span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-right"/></svg></a></div></div><div class="nav-group"><button type="button" class="nav-group-toggle" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#receipt"/></svg><span class="nav-text">Billing</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/invoices.html"><span>Bills and payments</span><span class="count-badge orange" aria-label="1 new">1</span></a></div></div><a class="nav-link" href="../owner/inquiries.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#inbox"/></svg><span class="nav-text">Inquiries</span><span class="count-badge green" aria-label="2 new">2</span></a><div class="nav-group"><button type="button" class="nav-group-toggle" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chart-pie"/></svg><span class="nav-text">Reports</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/reports-collections.html"><span>Collections</span></a><a class="subnav-link" href="../owner/reports-occupancy.html"><span>Occupancy</span></a></div></div><a class="nav-link" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#sliders"/></svg><span class="nav-text">Settings</span></a>
+      </nav>
+    </div>
+    <a class="sidebar-cta" href="../owner/move-in.html">
+      <span class="cta-plus"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#plus"/></svg></span>
+      <span class="cta-title">Move in a tenant</span>
+      <span class="cta-sub">Allocate a vacant space</span>
+    </a>
+  </aside>
+  <div class="sidebar-overlay"></div>
+  <div class="main">
+
+    <header class="topbar">
+      <button type="button" class="menu-btn" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#menu"/></svg></button>
+      <label class="command-search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"/></svg><span class="sr-only">Search</span><input type="search" placeholder="Search tenants, spaces or bills"></label>
+      <div class="topbar-right">
+        <div class="dropdown">
+          <button type="button" class="icon-btn" data-dropdown aria-label="Notifications" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#bell"/></svg><span class="dot"></span></button>
+          <div class="dropdown-menu" style="min-width:320px">
+            <div class="dropdown-head"><strong>Notifications</strong><span>3 unread</span></div>
+            <a class="notice-item" href="#"><span class="notice-icon pill-red"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#alert-triangle"/></svg></span><span>Sahil Gupta's October bill is overdue (₹8,000).<time>2 hours ago</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-green"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#inbox"/></svg></span><span>New inquiry for Room 201 from Priya Nair.<time>Yesterday</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-orange"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#clock"/></svg></span><span>Arjun Nair moves out on 2 Dec 2026.<time>2 days ago</time></span></a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button type="button" class="user-btn" data-dropdown aria-expanded="false" aria-label="Account menu">
+            <span class="user-name">Rajesh Mehta</span><span class="avatar avatar-lg av-5" aria-hidden="true">RM</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-head"><strong>Rajesh Mehta</strong><span>rajesh.mehta@example.com (Owner)</span></div>
+            <a class="dropdown-item" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#user"/></svg>Account settings</a>
+            <a class="dropdown-item" href="../auth/change-password.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#key"/></svg>Change password</a>
+            <a class="dropdown-item danger" href="../auth/logged-out.html" data-confirm="Log out of StayNest?" data-confirm-message="You will need to log in again to continue." data-confirm-text="Log out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#logout"/></svg>Log out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <div class="breadcrumb"><a href="tenancies.html">Tenants</a><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-right"/></svg><span>Move in a tenant</span></div>
+          <h1>Move in a tenant</h1><p>Allocate a vacant space. The first bill is created automatically for the days left in the month.</p>
+        </div>
+      </div>
+      <ol class="steps" aria-label="Steps">
+        <li class="step active" data-step-ind="1"><span class="step-num">1</span>Space</li>
+        <li class="step" data-step-ind="2"><span class="step-num">2</span>Primary tenant</li>
+        <li class="step" data-step-ind="3"><span class="step-num">3</span>Co-occupants</li>
+        <li class="step" data-step-ind="4"><span class="step-num">4</span>Rent and confirm</li>
+      </ol>
+      <form class="card wizard" id="move-in-form">
+        <input type="hidden" name="__RequestVerificationToken" value="template-token">
+
+        <section class="wizard-step active" data-step="1">
+          <h2 class="card-title" style="margin-bottom:4px">Choose a vacant space</h2>
+          <p class="card-sub" style="margin-bottom:16px">Only spaces that are free, with nothing rented above or below them, are shown.</p>
+          <div class="space-pick"><div class="space-option"><input type="radio" name="SpaceId" id="sp-bed-a2" value="bed-a2" checked><label for="sp-bed-a2"><strong>Bed A2</strong><span>Sunrise Residency, Room A</span><span>1 person, ₹8,000/month</span></label></div><div class="space-option"><input type="radio" name="SpaceId" id="sp-room-201" value="room-201"><label for="sp-room-201"><strong>Room 201</strong><span>Sunrise Residency, Floor 2</span><span>1 person, ₹10,000/month</span></label></div><div class="space-option"><input type="radio" name="SpaceId" id="sp-g2-b3" value="g2-b3"><label for="sp-g2-b3"><strong>Bed 3</strong><span>Green Valley PG, Room G2</span><span>1 person, ₹7,500/month</span></label></div><div class="space-option"><input type="radio" name="SpaceId" id="sp-102-b3" value="102-b3"><label for="sp-102-b3"><strong>Bed 3</strong><span>Green Valley PG, Room 102</span><span>1 person, ₹7,500/month</span></label></div></div>
+        </section>
+
+        <section class="wizard-step" data-step="2">
+          <h2 class="card-title" style="margin-bottom:16px">Primary tenant</h2>
+          <div class="form-grid">
+            <div class="field span-2">
+              <label for="t-email">Email</label>
+              <div style="display:flex;gap:8px"><input class="input" id="t-email" name="Email" type="email" placeholder="name@example.com"><button type="button" class="btn btn-light" id="lookup-tenant"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"/></svg>Find</button></div>
+              <span class="help" id="lookup-status" aria-live="polite">If this person stayed with you before, their account is reused. Try karan.arora@example.com.</span>
+              <span class="field-error">Enter a valid email.</span>
+            </div>
+            <div class="field"><label for="t-name">Full name</label><input class="input" id="t-name" name="FullName"><span class="field-error">Enter the full name.</span></div>
+            <div class="field"><label for="t-phone">Mobile number</label><input class="input" id="t-phone" name="Phone" inputmode="numeric" placeholder="10 digits"><span class="field-error">Enter a 10-digit mobile number.</span></div>
+          </div>
+          <div class="alert alert-info" style="margin-top:16px"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#mail"/></svg><span>A new tenant receives a welcome email with a temporary password and must change it at first login.</span></div>
+        </section>
+
+        <section class="wizard-step" data-step="3">
+          <div class="capacity-note"><h2 class="card-title">Co-occupants</h2><span class="tag" id="capacity-tag"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#users"/></svg>1 of 1 places used</span></div>
+          <p class="card-sub">The primary tenant counts as one person. The total cannot be more than the space holds.</p>
+          <div id="occupant-rows"></div>
+          <template id="occupant-template">
+            <div class="occupant-row">
+              <div class="field"><label>Full name</label><input class="input" name="Occupants[].FullName"><span class="field-error">Enter a name.</span></div>
+              <div class="field"><label>Phone <span class="text-muted">(optional)</span></label><input class="input" name="Occupants[].Phone" inputmode="numeric"></div>
+              <div class="field"><label>Relation</label><select class="select" name="Occupants[].Relation"><option>Spouse</option><option>Child</option><option>Friend</option><option>Sibling</option><option>Parent</option><option>Other</option></select></div>
+              <button type="button" class="btn-icon remove-occupant" aria-label="Remove co-occupant"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#trash"/></svg></button>
+            </div>
+          </template>
+          <button type="button" class="btn btn-soft" id="add-occupant" style="margin-top:14px"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#plus"/></svg>Add co-occupant</button>
+          <p class="help" id="occupant-limit" style="margin-top:8px"></p>
+        </section>
+
+        <section class="wizard-step" data-step="4">
+          <h2 class="card-title" style="margin-bottom:16px">Rent and confirm</h2>
+          <div class="form-grid">
+            <div class="field"><label for="m-date">Move-in date</label><input class="input" id="m-date" name="StartDate" type="date"><span class="help">Today, or up to 30 days in the past.</span><span class="field-error" id="date-error">Choose a date from the last 30 days, not in the future.</span></div>
+            <div class="field"><label for="m-rent">Monthly rent</label><div class="input-group"><span class="input-prefix">₹</span><input class="input" id="m-rent" name="MonthlyRent" type="number" min="0"></div><span class="field-error">Enter a rent of 0 or more.</span></div>
+            <div class="field"><label for="m-dep">Security deposit received</label><div class="input-group"><span class="input-prefix">₹</span><input class="input" id="m-dep" name="SecurityDeposit" type="number" min="0"></div><span class="field-error">Enter a deposit of 0 or more.</span></div>
+          </div>
+          <hr class="divider" style="margin:20px 0">
+          <dl class="summary-list" id="summary"></dl>
+        </section>
+
+        <div class="wizard-foot">
+          <button type="button" class="btn btn-light" id="prev-step" disabled><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-left"/></svg>Back</button>
+          <button type="button" class="btn btn-primary" id="next-step">Continue<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-right"/></svg></button>
+        </div>
+      </form>
+
+    </main>
+  </div>
+</div>
+<script src="../assets/js/common/app.js"></script>
+<script src="../assets/js/pages/move-in.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in | StayNest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/common/variables.css">
+    <link rel="stylesheet" href="~/assets/css/common/base.css">
+    <link rel="stylesheet" href="~/assets/css/common/layout.css">
+    <link rel="stylesheet" href="~/assets/css/common/components.css">
+    <link rel="stylesheet" href="~/assets/css/pages/dashboard.css">
+    <link rel="stylesheet" href="~/assets/css/pages/auth.css">
+    <link rel="stylesheet" href="~/assets/css/pages/property-tree.css">
+</head>
+
+<body class="">
+
+    @RenderBody()
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="~/assets/js/common/app.js"></script>
+    <script src="~/assets/js/common/ajax.js"></script>
+    <script src="~/assets/js/common/charts.js"></script>
+    <script src="~/assets/js/pages/auth.js"></script>
+    <script src="~/assets/js/pages/property-detail.js"></script>
+</body>
+
+</html>

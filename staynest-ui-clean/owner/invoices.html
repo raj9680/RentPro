@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bills and payments | StayNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/common/variables.css">
+  <link rel="stylesheet" href="../assets/css/common/base.css">
+  <link rel="stylesheet" href="../assets/css/common/layout.css">
+  <link rel="stylesheet" href="../assets/css/common/components.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <button type="button" class="sidebar-toggle" aria-label="Collapse sidebar" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-left"/></svg></button>
+    <a class="brand" href="../owner/dashboard.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons/icons.svg#logo"/></svg></span><span class="brand-name">StayNest</span></a>
+    <div class="sidebar-scroll">
+      <nav class="nav">
+        <a class="nav-link" href="../owner/dashboard.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#home"/></svg><span class="nav-text">Dashboard</span></a><div class="nav-group"><button type="button" class="nav-group-toggle" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#building"/></svg><span class="nav-text">Properties</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/properties.html"><span>All properties</span></a><a class="subnav-link" href="../owner/property-form.html"><span>Add property</span></a><a class="subnav-link" href="../owner/space-status.html"><span>Space status</span></a></div></div><div class="nav-group"><button type="button" class="nav-group-toggle" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#users"/></svg><span class="nav-text">Tenants</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/tenancies.html"><span>All tenants</span></a><a class="subnav-link" href="../owner/move-in.html"><span>Move in a tenant</span></a></div></div><div class="nav-group open"><button type="button" class="nav-group-toggle has-active" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#receipt"/></svg><span class="nav-text">Billing</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link active" href="../owner/invoices.html" aria-current="page"><span>Bills and payments</span><span class="count-badge orange" aria-label="1 new">1</span></a></div></div><a class="nav-link" href="../owner/inquiries.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#inbox"/></svg><span class="nav-text">Inquiries</span><span class="count-badge green" aria-label="2 new">2</span></a><div class="nav-group"><button type="button" class="nav-group-toggle" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chart-pie"/></svg><span class="nav-text">Reports</span><svg class="icon nav-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button><div class="subnav"><a class="subnav-link" href="../owner/reports-collections.html"><span>Collections</span></a><a class="subnav-link" href="../owner/reports-occupancy.html"><span>Occupancy</span></a></div></div><a class="nav-link" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#sliders"/></svg><span class="nav-text">Settings</span></a>
+      </nav>
+    </div>
+    <a class="sidebar-cta" href="../owner/move-in.html">
+      <span class="cta-plus"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#plus"/></svg></span>
+      <span class="cta-title">Move in a tenant</span>
+      <span class="cta-sub">Allocate a vacant space</span>
+    </a>
+  </aside>
+  <div class="sidebar-overlay"></div>
+  <div class="main">
+
+    <header class="topbar">
+      <button type="button" class="menu-btn" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#menu"/></svg></button>
+      <label class="command-search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"/></svg><span class="sr-only">Search</span><input type="search" placeholder="Search tenants, spaces or bills"></label>
+      <div class="topbar-right">
+        <div class="dropdown">
+          <button type="button" class="icon-btn" data-dropdown aria-label="Notifications" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#bell"/></svg><span class="dot"></span></button>
+          <div class="dropdown-menu" style="min-width:320px">
+            <div class="dropdown-head"><strong>Notifications</strong><span>3 unread</span></div>
+            <a class="notice-item" href="#"><span class="notice-icon pill-red"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#alert-triangle"/></svg></span><span>Sahil Gupta's October bill is overdue (₹8,000).<time>2 hours ago</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-green"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#inbox"/></svg></span><span>New inquiry for Room 201 from Priya Nair.<time>Yesterday</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-orange"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#clock"/></svg></span><span>Arjun Nair moves out on 2 Dec 2026.<time>2 days ago</time></span></a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button type="button" class="user-btn" data-dropdown aria-expanded="false" aria-label="Account menu">
+            <span class="user-name">Rajesh Mehta</span><span class="avatar avatar-lg av-5" aria-hidden="true">RM</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-head"><strong>Rajesh Mehta</strong><span>rajesh.mehta@example.com (Owner)</span></div>
+            <a class="dropdown-item" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#user"/></svg>Account settings</a>
+            <a class="dropdown-item" href="../auth/change-password.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#key"/></svg>Change password</a>
+            <a class="dropdown-item danger" href="../auth/logged-out.html" data-confirm="Log out of StayNest?" data-confirm-message="You will need to log in again to continue." data-confirm-text="Log out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#logout"/></svg>Log out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div><h1>Bills and payments</h1><p>Bills are created on the 1st of every month and are due on the 5th.</p></div>
+      </div>
+      <div class="grid grid-4">
+        <div class="card"><div class="stat-label">Billed in November</div><div class="stat-value">₹1,29,000</div></div>
+        <div class="card"><div class="stat-label">Collected</div><div class="stat-value text-green">₹1,06,000</div></div>
+        <div class="card"><div class="stat-label">Unpaid this month</div><div class="stat-value">₹23,000</div></div>
+        <div class="card"><div class="stat-label">Overdue (older bills)</div><div class="stat-value text-red">₹8,000</div></div>
+      </div>
+      <section class="card card-flush">
+        <div class="card-head">
+          <div class="toolbar">
+            <label class="search-sm"><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"/></svg><span class="sr-only">Search bills</span><input type="search" placeholder="Search by tenant or bill number"></label>
+            <select class="select" aria-label="Month"><option>November 2026</option><option>October 2026</option><option>September 2026</option></select>
+            <select class="select" aria-label="Property"><option>All properties</option><option>Sunrise Residency</option><option>Green Valley PG</option></select>
+            <select class="select" aria-label="Status"><option>All statuses</option><option>Unpaid</option><option>Partially paid</option><option>Paid</option><option>Overdue</option></select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="bills-table">
+            <thead><tr><th scope="col"><button type="button" class="th-sort">Bill<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th scope="col"><button type="button" class="th-sort">Tenant<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th scope="col"><button type="button" class="th-sort">Property and space<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th scope="col"><button type="button" class="th-sort">Period<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th scope="col"><button type="button" class="th-sort">Due date<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th class="num" scope="col"><button type="button" class="th-sort">Amount<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th class="num" scope="col"><button type="button" class="th-sort">Paid<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th scope="col"><button type="button" class="th-sort">Status<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"/></svg></button></th><th class="actions" scope="col"></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0001</span></td>
+                <td><span class="cell-user"><span class="avatar av-4" aria-hidden="true">AJ</span>Ankit Jain</span></td>
+                <td>Sunrise Residency<span class="cell-sub">Bed A1, Room A</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹8,000</td>
+                <td class="num">₹0</td>
+                <td><span class="pill pill-blue">Unpaid</span></td>
+                <td class="actions"><button type="button" class="btn btn-sm btn-soft" data-modal-open="payment-modal">Record payment</button></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0002</span></td>
+                <td><span class="cell-user"><span class="avatar av-1" aria-hidden="true">RM</span>Rohit Malhotra</span></td>
+                <td>Sunrise Residency<span class="cell-sub">Room B, Flat 101</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹14,000</td>
+                <td class="num">₹14,000</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0003</span></td>
+                <td><span class="cell-user"><span class="avatar av-1" aria-hidden="true">VS</span>Vikas Sharma</span></td>
+                <td>Sunrise Residency<span class="cell-sub">Flat 102, Floor 1</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹32,000</td>
+                <td class="num">₹32,000</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0004</span></td>
+                <td><span class="cell-user"><span class="avatar av-3" aria-hidden="true">AN</span>Arjun Nair</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 1, Room G1</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹7,500</td>
+                <td class="num">₹7,500</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0005</span></td>
+                <td><span class="cell-user"><span class="avatar av-4" aria-hidden="true">RV</span>Rahul Verma</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 2, Room G1</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹7,500</td>
+                <td class="num">₹7,500</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0006</span></td>
+                <td><span class="cell-user"><span class="avatar av-4" aria-hidden="true">IK</span>Imran Khan</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 3, Room G1</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹7,500</td>
+                <td class="num">₹7,500</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0007</span></td>
+                <td><span class="cell-user"><span class="avatar av-3" aria-hidden="true">DR</span>Deepak Rao</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 1, Room G2</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹7,500</td>
+                <td class="num">₹7,500</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0008</span></td>
+                <td><span class="cell-user"><span class="avatar av-5" aria-hidden="true">SG</span>Sahil Gupta</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 2, Room G2</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹7,500</td>
+                <td class="num">₹0</td>
+                <td><span class="pill pill-blue">Unpaid</span></td>
+                <td class="actions"><button type="button" class="btn btn-sm btn-soft" data-modal-open="payment-modal">Record payment</button></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-10-0019</span></td>
+                <td><span class="cell-user"><span class="avatar av-5" aria-hidden="true">SG</span>Sahil Gupta</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 2, Room G2</span></td>
+                <td>Oct 2026</td>
+                <td>05 Oct 2026</td>
+                <td class="num">₹8,000</td>
+                <td class="num">₹0</td>
+                <td><span class="pill pill-red">Overdue</span></td>
+                <td class="actions"><button type="button" class="btn btn-sm btn-soft" data-modal-open="payment-modal">Record payment</button></td>
+              </tr>
+              <tr>
+                <td><span class="fw-600" style="color:var(--text)">INV-2026-11-0009</span></td>
+                <td><span class="cell-user"><span class="avatar av-2" aria-hidden="true">MY</span>Manish Yadav</span></td>
+                <td>Green Valley PG<span class="cell-sub">Bed 1, Room 101</span></td>
+                <td>Nov 2026</td>
+                <td>05 Nov 2026</td>
+                <td class="num">₹7,500</td>
+                <td class="num">₹7,500</td>
+                <td><span class="pill pill-green">Paid</span></td>
+                <td class="actions"><span class="text-muted">Settled</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-foot"><span class="pager-info">Showing 1 to 10 of 14 bills</span><nav class="pager" aria-label="Pagination"><a href="#" aria-label="Previous page" class="disabled"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-left"/></svg></a><span class="current" aria-current="page">1</span><a href="#">2</a><a href="#" aria-label="Next page" class=""><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-right"/></svg></a></nav></div>
+      </section>
+
+      <div class="modal" id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-title" aria-hidden="true">
+        <div class="modal-dialog">
+          <form id="payment-form">
+            <div class="modal-head"><div><h2 id="payment-title">Record payment</h2><p id="payment-sub">Bill</p></div><button type="button" class="btn-icon" data-modal-close aria-label="Close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#close"/></svg></button></div>
+            <div class="modal-body">
+              <div class="alert alert-info"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#info"/></svg><span>Outstanding on this bill: <strong id="payment-outstanding">-</strong></span></div>
+              <div class="form-grid">
+                <div class="field"><label for="pay-amount">Amount</label><div class="input-group"><span class="input-prefix">₹</span><input class="input" id="pay-amount" name="Amount" type="number" min="1"></div><span class="field-error" id="pay-amount-error">Enter an amount greater than 0.</span></div>
+                <div class="field"><label for="pay-date">Paid on</label><input class="input" id="pay-date" name="PaidOn" type="date"><span class="field-error">Choose the payment date.</span></div>
+                <div class="field"><label for="pay-mode">Payment method</label><select class="select" id="pay-mode" name="Mode"><option>UPI</option><option>Cash</option><option>Bank transfer</option></select></div>
+                <div class="field"><label for="pay-ref">Reference <span class="text-muted">(optional)</span></label><input class="input" id="pay-ref" name="Reference" placeholder="UPI transaction ID"></div>
+              </div>
+            </div>
+            <div class="modal-foot"><button type="button" class="btn btn-light" data-modal-close>Cancel</button><button type="submit" class="btn btn-primary">Record payment</button></div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+<script src="../assets/js/common/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app">
+
+  @* Partial Sidebar *@
+  <partial name="_SidebarPartial" />
+
+  <div class="main">
+    <header class="topbar">
+      <button type="button" class="menu-btn" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#menu"></use></svg></button>
+      <label class="command-search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"></use></svg><span class="sr-only">Search</span><input type="search" placeholder="Search tenants, spaces or bills"></label>
+      <div class="topbar-right">
+        <div class="dropdown">
+          <button type="button" class="icon-btn" data-dropdown="" aria-label="Notifications" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#bell"></use></svg><span class="dot"></span></button>
+          <div class="dropdown-menu" style="min-width:320px">
+            <div class="dropdown-head"><strong>Notifications</strong><span>3 unread</span></div>
+            <a class="notice-item" href="#"><span class="notice-icon pill-red"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#alert-triangle"></use></svg></span><span>Sahil Gupta's October bill is overdue (₹8,000).<time>2 hours ago</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-green"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#inbox"></use></svg></span><span>New inquiry for Room 201 from Priya Nair.<time>Yesterday</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-orange"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#clock"></use></svg></span><span>Arjun Nair moves out on 2 Dec 2026.<time>2 days ago</time></span></a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button type="button" class="user-btn" data-dropdown="" aria-expanded="false" aria-label="Account menu">
+            <span class="user-name">Rajesh Mehta</span><span class="avatar avatar-lg av-5" aria-hidden="true">RM</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-head"><strong>Rajesh Mehta</strong><span>rajesh.mehta@example.com (Owner)</span></div>
+            <a class="dropdown-item" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#user"></use></svg>Account settings</a>
+            <a class="dropdown-item" href="../auth/change-password.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#key"></use></svg>Change password</a>
+            <a class="dropdown-item danger" href="../auth/logged-out.html" data-confirm="Log out of StayNest?" data-confirm-message="You will need to log in again to continue." data-confirm-text="Log out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#logout"></use></svg>Log out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1 style="display:flex;align-items:center;gap:8px">Hello, Rajesh Mehta <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#hand"></use></svg></h1>
+          <p>Today, occupancy across your properties is <strong>77.3% for November.</strong> One bill is overdue and needs follow-up.</p>
+        </div>
+        <div class="page-actions">
+          <select class="select" aria-label="Property" style="width:200px;height:40px"><option>All properties</option><option>Sunrise Residency</option><option>Green Valley PG</option></select>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-left">
+          <div class="grid grid-3">
+            <section class="card kpi">
+              <h2 class="kpi-title">People staying</h2>
+              <div><div class="kpi-value">17</div><div class="kpi-delta up">+2 since last month</div></div>
+              <div class="kpi-chart chart" data-chart="spark" data-color="green" data-points="12,13,13,14,15,15,16,15,17,17"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8DD198" stop-opacity="0.35"></stop><stop offset="100%" stop-color="#8DD198" stop-opacity="0"></stop></linearGradient></defs><path d="M0,34 C1.8518518518518519,33 7.4074074074074066,29 11.11111111111111,28 C14.814814814814815,27 18.51851851851852,29 22.22222222222222,28 C25.925925925925924,27 29.629629629629626,24 33.33333333333333,22 C37.03703703703703,20 40.74074074074074,17 44.44444444444444,16 C48.148148148148145,15 51.851851851851855,17 55.55555555555556,16 C59.25925925925926,15 62.962962962962955,9.999999999999998 66.66666666666666,9.999999999999998 C70.37037037037037,9.999999999999998 74.07407407407408,17 77.77777777777779,16 C81.4814814814815,15 85.18518518518519,6 88.88888888888889,4 C92.59259259259258,2 98.14814814814815,4 100,4 L100,40 L0,40 Z" fill="url(#g1)"></path><path d="M0,34 C1.8518518518518519,33 7.4074074074074066,29 11.11111111111111,28 C14.814814814814815,27 18.51851851851852,29 22.22222222222222,28 C25.925925925925924,27 29.629629629629626,24 33.33333333333333,22 C37.03703703703703,20 40.74074074074074,17 44.44444444444444,16 C48.148148148148145,15 51.851851851851855,17 55.55555555555556,16 C59.25925925925926,15 62.962962962962955,9.999999999999998 66.66666666666666,9.999999999999998 C70.37037037037037,9.999999999999998 74.07407407407408,17 77.77777777777779,16 C81.4814814814815,15 85.18518518518519,6 88.88888888888889,4 C92.59259259259258,2 98.14814814814815,4 100,4" fill="none" stroke="#8DD198" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg></div>
+            </section>
+            <section class="card kpi">
+              <h2 class="kpi-title">Vacant spaces</h2>
+              <div><div class="kpi-value">4</div><div class="kpi-delta up">of 17 rentable</div></div>
+              <div class="kpi-chart chart" data-chart="spark" data-color="blue" data-points="7,6,6,5,6,5,4,5,4,4"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A72BE" stop-opacity="0.35"></stop><stop offset="100%" stop-color="#4A72BE" stop-opacity="0"></stop></linearGradient></defs><path d="M0,4 C1.8518518518518519,5.666666666666667 7.4074074074074066,12.333333333333336 11.11111111111111,14.000000000000002 C14.814814814814815,15.666666666666668 18.51851851851852,12.333333333333336 22.22222222222222,14.000000000000002 C25.925925925925924,15.666666666666668 29.629629629629626,24.000000000000004 33.33333333333333,24.000000000000004 C37.03703703703703,24.000000000000004 40.74074074074074,14.000000000000002 44.44444444444444,14.000000000000002 C48.148148148148145,14.000000000000002 51.851851851851855,20.66666666666667 55.55555555555556,24.000000000000004 C59.25925925925926,27.333333333333336 62.962962962962955,34 66.66666666666666,34 C70.37037037037037,34 74.07407407407408,24.000000000000004 77.77777777777779,24.000000000000004 C81.4814814814815,24.000000000000004 85.18518518518519,32.333333333333336 88.88888888888889,34 C92.59259259259258,35.666666666666664 98.14814814814815,34 100,34 L100,40 L0,40 Z" fill="url(#g2)"></path><path d="M0,4 C1.8518518518518519,5.666666666666667 7.4074074074074066,12.333333333333336 11.11111111111111,14.000000000000002 C14.814814814814815,15.666666666666668 18.51851851851852,12.333333333333336 22.22222222222222,14.000000000000002 C25.925925925925924,15.666666666666668 29.629629629629626,24.000000000000004 33.33333333333333,24.000000000000004 C37.03703703703703,24.000000000000004 40.74074074074074,14.000000000000002 44.44444444444444,14.000000000000002 C48.148148148148145,14.000000000000002 51.851851851851855,20.66666666666667 55.55555555555556,24.000000000000004 C59.25925925925926,27.333333333333336 62.962962962962955,34 66.66666666666666,34 C70.37037037037037,34 74.07407407407408,24.000000000000004 77.77777777777779,24.000000000000004 C81.4814814814815,24.000000000000004 85.18518518518519,32.333333333333336 88.88888888888889,34 C92.59259259259258,35.666666666666664 98.14814814814815,34 100,34" fill="none" stroke="#4A72BE" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg></div>
+            </section>
+            <section class="card kpi">
+              <h2 class="kpi-title">Pending this month</h2>
+              <div><div class="kpi-value">₹23,000</div><div class="kpi-delta down">17.8% of billed</div></div>
+              <div class="kpi-chart chart" data-chart="spark" data-color="red" data-points="9,10,9,12,11,13,12,14,15,16"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D67B78" stop-opacity="0.35"></stop><stop offset="100%" stop-color="#D67B78" stop-opacity="0"></stop></linearGradient></defs><path d="M0,34 C1.8518518518518519,33.285714285714285 7.4074074074074066,29.714285714285715 11.11111111111111,29.714285714285715 C14.814814814814815,29.714285714285715 18.51851851851852,35.42857142857143 22.22222222222222,34 C25.925925925925924,32.57142857142857 29.629629629629626,22.57142857142857 33.33333333333333,21.142857142857142 C37.03703703703703,19.714285714285715 40.74074074074074,26.142857142857146 44.44444444444444,25.42857142857143 C48.148148148148145,24.714285714285715 51.851851851851855,17.571428571428573 55.55555555555556,16.857142857142858 C59.25925925925926,16.142857142857142 62.962962962962955,21.857142857142858 66.66666666666666,21.142857142857142 C70.37037037037037,20.428571428571427 74.07407407407408,14.714285714285714 77.77777777777779,12.571428571428571 C81.4814814814815,10.428571428571429 85.18518518518519,9.714285714285717 88.88888888888889,8.285714285714288 C92.59259259259258,6.857142857142859 98.14814814814815,4.714285714285714 100,4 L100,40 L0,40 Z" fill="url(#g3)"></path><path d="M0,34 C1.8518518518518519,33.285714285714285 7.4074074074074066,29.714285714285715 11.11111111111111,29.714285714285715 C14.814814814814815,29.714285714285715 18.51851851851852,35.42857142857143 22.22222222222222,34 C25.925925925925924,32.57142857142857 29.629629629629626,22.57142857142857 33.33333333333333,21.142857142857142 C37.03703703703703,19.714285714285715 40.74074074074074,26.142857142857146 44.44444444444444,25.42857142857143 C48.148148148148145,24.714285714285715 51.851851851851855,17.571428571428573 55.55555555555556,16.857142857142858 C59.25925925925926,16.142857142857142 62.962962962962955,21.857142857142858 66.66666666666666,21.142857142857142 C70.37037037037037,20.428571428571427 74.07407407407408,14.714285714285714 77.77777777777779,12.571428571428571 C81.4814814814815,10.428571428571429 85.18518518518519,9.714285714285717 88.88888888888889,8.285714285714288 C92.59259259259258,6.857142857142859 98.14814814814815,4.714285714285714 100,4" fill="none" stroke="#D67B78" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg></div>
+            </section>
+          </div>
+
+          <section class="card card-flush">
+            <div class="card-head">
+              <h2 class="card-title">Recent bills</h2>
+              <label class="search-sm"><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#search"></use></svg><span class="sr-only">Search bills</span><input type="search" placeholder="Search for anything..."></label>
+            </div>
+            <div class="table-wrap">
+              <table class="table" id="recent-bills">
+                <thead><tr><th scope="col"><button type="button" class="th-sort">Tenant<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg></button></th><th scope="col"><button type="button" class="th-sort">Property<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg></button></th><th scope="col"><button type="button" class="th-sort">Space<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg></button></th><th scope="col"><button type="button" class="th-sort">Due date<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg></button></th><th class="num" scope="col"><button type="button" class="th-sort">Amount<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg></button></th><th scope="col"><button type="button" class="th-sort">Status<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#chevron-down"></use></svg></button></th></tr></thead>
+                <tbody>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-4" aria-hidden="true">AJ</span>Ankit Jain</span></td>
+            <td>Sunrise Residency</td>
+            <td><a class="link-muted" href="space-status.html">Bed A1, Room A</a></td>
+            <td>05 Nov 2026</td>
+            <td class="num">₹8,000</td>
+            <td><span class="pill pill-blue">Unpaid</span></td>
+          </tr>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-1" aria-hidden="true">RM</span>Rohit Malhotra</span></td>
+            <td>Sunrise Residency</td>
+            <td><a class="link-muted" href="space-status.html">Room B, Flat 101</a></td>
+            <td>05 Nov 2026</td>
+            <td class="num">₹14,000</td>
+            <td><span class="pill pill-green">Paid</span></td>
+          </tr>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-5" aria-hidden="true">SG</span>Sahil Gupta</span></td>
+            <td>Green Valley PG</td>
+            <td><a class="link-muted" href="space-status.html">Bed 2, Room G2</a></td>
+            <td>05 Nov 2026</td>
+            <td class="num">₹7,500</td>
+            <td><span class="pill pill-blue">Unpaid</span></td>
+          </tr>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-5" aria-hidden="true">SG</span>Sahil Gupta</span></td>
+            <td>Green Valley PG</td>
+            <td><a class="link-muted" href="space-status.html">Bed 2, Room G2</a></td>
+            <td>05 Oct 2026</td>
+            <td class="num">₹8,000</td>
+            <td><span class="pill pill-red">Overdue</span></td>
+          </tr>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-1" aria-hidden="true">VS</span>Vikas Sharma</span></td>
+            <td>Sunrise Residency</td>
+            <td><a class="link-muted" href="space-status.html">Flat 102, Floor 1</a></td>
+            <td>05 Nov 2026</td>
+            <td class="num">₹32,000</td>
+            <td><span class="pill pill-green">Paid</span></td>
+          </tr>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-1" aria-hidden="true">KM</span>Kunal Mehra</span></td>
+            <td>Green Valley PG</td>
+            <td><a class="link-muted" href="space-status.html">Bed 2, Room 102</a></td>
+            <td>05 Nov 2026</td>
+            <td class="num">₹7,500</td>
+            <td><span class="pill pill-blue">Unpaid</span></td>
+          </tr>
+          <tr>
+            <td><span class="cell-user"><span class="avatar av-3" aria-hidden="true">AN</span>Arjun Nair</span></td>
+            <td>Green Valley PG</td>
+            <td><a class="link-muted" href="space-status.html">Bed 1, Room G1</a></td>
+            <td>05 Nov 2026</td>
+            <td class="num">₹7,500</td>
+            <td><span class="pill pill-green">Paid</span></td>
+          </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-foot"><span class="pager-info">Showing 7 of 14 bills for November</span><a class="link" href="invoices.html">View all bills</a></div>
+          </section>
+        </div>
+
+        <div class="dash-right">
+          <section class="card">
+            <h2 class="card-title">Collections this month</h2>
+            <div class="donut-wrap chart" data-chart="donut" data-label="Collections this month" data-tip="₹1,06,000" data-tip-index="0" data-segments="[{&quot;value&quot;:106000,&quot;color&quot;:&quot;green&quot;},{&quot;value&quot;:23000,&quot;color&quot;:&quot;blue&quot;},{&quot;value&quot;:8000,&quot;color&quot;:&quot;red&quot;}]"><svg viewBox="0 0 200 200" role="img" aria-label="Collections this month"><circle cx="100" cy="100" r="70" fill="none" stroke="#F0F0F0" stroke-width="16"></circle><circle cx="100" cy="100" r="70" fill="none" stroke="#8DD198" stroke-width="16" stroke-linecap="round" stroke-dasharray="330.30098525016444 109.52198625240658" stroke-dashoffset="0" transform="rotate(-90 100 100)"></circle><circle cx="100" cy="100" r="70" fill="none" stroke="#4A72BE" stroke-width="16" stroke-linecap="round" stroke-dasharray="63.838893025979075 375.98407847659195" stroke-dashoffset="-340.30098525016444" transform="rotate(-90 100 100)"></circle><circle cx="100" cy="100" r="70" fill="none" stroke="#D67B78" stroke-width="16" stroke-linecap="round" stroke-dasharray="15.683093226427506 424.1398782761435" stroke-dashoffset="-414.1398782761435" transform="rotate(-90 100 100)"></circle></svg><div class="chart-tip" style="left: 29.2874%; top: 78.2133%; transform: translate(-10%, -120%);">₹1,06,000</div></div>
+            <div class="legend">
+              <div class="legend-item"><span class="legend-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#check"></use></svg></span><span class="legend-label"><i class="legend-dot" style="background:var(--green)"></i>Collected</span></div>
+              <div class="legend-item"><span class="legend-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#clock"></use></svg></span><span class="legend-label"><i class="legend-dot" style="background:var(--blue)"></i>Unpaid</span></div>
+              <div class="legend-item"><span class="legend-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons/icons.svg#alert-triangle"></use></svg></span><span class="legend-label"><i class="legend-dot" style="background:var(--red)"></i>Overdue</span></div>
+            </div>
+          </section>
+          <section class="card">
+            <h2 class="card-title">Collections in 2026</h2>
+            <div class="area-wrap chart" data-chart="area" data-color="green" data-highlight="4" data-tip="₹1,17,629" data-points="98000,104500,111000,109250,117629,106000"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8DD198" stop-opacity="0.28"></stop><stop offset="100%" stop-color="#8DD198" stop-opacity="0"></stop></linearGradient></defs><path d="M0,36 C3.3333333333333335,34.56504831287042 13.333333333333332,30.260193251481653 20,27.39028987722248 C26.666666666666668,24.520386502963305 33.333333333333336,19.829198295039653 40,18.780579754444954 C46.666666666666664,17.731961213850255 53.333333333333336,22.562008592728443 60,21.098578633654284 C66.66666666666667,19.635148674580126 73.33333333333333,9.282524156435207 80,10 C86.66666666666667,10.717475843564793 96.66666666666667,22.836194745869207 100,25.40343369504305 L100,40 L0,40 Z" fill="url(#g4)"></path><path d="M0,36 C3.3333333333333335,34.56504831287042 13.333333333333332,30.260193251481653 20,27.39028987722248 C26.666666666666668,24.520386502963305 33.333333333333336,19.829198295039653 40,18.780579754444954 C46.666666666666664,17.731961213850255 53.333333333333336,22.562008592728443 60,21.098578633654284 C66.66666666666667,19.635148674580126 73.33333333333333,9.282524156435207 80,10 C86.66666666666667,10.717475843564793 96.66666666666667,22.836194745869207 100,25.40343369504305" fill="none" stroke="#8DD198" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg><div style="position: absolute; left: 80%; top: 25%; bottom: 0px; border-left: 1px dashed rgb(201, 201, 206);"></div><div style="position: absolute; left: 80%; top: 25%; width: 10px; height: 10px; margin: -5px 0px 0px -5px; border-radius: 50%; background: rgb(74, 114, 190); box-shadow: rgb(255, 255, 255) 0px 0px 0px 3px;"></div><div class="chart-tip" style="left: 80%; top: 25%;">₹1,17,629</div></div>
+            <div class="area-labels"><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>

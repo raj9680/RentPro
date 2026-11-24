@@ -1,0 +1,32 @@
+/* Public vacancy search (no login) */
+.public-top { position: sticky; top: 0; z-index: 30; background: var(--surface); height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 36px; box-shadow: 0 1px 0 var(--line); }
+.public-top .brand { margin: 0; }
+.public-top .brand-mark { width: 38px; height: 38px; border-radius: 10px; }
+.public-top .brand-mark svg { width: 20px; height: 20px; }
+.public-top .brand-name { font-size: 18px; }
+.public-wrap { max-width: 1280px; margin: 0 auto; padding: 28px 36px 48px; display: flex; flex-direction: column; gap: 22px; }
+.search-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.search-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 20px; align-items: start; }
+.filters { position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; }
+.filter-block { display: flex; flex-direction: column; gap: 8px; }
+.range-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.results { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.listing { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.listing-art { height: 120px; display: grid; place-items: center; position: relative; }
+.listing-art .icon { width: 34px; height: 34px; stroke-width: 1.4; }
+.listing-art.bed { background: var(--blue-fill); color: var(--blue); }
+.listing-art.room { background: var(--green-fill); color: var(--pill-green-tx); }
+.listing-art.flat { background: #FEF1E6; color: var(--pill-orange-tx); }
+.listing-art .pill { position: absolute; top: 12px; left: 12px; background: var(--surface); color: var(--text-2); }
+.listing-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.listing-body h3 { font-size: 14.5px; }
+.listing-price { font-size: 17px; font-weight: 600; }
+.listing-price small { font-size: 12px; color: var(--muted); font-weight: 400; }
+.listing-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.listing-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; }
+.results-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+@media (max-width: 900px) {
+  .search-layout { grid-template-columns: minmax(0, 1fr); }
+  .filters { position: static; }
+  .public-top, .public-wrap { padding-left: 20px; padding-right: 20px; }
+}
