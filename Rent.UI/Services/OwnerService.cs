@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Rent.Contracts.DTOs.Auth;
-using Rent.Contracts.DTOs.Owner;
+﻿using Rent.Contracts.DTOs.Owner;
 using Rent.UI.Services.Api;
 using System.Net;
-using System.Text;
 using System.Text.Json;
 
 namespace Rent.UI.Services
@@ -26,7 +23,6 @@ namespace Rent.UI.Services
         {
             _httpClientFactory = httpClientFactory;
         }
-
 
         public async Task<PropertySummaryResponse> ListPropertiesAsync(int page)
         {
@@ -89,6 +85,65 @@ namespace Rent.UI.Services
 
                 return result.Data;
             }
+        }
+
+
+        public async Task<ApiResult<PropertyHierarchyResponse>> GetPropertyHierarchyAsync(int id)
+        {
+            ApiResult<PropertyHierarchyResponse> result = new ApiResult<PropertyHierarchyResponse>();
+            HttpClient httpClient = _httpClientFactory.CreateClient("RentApi");
+
+            try
+            {
+                // The call that can throw is now INSIDE the try
+                using (HttpResponseMessage response = await httpClient.GetAsync("api/owner/GetPropertyHierarchy/" + id))
+                {
+                    result.StatusCode = response.StatusCode;
+                    result.Success = response.IsSuccessStatusCode;
+
+                    string responseJson = await response.Content.ReadAsStringAsync();
+
+                    if (!string.IsNullOrWhiteSpace(responseJson))
+                    {
+                        try
+                        {
+                            // Deserialize is the line that can throw JsonException
+                            ApiResponse<PropertyHierarchyResponse>?body = JsonSerializer.Deserialize<ApiResponse<PropertyHierarchyResponse>>(responseJson, _jsonOptions);
+
+                            if (body != null)
+                            {
+                                result.Data = body.Data;
+                                result.Message = body.Message;
+                                result.Errors = body.Errors;
+                            }
+                        }
+                        catch (JsonException)
+                        {
+                            result.Success = false;
+                            result.Message = "Unexpected response from the server.";
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                result.StatusCode = HttpStatusCode.ServiceUnavailable;
+                result.Success = false;
+                result.Message = "Service is not available. Try again later.";
+            }
+            catch (TaskCanceledException)
+            {
+                result.StatusCode = HttpStatusCode.GatewayTimeout;
+                result.Success = false;
+                result.Message = "Service took too long to respond. Try again later.";
+            }
+
+            if (!result.Success && result.Message == null)
+            {
+                result.Message = "Could not load the property. Please try again.";
+            }
+
+            return result;
         }
     }
 }

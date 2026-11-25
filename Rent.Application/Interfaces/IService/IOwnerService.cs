@@ -1,5 +1,4 @@
 ﻿using Rent.Contracts.DTOs.Owner;
-using Rent.Domain.Entities;
 
 namespace Rent.Application.Interfaces.IService
 {
@@ -7,6 +6,6 @@ namespace Rent.Application.Interfaces.IService
     {
         Task<PropertySummaryResponse> ListProperties(string propType, int page, int pageSize, int claimId);
 
-        Task<List<FloorResponse>> ListPropertiesHierarchy(int id, int page, int pageSize);
+        Task<PropertyHierarchyResponse> ListPropertiesHierarchy(int id, int page, int pageSize);
     }
 }

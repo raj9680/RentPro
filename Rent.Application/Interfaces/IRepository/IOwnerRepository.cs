@@ -6,6 +6,6 @@ namespace Rent.Application.Interfaces.IRepository
     public interface IOwnerRepository
     {
         Task<(IEnumerable<Property> Properties, int TotalRecords)> ListAllPropertiesAsync(string propType, int page, int pageSize, int id);
-        Task<List<Floor>>? ListPropertiesHierarchyAsync(int id, int page, int pageSize);
+        Task<Property>? ListPropertiesHierarchyAsync(int id, int page, int pageSize);
     }
 }

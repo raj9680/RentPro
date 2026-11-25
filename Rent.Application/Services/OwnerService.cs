@@ -1,4 +1,5 @@
-﻿using Rent.Application.Interfaces.IRepository;
+﻿using Rent.API.Extensions;
+using Rent.Application.Interfaces.IRepository;
 using Rent.Application.Interfaces.IService;
 using Rent.Contracts.DTOs.Owner;
 
@@ -40,48 +41,62 @@ namespace Rent.Application.Services
         }
 
         // change
-        public async Task<List<FloorResponse>> ListPropertiesHierarchy(int id, int page, int pageSize)
+        public async Task<PropertyHierarchyResponse> ListPropertiesHierarchy(int id, int page, int pageSize)
         {
             var data = await _ownerRepository.ListPropertiesHierarchyAsync(id, page, pageSize);
 
-            List<FloorResponse> floors = data.Select(f => new FloorResponse
+            //PropertyHierarchyResponse result = PropertyHierarchyResponseExtention.ToPropertyHierarchy(data);
+
+            #region Method 2 - Mapping
+
+            PropertyHierarchyResponse result = new PropertyHierarchyResponse
             {
-                Id = f.Id,
-                Name = f.Name,
-                Type = "Floor",
-                Capacity = 9,
-                MonthlyRent = 4,
+                Id = data.Id,
+                Name = data.Name,
+                Address = data.Address,
+                Capacity = 40,
                 Status = "Active",
-                Flats = f.Flats.Select(x => new FlatResponse
+                Floors = data.Floors.Select(f => new FloorResponse
                 {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Type = "Flat",
-                    Capacity = 10,
-                    MonthlyRent = 4000,
-                    Status = "Inactive",
-                    Rooms = x.Rooms.Select(r => new RoomResponse
+                    Id = f.Id,
+                    Name = f.Name,
+                    Type = "Floor",
+                    Capacity = 8,
+                    MonthlyRent = 4,
+                    Status = "Active",
+                    Flats = f.Flats.Select(fl => new FlatResponse
                     {
-                        Id = r.Id,
-                        Name = r.Name,
-                        Type = "Active",
-                        Capacity = 12,
+                        Id = fl.Id,
+                        Name = fl.Name,
+                        Type = "Flat",
+                        Capacity = 10,
                         MonthlyRent = 2000,
-                        Status = "Active",
-                        Beds = r.Beds.Select(b => new BedResponse
+                        Status = "Inactive",
+                        Rooms = fl.Rooms.Select(r => new RoomResponse
                         {
-                            Id = b.Id,
-                            Name = b.Name,
-                            Type = "Bed",
-                            Capacity = 14,
-                            MonthlyRent = 3000,
-                            Status = "Active"
+                            Id = r.Id,
+                            Name = r.Name,
+                            Type = "Vacant",
+                            Capacity = 2,
+                            MonthlyRent = 5000,
+                            Status = "Vacant",
+                            Beds = r.Beds.Select(b => new BedResponse
+                            {
+                                Id = b.Id,
+                                Name = b.Name,
+                                Type = "Bed",
+                                Capacity = 4,
+                                MonthlyRent = 2500,
+                                Status = "Active"
+                            }).ToList()
                         }).ToList()
                     }).ToList()
                 }).ToList()
-            }).ToList();
+            };
 
-            return floors;
+            #endregion
+
+            return result;
         }
     }
 }

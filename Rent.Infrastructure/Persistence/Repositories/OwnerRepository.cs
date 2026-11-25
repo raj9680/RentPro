@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rent.Application.Interfaces.IRepository;
+using Rent.Contracts.DTOs.Owner;
 using Rent.Domain.Entities;
 
 namespace Rent.Infrastructure.Persistence.Repositories
@@ -30,29 +31,30 @@ namespace Rent.Infrastructure.Persistence.Repositories
             return (properties, totalRecords);
         }
 
-        public async Task<List<Floor>>? ListPropertiesHierarchyAsync(int id, int page, int pageSize)
+        public async Task<Property>? ListPropertiesHierarchyAsync(int id, int page, int pageSize)
         {
             // page = Math.Max(page, 1);
             // pageSize = Math.Clamp(pageSize, 1, 100);
 
-            List<Floor> floors = await _dbContext.Floors
+            var properties = await _dbContext.Properties
                 .AsNoTracking()
                 .AsSplitQuery()
 
-                .Where(f => f.PropId == id)
+                .Where(f => f.Id == id)
                 .OrderBy(f => f.Id)
                 .ThenBy(f => f.Id)
 
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
 
-                .Include(f => f.Flats)
-                    .ThenInclude(fl => fl.Rooms)
-                        .ThenInclude(r => r.Beds)
+                .Include(f => f.Floors)
+                    .ThenInclude(fl => fl.Flats)
+                        .ThenInclude(r => r.Rooms)
+                            .ThenInclude(r => r.Beds)
 
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
-            return floors;
+            return properties;
         }
     }
 }

@@ -1,164 +1,430 @@
-﻿@{
+﻿@model PropertyHierarchyResponse
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="app">
 
-    @* Partial Sidebar *@
+    @* ===================== Sidebar ===================== *@
     <partial name="_SidebarPartial" />
 
     <div class="main">
 
+        @* ===================== Top bar ===================== *@
         <header class="topbar">
-            <button type="button" class="menu-btn" aria-label="Open navigation"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("menu")'></use></svg></button>
-            <label class="command-search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("search")'></use></svg><span class="sr-only">Search</span><input type="search" placeholder="Search tenants, spaces or bills"></label>
+
+            <button type="button" class="menu-btn" aria-label="Open navigation">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("menu")'></use></svg>
+            </button>
+
+            <label class="command-search">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("search")'></use></svg>
+                <span class="sr-only">Search</span>
+                <input type="search" placeholder="Search tenants, spaces or bills">
+            </label>
+
             <div class="topbar-right">
+
+                @* ----- Notifications ----- *@
                 <div class="dropdown">
-                    <button type="button" class="icon-btn" data-dropdown="" aria-label="Notifications" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bell")'></use></svg><span class="dot"></span></button>
-                    <div class="dropdown-menu" style="min-width:320px">
-                        <div class="dropdown-head"><strong>Notifications</strong><span>3 unread</span></div>
-                        <a class="notice-item" href="#"><span class="notice-icon pill-red"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("alert-triangle")'></use></svg></span><span>Sahil Gupta's October bill is overdue (₹8,000).<time>2 hours ago</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-green"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("inbox")'></use></svg></span><span>New inquiry for Room 201 from Priya Nair.<time>Yesterday</time></span></a><a class="notice-item" href="#"><span class="notice-icon pill-orange"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("clock")'></use></svg></span><span>Arjun Nair moves out on 2 Dec 2026.<time>2 days ago</time></span></a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button type="button" class="user-btn" data-dropdown="" aria-expanded="false" aria-label="Account menu">
-                        <span class="user-name">Rajesh Mehta</span><span class="avatar avatar-lg av-5" aria-hidden="true">RM</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg>
+                    <button type="button" class="icon-btn" data-dropdown aria-label="Notifications" aria-expanded="false">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bell")'></use></svg>
+                        <span class="dot"></span>
                     </button>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-head"><strong>Rajesh Mehta</strong><span>rajesh.mehta@example.com (Owner)</span></div>
-                        <a class="dropdown-item" href="../owner/account.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("user")'></use></svg>Account settings</a>
-                        <a class="dropdown-item" href="../auth/change-password.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("key")'></use></svg>Change password</a>
-                        <a class="dropdown-item danger" href="../auth/logged-out.html" data-confirm="Log out of StayNest?" data-confirm-message="You will need to log in again to continue." data-confirm-text="Log out"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("logout")'></use></svg>Log out</a>
+
+                    <div class="dropdown-menu" style="min-width:320px">
+                        <div class="dropdown-head">
+                            <strong>Notifications</strong>
+                            <span>3 unread</span>
+                        </div>
+
+                        <a class="notice-item" href="#">
+                            <span class="notice-icon pill-red">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("alert-triangle")'></use>
+                                </svg>
+                            </span>
+                            <span>Sahil Gupta's October bill is overdue (₹8,000).<time>2 hours ago</time></span>
+                        </a>
+
+                        <a class="notice-item" href="#">
+                            <span class="notice-icon pill-green">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("inbox")'></use></svg>
+                            </span>
+                            <span>New inquiry for Room 201 from Priya Nair.<time>Yesterday</time></span>
+                        </a>
+
+                        <a class="notice-item" href="#">
+                            <span class="notice-icon pill-orange">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("clock")'></use></svg>
+                            </span>
+                            <span>Arjun Nair moves out on 2 Dec 2026.
+                                <time>2 days ago</time>
+                            </span>
+                        </a>
                     </div>
                 </div>
+
+                @* ----- Account menu ----- *@
+                <div class="dropdown">
+                    <button type="button" class="user-btn" data-dropdown aria-expanded="false" aria-label="Account menu">
+                        <span class="user-name">Rajesh Mehta</span>
+                        <span class="avatar avatar-lg av-5" aria-hidden="true">RM</span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg>
+                    </button>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown-head">
+                            <strong>Rajesh Mehta</strong>
+                            <span>rajesh.mehta@example.com (Owner)</span>
+                        </div>
+
+                        <a class="dropdown-item" href="../owner/account.html">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("user")'></use></svg>
+                            Account settings
+                        </a>
+
+                        <a class="dropdown-item" href="../auth/change-password.html">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("key")'></use></svg>
+                            Change password
+                        </a>
+
+                        <a class="dropdown-item danger" href="../auth/logged-out.html"
+                           data-confirm="Log out of StayNest?"
+                           data-confirm-message="You will need to log in again to continue."
+                           data-confirm-text="Log out">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("logout")'></use></svg>
+                            Log out
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </header>
+
         <main class="content" id="main">
 
+            @* ===================== Page header: property name, address, actions ===================== *@
             <div class="page-head">
                 <div>
-                    <div class="breadcrumb"><a href="properties.html">Properties</a><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-right")'></use></svg><span>Sunrise Residency</span></div>
-                    <h1>Sunrise Residency</h1>
-                    <div class="meta-row" style="margin-top:8px"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("map-pin")'></use></svg>Sector 21, Gurugram, Haryana 122001</span><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("users")'></use></svg>Capacity 10 people</span><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("check")'></use></svg>Active</span></div>
+                    <div class="breadcrumb">
+                        <a asp-controller="Owner" asp-action="Properties">Properties</a>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-right")'></use></svg>
+                        <span>@Model.Name</span>
+                    </div>
+
+                    <h1>@Model.Name</h1>
+
+                    <div class="meta-row" style="margin-top:8px">
+                        <span>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("map-pin")'></use></svg>
+                            @Model.Address
+                        </span>
+                        <span>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("users")'></use></svg>
+                            Capacity @(Model.Capacity) people
+                        </span>
+                        <span>
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("check")'></use></svg>
+                            @Model.Status
+                        </span>
+                    </div>
                 </div>
+
                 <div class="page-actions">
-                    <a class="btn btn-light" href="property-form.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg>Edit property</a>
-                    <a class="btn btn-light" href="space-status.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("grid")'></use></svg>Space status</a>
-                    <button type="button" class="btn btn-primary" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg>Add space</button>
+                    <a class="btn btn-light" href="property-form.html">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg>
+                        Edit property
+                    </a>
+                    <a class="btn btn-light" href="space-status.html">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("grid")'></use></svg>
+                        Space status
+                    </a>
+                    <button type="button" class="btn btn-primary" data-modal-open="space-modal">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg>
+                        Add space
+                    </button>
                 </div>
             </div>
 
+            @* ===================== Stats ===================== *@
             <div class="grid grid-4">
-                <div class="card"><div class="stat-label">Capacity</div><div class="stat-value">10 people</div></div>
-                <div class="card"><div class="stat-label">People staying</div><div class="stat-value">7</div></div>
-                <div class="card"><div class="stat-label">Vacant spaces</div><div class="stat-value">2</div></div>
-                <div class="card"><div class="stat-label">Occupancy</div><div class="stat-value text-green">70.0%</div></div>
+                <div class="card">
+                    <div class="stat-label">Capacity</div>
+                    <div class="stat-value">10 people</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">People staying</div>
+                    <div class="stat-value">7</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Vacant spaces</div>
+                    <div class="stat-value">2</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Occupancy</div>
+                    <div class="stat-value text-green">70.0%</div>
+                </div>
             </div>
 
+            @* ===================== Spaces tree ===================== *@
             <section class="card card-flush">
+
                 <div class="card-head">
-                    <div><h2 class="card-title">Spaces</h2><p class="card-sub">Capacity of a space with smaller spaces inside it is the total of those spaces.</p></div>
-                    <div class="toolbar"><button type="button" class="btn btn-sm btn-soft" id="expand-all">Expand all</button><button type="button" class="btn btn-sm btn-soft" id="collapse-all">Collapse all</button></div>
+                    <div>
+                        <h2 class="card-title">Spaces</h2>
+                        <p class="card-sub">Capacity of a space with smaller spaces inside it is the total of those spaces.</p>
+                    </div>
+                    <div class="toolbar">
+                        <button type="button" class="btn btn-sm btn-soft" id="expand-all">Expand all</button>
+                        <button type="button" class="btn btn-sm btn-soft" id="collapse-all">Collapse all</button>
+                    </div>
                 </div>
+
                 <div class="table-wrap">
                     <div class="tree" role="table" aria-label="Spaces in Sunrise Residency">
-                        <div class="tree-row tree-head" role="row"><div role="columnheader">Space</div><div role="columnheader">Type</div><div role="columnheader">Capacity</div><div role="columnheader">Monthly rent</div><div role="columnheader">Status</div><div role="columnheader"></div></div>
-                        <div class="tree-row" role="row" data-id="s1" data-parent="" data-depth="0">
-                            <div class="tree-name" role="cell"><button type="button" class="tree-toggle" aria-label="Collapse Floor 1" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg></button><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("layers")'></use></svg></span><span>Floor 1</span></div>
-                            <div role="cell">Floor</div>
-                            <div role="cell">9 people</div>
-                            <div role="cell">-</div>
-                            <div role="cell"><span class="pill pill-grey">Not rentable</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Floor 1" aria-label="Add space inside Floor 1" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Floor 1" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button><button type="button" class="btn-icon" aria-label="Deactivate Floor 1" data-confirm="Deactivate Floor 1?" data-confirm-message="It will be hidden from search and cannot be rented. Its history is kept." data-confirm-text="Deactivate" data-confirm-danger=""><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("trash")'></use></svg></button></div>
+
+                        @* ----- Header row ----- *@
+                        <div class="tree-row tree-head" role="row">
+                            <div role="columnheader">Space</div>
+                            <div role="columnheader">Type</div>
+                            <div role="columnheader">Capacity</div>
+                            <div role="columnheader">Monthly rent</div>
+                            <div role="columnheader">Status</div>
+                            <div role="columnheader"></div>
                         </div>
-                        <div class="tree-row" role="row" data-id="s2" data-parent="s1" data-depth="1">
-                            <div class="tree-name" role="cell"><button type="button" class="tree-toggle" aria-label="Collapse Flat 101" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg></button><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("apartment")'></use></svg></span><span>Flat 101</span></div>
-                            <div role="cell">Flat</div>
-                            <div role="cell">4 people</div>
-                            <div role="cell">-</div>
-                            <div role="cell"><span class="pill pill-grey">Blocked</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Flat 101" aria-label="Add space inside Flat 101" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Flat 101" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s3" data-parent="s2" data-depth="2">
-                            <div class="tree-name" role="cell"><button type="button" class="tree-toggle" aria-label="Collapse Room A" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg></button><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("door")'></use></svg></span><span>Room A</span></div>
-                            <div role="cell">Room</div>
-                            <div role="cell">2 people</div>
-                            <div role="cell">-</div>
-                            <div role="cell"><span class="pill pill-grey">Blocked</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Room A" aria-label="Add space inside Room A" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Room A" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s4" data-parent="s3" data-depth="3">
-                            <div class="tree-name" role="cell"><span class="tree-spacer"></span><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bed")'></use></svg></span><span>Bed A1</span></div>
-                            <div role="cell">Bed</div>
-                            <div role="cell">1 person</div>
-                            <div role="cell">₹8,000</div>
-                            <div role="cell"><span class="pill pill-red">Occupied</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" aria-label="Edit Bed A1" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s5" data-parent="s3" data-depth="3">
-                            <div class="tree-name" role="cell"><span class="tree-spacer"></span><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bed")'></use></svg></span><span>Bed A2</span></div>
-                            <div role="cell">Bed</div>
-                            <div role="cell">1 person</div>
-                            <div role="cell">₹8,000</div>
-                            <div role="cell"><span class="pill pill-green">Vacant</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" aria-label="Edit Bed A2" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button><button type="button" class="btn-icon" aria-label="Deactivate Bed A2" data-confirm="Deactivate Bed A2?" data-confirm-message="It will be hidden from search and cannot be rented. Its history is kept." data-confirm-text="Deactivate" data-confirm-danger=""><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("trash")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s6" data-parent="s2" data-depth="2">
-                            <div class="tree-name" role="cell"><span class="tree-spacer"></span><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("door")'></use></svg></span><span>Room B</span></div>
-                            <div role="cell">Room</div>
-                            <div role="cell">2 people</div>
-                            <div role="cell">₹14,000</div>
-                            <div role="cell"><span class="pill pill-red">Occupied</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Room B" aria-label="Add space inside Room B" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Room B" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s7" data-parent="s1" data-depth="1">
-                            <div class="tree-name" role="cell"><span class="tree-spacer"></span><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("apartment")'></use></svg></span><span>Flat 102</span></div>
-                            <div role="cell">Flat</div>
-                            <div role="cell">5 people</div>
-                            <div role="cell">₹32,000</div>
-                            <div role="cell"><span class="pill pill-red">Occupied</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Flat 102" aria-label="Add space inside Flat 102" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Flat 102" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s8" data-parent="" data-depth="0">
-                            <div class="tree-name" role="cell"><button type="button" class="tree-toggle" aria-label="Collapse Floor 2" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg></button><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("layers")'></use></svg></span><span>Floor 2</span></div>
-                            <div role="cell">Floor</div>
-                            <div role="cell">1 person</div>
-                            <div role="cell">-</div>
-                            <div role="cell"><span class="pill pill-grey">Not rentable</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Floor 2" aria-label="Add space inside Floor 2" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Floor 2" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button><button type="button" class="btn-icon" aria-label="Deactivate Floor 2" data-confirm="Deactivate Floor 2?" data-confirm-message="It will be hidden from search and cannot be rented. Its history is kept." data-confirm-text="Deactivate" data-confirm-danger=""><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("trash")'></use></svg></button></div>
-                        </div>
-                        <div class="tree-row" role="row" data-id="s9" data-parent="s8" data-depth="1">
-                            <div class="tree-name" role="cell"><span class="tree-spacer"></span><span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("door")'></use></svg></span><span>Room 201</span></div>
-                            <div role="cell">Room</div>
-                            <div role="cell">1 person</div>
-                            <div role="cell">₹10,000</div>
-                            <div role="cell"><span class="pill pill-green">Vacant</span></div>
-                            <div class="tree-actions" role="cell"><button type="button" class="btn-icon" title="Add space inside Room 201" aria-label="Add space inside Room 201" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg></button><button type="button" class="btn-icon" aria-label="Edit Room 201" data-modal-open="space-modal"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg></button><button type="button" class="btn-icon" aria-label="Deactivate Room 201" data-confirm="Deactivate Room 201?" data-confirm-message="It will be hidden from search and cannot be rented. Its history is kept." data-confirm-text="Deactivate" data-confirm-danger=""><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("trash")'></use></svg></button></div>
-                        </div>
+
+                        @*
+                        Each space is one .tree-row:
+                        data-id     = this space's id
+                        data-parent = parent space's id ("" for a floor)
+                        data-depth  = 0 floor, 1 flat, 2 room, 3 bed
+                        Rows with children have a .tree-toggle button; rows without children have a .tree-spacer.
+                        *@
+
+                        @foreach(var f in Model.Floors)
+                        {
+                            @* ├── Floor *@
+                            <div class="tree-row" role="row" data-id="@f.Id" data-parent="" data-depth="0">
+                                <div class="tree-name" role="cell">
+                                    <button type="button" class="tree-toggle" aria-label="Collapse Floor 1" aria-expanded="true">
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg>
+                                    </button>
+                                    <span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("layers")'></use></svg></span>
+                                    <span>@f.Name</span>
+                                </div>
+                                <div role="cell">@f.Type</div>
+                                <div role="cell">@f.Capacity</div>
+                                <div role="cell">@f.MonthlyRent</div>
+                                <div role="cell"><span class="pill pill-grey">Not rentable</span></div>
+                                <div class="tree-actions" role="cell">
+                                    <button type="button" class="btn-icon" title="Add space inside @f.Name" aria-label="Add space inside @f.Name" data-modal-open="space-modal">
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg>
+                                    </button>
+                                    <button type="button" class="btn-icon" aria-label="Edit @f.Name" data-modal-open="space-modal">
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg>
+                                    </button>
+                                    <button type="button" class="btn-icon" aria-label="Deactivate @f.Name"
+                                            data-confirm="Deactivate @f.Name?"
+                                            data-confirm-message="It will be hidden from search and cannot be rented. Its history is kept."
+                                            data-confirm-text="Deactivate"
+                                            data-confirm-danger>
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("trash")'></use></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @foreach(var fl in f.Flats)
+                            {
+                                @* ├── Flat *@
+                                <div class="tree-row" role="row" data-id="@fl.Id" data-parent="@f.Id" data-depth="1">
+                                    <div class="tree-name" role="cell">
+                                        <button type="button" class="tree-toggle" aria-label="Collapse Flat 101" aria-expanded="true">
+                                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg>
+                                        </button>
+                                        <span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("apartment")'></use></svg></span>
+                                        <span>@fl.Name</span>
+                                    </div>
+                                    <div role="cell">@fl.Type</div>
+                                    <div role="cell">@fl.Capacity people</div>
+                                    <div role="cell">@fl.MonthlyRent</div>
+                                    <div role="cell"><span class="pill pill-grey">Blocked</span></div>
+                                    <div class="tree-actions" role="cell">
+                                        <button type="button" class="btn-icon" title="Add space inside @fl.Name" aria-label="Add space inside @fl.Name" data-modal-open="space-modal">
+                                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg>
+                                        </button>
+                                        <button type="button" class="btn-icon" aria-label="Edit @fl.Name" data-modal-open="space-modal">
+                                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                @foreach(var r in fl.Rooms)
+                                {
+                                    @* ├── Room *@
+                                    <div class="tree-row" role="row" data-id="@r.Id" data-parent="@fl.Id" data-depth="2">
+                                        <div class="tree-name" role="cell">
+                                            <button type="button" class="tree-toggle" aria-label="Collapse @r.Name" aria-expanded="true">
+                                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("chevron-down")'></use></svg>
+                                            </button>
+                                            <span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("door")'></use></svg></span>
+                                            <span>@r.Name</span>
+                                        </div>
+                                        <div role="cell">@r.Type</div>
+                                        <div role="cell">@r.Capacity people</div>
+                                        <div role="cell">@r.MonthlyRent</div>
+                                        <div role="cell"><span class="pill pill-grey">Blocked</span></div>
+                                        <div class="tree-actions" role="cell">
+                                            <button type="button" class="btn-icon" title="Add space inside @r.Name" aria-label="Add space inside @r.Name" data-modal-open="space-modal">
+                                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("plus")'></use></svg>
+                                            </button>
+                                            <button type="button" class="btn-icon" aria-label="Edit @r.Name" data-modal-open="space-modal">
+                                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    @foreach(var b in r.Beds)
+                                    {
+                                        @* ├── Bed *@
+                                        <div class="tree-row" role="row" data-id="s4" data-parent="@r.Id" data-depth="3">
+                                            <div class="tree-name" role="cell">
+                                                <span class="tree-spacer"></span>
+                                                <span class="type-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bed")'></use></svg></span>
+                                                <span>@r.Name</span>
+                                            </div>
+                                            <div role="cell">@r.Type</div>
+                                            <div role="cell">@r.Capacity person</div>
+                                            <div role="cell">₹@r.MonthlyRent</div>
+                                            <div role="cell"><span class="pill pill-red">@r.Status</span></div>
+                                            <div class="tree-actions" role="cell">
+                                                <button type="button" class="btn-icon" aria-label="Edit @r.Name" data-modal-open="space-modal">
+                                                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("edit")'></use></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+
                     </div>
                 </div>
             </section>
 
+            @* ===================== Add / edit space modal ===================== *@
             <div class="modal" id="space-modal" role="dialog" aria-modal="true" aria-labelledby="space-modal-title" aria-hidden="true">
                 <div class="modal-dialog">
                     <form id="space-form">
+
                         <div class="modal-head">
-                            <div><h2 id="space-modal-title">Add space</h2><p id="space-modal-sub">Inside Sunrise Residency</p></div>
-                            <button type="button" class="btn-icon" data-modal-close="" aria-label="Close"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("close")'></use></svg></button>
+                            <div>
+                                <h2 id="space-modal-title">Add space</h2>
+                                <p id="space-modal-sub">Inside Sunrise Residency</p>
+                            </div>
+                            <button type="button" class="btn-icon" data-modal-close aria-label="Close">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("close")'></use></svg>
+                            </button>
                         </div>
+
                         <div class="modal-body">
                             <div class="form-grid">
-                                <div class="field"><label for="s-type">Type</label><select class="select" id="s-type" name="SpaceType"><option>Floor</option><option>Flat</option><option>Room</option><option>Bed</option></select></div>
-                                <div class="field"><label for="s-name">Name</label><input class="input" id="s-name" name="Name" placeholder="For example, Room C"><span class="field-error">Enter a name.</span></div>
-                                <div class="field"><label for="s-cap">Capacity (people)</label><input class="input" id="s-cap" name="Capacity" type="number" min="1" value="1"><span class="help" id="cap-help">Spaces with smaller spaces inside calculate capacity automatically.</span><span class="field-error">Capacity must be at least 1.</span></div>
-                                <div class="field" style="justify-content:flex-end"><label class="switch"><input type="checkbox" id="s-rentable" name="IsRentable" checked=""><span class="switch-track"></span><span>Rent this space as a whole</span></label></div>
-                                <div class="field rent-field"><label for="s-rent">Monthly rent</label><div class="input-group"><span class="input-prefix">₹</span><input class="input" id="s-rent" name="MonthlyRent" type="number" min="0" placeholder="8000"></div><span class="field-error">Enter a rent of 0 or more.</span></div>
-                                <div class="field rent-field"><label for="s-dep">Security deposit</label><div class="input-group"><span class="input-prefix">₹</span><input class="input" id="s-dep" name="SecurityDeposit" type="number" min="0" placeholder="8000"></div><span class="field-error">Enter a deposit of 0 or more.</span></div>
-                                <div class="field span-2"><span class="label">Amenities</span><div class="chip-group"><label class="chip"><input type="checkbox" name="AmenityIds" value="1"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("snowflake")'></use></svg>AC</span></label><label class="chip"><input type="checkbox" name="AmenityIds" value="2"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bath")'></use></svg>Attached bathroom</span></label><label class="chip"><input type="checkbox" name="AmenityIds" value="3"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("wifi")'></use></svg>Wi-Fi</span></label><label class="chip"><input type="checkbox" name="AmenityIds" value="4"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("sofa")'></use></svg>Furnished</span></label><label class="chip"><input type="checkbox" name="AmenityIds" value="5"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("car")'></use></svg>Parking</span></label><label class="chip"><input type="checkbox" name="AmenityIds" value="6"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("zap")'></use></svg>Power backup</span></label><label class="chip"><input type="checkbox" name="AmenityIds" value="7"><span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("utensils")'></use></svg>Meals</span></label></div></div>
+
+                                <div class="field">
+                                    <label for="s-type">Type</label>
+                                    <select class="select" id="s-type" name="SpaceType">
+                                        <option>Floor</option>
+                                        <option>Flat</option>
+                                        <option>Room</option>
+                                        <option>Bed</option>
+                                    </select>
+                                </div>
+
+                                <div class="field">
+                                    <label for="s-name">Name</label>
+                                    <input class="input" id="s-name" name="Name" placeholder="For example, Room C">
+                                    <span class="field-error">Enter a name.</span>
+                                </div>
+
+                                <div class="field">
+                                    <label for="s-cap">Capacity (people)</label>
+                                    <input class="input" id="s-cap" name="Capacity" type="number" min="1" value="1">
+                                    <span class="help" id="cap-help">Spaces with smaller spaces inside calculate capacity automatically.</span>
+                                    <span class="field-error">Capacity must be at least 1.</span>
+                                </div>
+
+                                <div class="field" style="justify-content:flex-end">
+                                    <label class="switch">
+                                        <input type="checkbox" id="s-rentable" name="IsRentable" checked>
+                                        <span class="switch-track"></span>
+                                        <span>Rent this space as a whole</span>
+                                    </label>
+                                </div>
+
+                                <div class="field rent-field">
+                                    <label for="s-rent">Monthly rent</label>
+                                    <div class="input-group">
+                                        <span class="input-prefix">₹</span>
+                                        <input class="input" id="s-rent" name="MonthlyRent" type="number" min="0" placeholder="8000">
+                                    </div>
+                                    <span class="field-error">Enter a rent of 0 or more.</span>
+                                </div>
+
+                                <div class="field rent-field">
+                                    <label for="s-dep">Security deposit</label>
+                                    <div class="input-group">
+                                        <span class="input-prefix">₹</span>
+                                        <input class="input" id="s-dep" name="SecurityDeposit" type="number" min="0" placeholder="8000">
+                                    </div>
+                                    <span class="field-error">Enter a deposit of 0 or more.</span>
+                                </div>
+
+                                <div class="field span-2">
+                                    <span class="label">Amenities</span>
+                                    <div class="chip-group">
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="1">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("snowflake")'></use></svg>AC</span>
+                                        </label>
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="2">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("bath")'></use></svg>Attached bathroom</span>
+                                        </label>
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="3">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("wifi")'></use></svg>Wi-Fi</span>
+                                        </label>
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="4">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("sofa")'></use></svg>Furnished</span>
+                                        </label>
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="5">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("car")'></use></svg>Parking</span>
+                                        </label>
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="6">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("zap")'></use></svg>Power backup</span>
+                                        </label>
+                                        <label class="chip">
+                                            <input type="checkbox" name="AmenityIds" value="7">
+                                            <span><svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("utensils")'></use></svg>Meals</span>
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="alert alert-warning hidden" id="type-note"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("info")'></use></svg><span></span></div>
+
+                            <div class="alert alert-warning hidden" id="type-note">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href='@Url.Icon("info")'></use></svg>
+                                <span></span>
+                            </div>
                         </div>
-                        <div class="modal-foot"><button type="button" class="btn btn-light" data-modal-close="">Cancel</button><button type="submit" class="btn btn-primary" id="space-submit">Add space</button></div>
+
+                        <div class="modal-foot">
+                            <button type="button" class="btn btn-light" data-modal-close>Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="space-submit">Add space</button>
+                        </div>
+
                     </form>
                 </div>
             </div>

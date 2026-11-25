@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Rent.Contracts.DTOs.Owner;
 using Rent.UI.Services;
+using Rent.UI.Services.Api;
 
 namespace Rent.UI.Controllers
 {
@@ -32,10 +33,18 @@ namespace Rent.UI.Controllers
         }
 
 
+        [HttpGet("{id}")]
         public async Task<IActionResult> Property(int id)
         {
-            return View();
-        }
+            ApiResult<PropertyHierarchyResponse> result = await _ownerService.GetPropertyHierarchyAsync(id);
 
+            if(!result.Success || result.Data == null)
+            {
+                TempData["Error"] = result.Message;
+                return RedirectToAction("Properties");
+            }
+
+            return View(result.Data);
+        }
     }
 }

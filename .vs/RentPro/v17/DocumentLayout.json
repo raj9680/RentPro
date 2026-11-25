@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D7C7C320-26AE-45BC-B061-4FD4A092164B}|Rent.UI\\Rent.UI.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.ui\\views\\owner\\property.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D7C7C320-26AE-45BC-B061-4FD4A092164B}|Rent.UI\\Rent.UI.csproj|solutionrelative:rent.ui\\views\\owner\\property.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7C7C320-26AE-45BC-B061-4FD4A092164B}|Rent.UI\\Rent.UI.csproj|c:\\users\\raj.kumar\\desktop\\rentpro\\rent.ui\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7C7C320-26AE-45BC-B061-4FD4A092164B}|Rent.UI\\Rent.UI.csproj|solutionrelative:rent.ui\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +18,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OwnerController.cs",
+              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\Controllers\\OwnerController.cs",
+              "RelativeDocumentMoniker": "Rent.UI\\Controllers\\OwnerController.cs",
+              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\Controllers\\OwnerController.cs",
+              "RelativeToolTip": "Rent.UI\\Controllers\\OwnerController.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAjwDAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T13:32:25.257Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Property.cshtml",
+              "DocumentMoniker": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\Views\\Owner\\Property.cshtml",
+              "RelativeDocumentMoniker": "Rent.UI\\Views\\Owner\\Property.cshtml",
+              "ToolTip": "C:\\Users\\raj.kumar\\Desktop\\RentPro\\Rent.UI\\Views\\Owner\\Property.cshtml",
+              "RelativeToolTip": "Rent.UI\\Views\\Owner\\Property.cshtml",
+              "ViewState": "AQIAAE4BAAAAAAAAAAAQwGIBAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-24T17:25:55.949Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"

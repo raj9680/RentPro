@@ -44,18 +44,28 @@ namespace Rent.API.Controllers
         }
 
 
+        [Authorize(Roles = "Owner")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult> GetPropertyHierarchy(int id, int page = 1, int pageSize = 2)
         {
-            Claim? idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-
             var data = await _ownerService.ListPropertiesHierarchy(id, page, pageSize);
 
-            return Ok(new ApiResponse<List<FloorResponse>>
+            if(data != null)
             {
-                Success = true,
-                Data = data,
-                Message = "NA",
+                return Ok(new ApiResponse<PropertyHierarchyResponse>
+                {
+                    Success = true,
+                    Data = data,
+                    Message = "NA",
+                    Errors = []
+                });
+            }
+
+            return BadRequest(new ApiResponse<PropertyHierarchyResponse>
+            {
+                Success = false,
+                Data = new(),
+                Message = "Nothing found",
                 Errors = []
             });
         }
